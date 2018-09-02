@@ -1,0 +1,30 @@
+body {
+    background-color: #A98E80;
+}
+
+.reference {
+    cursor: pointer;
+    color: #87A0BA;
+}
+
+span.data-hr {
+    background-color: #ffff00;
+}
+
+.card {
+    overflow: visible;
+}
+
+a {
+    color: #87A0BA;
+}
+
+a:not([href]):not([tabindex]) {
+    color: #87A0BA;
+    text-decoration: none;
+}
+
+.navbar .navbar-brand img {
+    max-height: 50px;
+    max-width: 175px;
+}
