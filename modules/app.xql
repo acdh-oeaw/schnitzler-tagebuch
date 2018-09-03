@@ -65,6 +65,16 @@ return
     ($prev, $current, $next)
 };
 
+declare function app:doc-context($collection as xs:string, $current as xs:string) {
+let $all := sort(xmldb:get-child-resources($collection))
+let $currentIx := index-of($all, $current)
+let $prev := if ($currentIx > 1) then $all[$currentIx - 1] else false()
+let $next := if ($currentIx < count($all)) then $all[$currentIx + 1] else false()
+let $amount := count($all)
+return 
+    ($prev, $current, $next, $amount, $currentIx)
+};
+
 
 declare function app:fetchEntity($ref as xs:string){
     let $entity := collection($config:app-root||'/data/indices')//*[@xml:id=$ref]
@@ -282,9 +292,12 @@ let $xmlPath := concat(xs:string(request:get-parameter("directory", "editions"))
 let $xml := doc(replace(concat($config:app-root,'/data/', $xmlPath, $ref), '/exist/', '/db/'))
 let $collectionName := util:collection-name($xml)
 let $collection := functx:substring-after-last($collectionName, '/')
-let $neighbors := app:next-doc($collectionName, $ref)
+let $neighbors := app:doc-context($collectionName, $ref)
 let $prev := if($neighbors[1]) then 'show.html?document='||$neighbors[1]||'&amp;directory='||$collection else ()
 let $next := if($neighbors[3]) then 'show.html?document='||$neighbors[3]||'&amp;directory='||$collection else ()
+let $amount := $neighbors[4]
+let $currentIx := $neighbors[5]
+let $progress := ($currentIx div $amount)*100
 let $xslPath := xs:string(request:get-parameter("stylesheet", ""))
 let $xsl := if($xslPath eq "")
     then
@@ -310,6 +323,10 @@ let $params :=
     <param name="path2source" value="{$path2source}"/>
     <param name="prev" value="{$prev}"/>
     <param name="next" value="{$next}"/>
+    <param name="amount" value="{$amount}"/>
+    <param name="currentIx" value="{$currentIx}"/>
+    <param name="progress" value="{$progress}"/>
+    
    {
         for $p in request:get-parameter-names()
             let $val := request:get-parameter($p,())
