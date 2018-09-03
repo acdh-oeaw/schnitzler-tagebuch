@@ -47,6 +47,7 @@
                             </div>
                             <div class="modal-body">
                                 <table class="table table-boardered table-hover">
+                                    <xsl:variable name="entity" select="//tei:person[@xml:id=$entiyID]"/>
                                     <xsl:for-each select="$entity//tei:persName">
                                         <tr>
                                             <th>
