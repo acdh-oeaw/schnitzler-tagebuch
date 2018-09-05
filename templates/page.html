@@ -7,13 +7,30 @@
         <link rel="shortcut icon" href="$shared/resources/images/exist_icon_16x16.ico"/>
         <link rel="stylesheet" type="text/css" href="$app-root/resources/css/fundament.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
-            
-            
+        
+        
         <link rel="stylesheet" type="text/css" href="$app-root/resources/css/style.css"/>
         <!--scroll to top start-->
         <link rel="stylesheet" href="../resources/js/scroll-to-top/css/ap-scroll-top.min.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"/>
-        <script type="text/javascript" src="$app-root/resources/js/custom.js"/>
+        <script type="text/javascript" src="$app-root/resources/js/custom.js"/>        
+        <!-- Matomo -->
+        <script type="text/javascript">
+        var _paq = _paq || [];
+            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+              var u="https://clarin.oeaw.ac.at/piwik/";
+              _paq.push(['setTrackerUrl', u+'piwik.php']);
+              _paq.push(['setSiteId', '101']);
+              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+              g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+            })();
+        </script>
+        <!-- End Matomo Code -->
+        
+        
     </head>
     <body role="document" class="contained fixed-nav" id="body">
         <header>
@@ -21,7 +38,7 @@
                 <a class="navbar-brand" href="index.html">
                     <img src="../resources/img/stb-logo.svg" alt="Schnitzler-Tagebuch" title="some project logo" size="50%"/>
                 </a>
-                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"/>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -57,49 +74,49 @@
                 </div>
             </nav>
         </header>
-             <div id="content"/>
-            <div id="loadModal"/>
-            <footer class="main-footer">
-                <div class="container">
-                    <div class="footer-wrapper">
-                        <div class="footer-sep">
-                            <i class="far fa-comment"/> CONTACT
+        <div id="content"/>
+        <div id="loadModal"/>
+        <footer class="main-footer">
+            <div class="container">
+                <div class="footer-wrapper">
+                    <div class="footer-sep">
+                        <i class="far fa-comment"/> CONTACT
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 pl-0">
+                            <a href="https://www.oeaw.ac.at/acdh-home/" target="_blank" rel="noopener" aria-label="ACDH">
+                                <img src="../resources/img/acdh_logo.png" alt="ACDH" title="Austrian Centre for Digital Humanities"/>
+                            </a>
                         </div>
-                        <div class="row">
-                            <div class="col-md-1 pl-0">
-                                <a href="https://www.oeaw.ac.at/acdh-home/" target="_blank" rel="noopener" aria-label="ACDH">
-                                    <img src="../resources/img/acdh_logo.png" alt="ACDH" title="Austrian Centre for Digital Humanities"/>
-                                </a>
-                            </div>
-                            <div class="col-md-4">
-                                <p>
-                                    ACDH-OeAW
-                                    <br/>
-                                        Austrian Centre for Digital Humanities
-                                        <br/>
-                                            Austrian Academy of Sciences
-                                </p>
-                                <p>
-                                    Sonnenfelsgasse 19,
-                                    <br/>
-                                        1010 Vienna
-                                </p>
-                                <p>
-                                    T: +43 1 51581-2200
-                                    <br/>
-                                        E: <a href="javascript:linkTo_UnCryptMailto('nbjmup;bdeiApfbx/bd/bu');">acdh(at)oeaw.ac.at</a>
-                                </p>
-                            </div>
-                            <div class="col-md-3 ml-auto">
-                                <img src="../resources/img/stb-logo.svg" alt="ProjectLogo"/>
-                            </div>
+                        <div class="col-md-4">
+                            <p>
+                                ACDH-OeAW
+                                <br/>
+                                Austrian Centre for Digital Humanities
+                                <br/>
+                                Austrian Academy of Sciences
+                            </p>
+                            <p>
+                                Sonnenfelsgasse 19,
+                                <br/>
+                                1010 Vienna
+                            </p>
+                            <p>
+                                T: +43 1 51581-2200
+                                <br/>
+                                E: <a href="javascript:linkTo_UnCryptMailto('nbjmup;bdeiApfbx/bd/bu');">acdh(at)oeaw.ac.at</a>
+                            </p>
+                        </div>
+                        <div class="col-md-3 ml-auto">
+                            <img src="../resources/img/stb-logo.svg" alt="ProjectLogo"/>
                         </div>
                     </div>
                 </div>
-                <div class="footer-imprint-bar">
-                    <a href="https://www.oeaw.ac.at/die-oeaw/impressum/">Impressum/Imprint</a>
-                </div>
-            </footer>
+            </div>
+            <div class="footer-imprint-bar">
+                <a href="https://www.oeaw.ac.at/die-oeaw/impressum/">Impressum/Imprint</a>
+            </div>
+        </footer>
         
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"/>
