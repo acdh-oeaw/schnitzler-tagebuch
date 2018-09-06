@@ -1,4 +1,4 @@
-xquery version "3.0";
+xquery version "3.1";
 
 module namespace api="http://www.digital-archiv.at/ns/schnitzler-tagebuch/api";
 declare namespace rest = "http://exquery.org/ns/restxq";
@@ -8,6 +8,7 @@ import module namespace app="http://www.digital-archiv.at/ns/schnitzler-tagebuch
 import module namespace config="http://www.digital-archiv.at/ns/schnitzler-tagebuch/config" at "config.xqm";
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace http = "http://expath.org/ns/http-client";
+import module namespace kwic = "http://exist-db.org/xquery/kwic" at "resource:org/exist/xquery/lib/kwic.xql";
 
 declare variable $api:JSON := 
 <rest:response>
@@ -60,8 +61,9 @@ declare
     %rest:path("/schnitzler-tagebuch/dt/{$collection}/{$format}")
     %rest:query-param("start", "{$start}", 0)
     %rest:query-param("lenght", "{$lenght}", 10)
-function api:list-documents($collection, $format, $start, $lenght, $draw) {
-let $result:= api:dt-list-collection-content($collection, $start, $lenght, $draw)
+    %rest:query-param("search[value]", "{$search}", '')
+function api:dt-list-documents($collection, $format, $start, $lenght, $draw, $search) {
+let $result:= api:dt-list-collection-content($collection, $start, $lenght, $draw, $search)
 
 let $serialization := switch($format)
     case('xml') return $api:XML
@@ -82,33 +84,39 @@ function api:show-document-api($collection, $id, $format) {
        ($serialization, $result)
 };
 
-declare %private function api:dt-list-collection-content($collection as xs:string, $start, $lenght, $draw){
+declare %private function api:dt-list-collection-content($collection as xs:string, $start, $lenght, $draw, $search){
         let $draw := xs:integer($draw)
         let $start := xs:integer($start)+1
         let $lenght := xs:integer($lenght)
-        let $docs := collection($config:app-root||'/data/'||$collection)//tei:TEI
+        let $docs := if($search) 
+            then 
+                sort(collection($config:app-root||'/data/'||$collection)//tei:TEI[.//tei:p[ft:query(.,$search)]])
+            else 
+                sort(collection($config:app-root||'/data/'||$collection)//tei:TEI)
         let $all := count($docs)
         let $docs := subsequence($docs, $start, $start+$lenght)
+        let $filtered := count($docs)
        
         let $result := 
             <result>
                 <draw>{$draw}</draw>
                 <recordsTotal>{$all}</recordsTotal>
                 <recordsFiltered>{$all}</recordsFiltered>
-                <meta>
-                    <hits>{$all}</hits>
-                </meta>
-               
-                {for $doc in $docs
+                <searchstring>{$search}</searchstring>
+                {for $doc at $count in $docs
                 
                 let $id := app:getDocName($doc)
+                let $rowID := "row_"||$count
+                let $text := substring(normalize-space(string-join($doc//tei:div[@type='diary-day']/tei:p[1]/text())), 1, 50)||"..."
                     return
                         <data>
-                            <type>TEI-Document</type>
-                            <id>{$id}</id>
-                            <attributes>
-                                <title>{normalize-space(string-join($doc//tei:title[1]//text(), ' '))}</title>
-                            </attributes>
+                            <DT_RowId>{$rowID}</DT_RowId>
+                            <DT_RowData>
+                                <pkey>{$count}</pkey>
+                            </DT_RowData>
+                           <title>{normalize-space(string-join($doc//tei:title[@type='main']//text(), ' '))}</title>
+                           <doc_name>{$id}</doc_name>
+                           <text>{$text}</text>
                         </data>
                  }
             </result>

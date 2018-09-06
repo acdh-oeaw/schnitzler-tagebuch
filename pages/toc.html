@@ -11,18 +11,27 @@
                 <thead>
                     <tr align="center" font-size="1.0em">
                         <th>Title</th>
-                        <th>Doc-Name</th>
+                        <th>Text</th>
                     </tr>
                 </thead>
-                <tr data-template="app:toc"/>
+                <!--<tr data-template="app:toc"/>-->
             </table>
         </div>
     </div>
-    <script>var table = $('#myTable').DataTable({
+    <script>
+       $('#myTable').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": "http://localhost:8080/exist/restxq/schnitzler-tagebuch/dt/editions/json",
+            "columns": [
+                { "data": "title" },
+                { "data": "text" }
+            ],
             keepConditions: true,
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'excel', 'pdf'
             ]
-        });</script>
+        });
+    </script>
 </div>
