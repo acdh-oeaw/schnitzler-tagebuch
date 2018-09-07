@@ -90,36 +90,54 @@ declare %private function api:dt-list-collection-content($collection as xs:strin
         let $lenght := xs:integer($lenght)
         let $docs := if($search) 
             then 
-                sort(collection($config:app-root||'/data/'||$collection)//tei:TEI[.//tei:p[ft:query(.,$search)]])
+                sort(collection($config:app-root||'/data/'||$collection)//tei:TEI[.//tei:p[ft:query(.,$search||'*')]])
             else 
                 sort(collection($config:app-root||'/data/'||$collection)//tei:TEI)
         let $all := count($docs)
-        let $docs := subsequence($docs, $start, $start+$lenght)
+        let $docs := subsequence($docs, $start, $lenght)
         let $filtered := count($docs)
-       
-        let $result := 
-            <result>
-                <draw>{$draw}</draw>
-                <recordsTotal>{$all}</recordsTotal>
-                <recordsFiltered>{$all}</recordsFiltered>
-                <searchstring>{$search}</searchstring>
-                {for $doc at $count in $docs
-                
-                let $id := app:getDocName($doc)
-                let $rowID := "row_"||$count
-                let $text := substring(normalize-space(string-join($doc//tei:div[@type='diary-day']/tei:p[1]/text())), 1, 50)||"..."
-                    return
-                        <data>
-                            <DT_RowId>{$rowID}</DT_RowId>
+        let $result :=
+               <result>
+                    <draw>{$draw}</draw>
+                    <recordsTotal>{$all}</recordsTotal>
+                    <recordsFiltered>{$all}</recordsFiltered>
+                    <searchstring>{$search}</searchstring>
+                    {for $doc at $count in $docs
+                    
+                    let $id := app:getDocName($doc)
+                    let $rowID := "row_"||$count
+                    let $text := substring(normalize-space(string-join($doc//tei:div[@type='diary-day']/tei:p[1]/text())), 1, 50)||"..."
+                        return
+                            <data>
+                                <DT_RowId>{$rowID}</DT_RowId>
+                                <DT_RowData>
+                                    <pkey>{$count}</pkey>
+                                </DT_RowData>
+                               <title>
+                                   <textvalue>{normalize-space(string-join($doc//tei:title[@type='main']//text(), ' '))}</textvalue>
+                                   <href>{app:hrefToDoc($doc)}</href>
+                               </title>
+                               <doc_name>
+                                   <textvalue>{$id}</textvalue>
+                               </doc_name>
+                               <text>{$text}</text>
+                           </data>
+                     }
+                     <data>
+                        <DT_RowId></DT_RowId>
                             <DT_RowData>
-                                <pkey>{$count}</pkey>
+                                <pkey></pkey>
                             </DT_RowData>
-                           <title>{normalize-space(string-join($doc//tei:title[@type='main']//text(), ' '))}</title>
-                           <doc_name>{$id}</doc_name>
-                           <text>{$text}</text>
-                        </data>
-                 }
-            </result>
+                               <title>
+                                   <textvalue></textvalue>
+                                   <href></href>
+                               </title>
+                               <doc_name>
+                                   <textvalue></textvalue>
+                               </doc_name>
+                               <text></text>
+                           </data>
+                </result>
             return 
                 $result
 };
