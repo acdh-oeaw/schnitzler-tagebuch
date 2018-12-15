@@ -7,6 +7,9 @@
         <create qname="tei:placeName" type="xs:string"/>
         <create qname="tei:rs" type="xs:string"/>
         <create qname="@ref" type="xs:string"/>
+        <range>
+            <create qname="@when" type="xs:string"/>
+        </range>
         <lucene>
             <text qname="tei:p"/>
         </lucene>
