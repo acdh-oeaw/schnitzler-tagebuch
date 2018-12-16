@@ -3,13 +3,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-year-calendar/1.1.1/css/bootstrap-year-calendar.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-year-calendar/1.1.1/js/bootstrap-year-calendar.js"/>
     <style>
-        .loader {
+        #loader {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
         border: 16px solid #f3f3f3;
         border-radius: 50%;
         border-top: 16px solid #3498db;
         width: 120px;
         height: 120px;
-        -webkit-animation: spin 2s linear infinite; /* Safari */
+        -webkit-animation: spin 2s linear infinite;
         animation: spin 2s linear infinite;
         }
         
@@ -35,7 +42,7 @@
                         <i class="fas fa-info" title="Info" data-toggle="modal" data-target="#exampleModal"/>
                     </a>
                     |
-                    <a href="../analyze/calendar_datasource.xql">
+                    <a href="../analyze/cache/calendar_datasource.json">
                         <i class="fas fa-download" title="Data"/>
                     </a>
                 </h3>
@@ -68,7 +75,7 @@
     //https://github.com/martinantonmueller/Hermann-Bahr_Arthur-Schnitzler/blob/master/app/resources/js/calendar.js
         $.ajax({
             cache: true,
-            url: "../analyze/calendar_datasource.xql",
+            url: "../analyze/cache/calendar_datasource.json",
             dataType: "json",
             success: function(data) {
 
