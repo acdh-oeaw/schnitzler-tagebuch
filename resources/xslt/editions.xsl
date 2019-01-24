@@ -35,19 +35,9 @@
                         </div>
                         <div class="col-md-8" align="center">
                             <h1>
-                                <xsl:value-of select="//tei:title[@type='main']"/>         
+                                27. April 1879   
                             </h1>
-                            <h6>
-                                <span class="badge badge-secondary">
-                                    <xsl:value-of select="$currentIx"/> / <xsl:value-of select="$amount"/>
-                                </span>
-                            </h6>
-                            <h5>
-                                <muted>
-                                    <xsl:value-of select="//tei:title[@type='sub']"/>
-                                </muted>
-                            </h5>
-                           
+                            
                         </div>
                         <div class="col-md-2" style="text-align:right">
                             <xsl:if test="$next">
@@ -62,27 +52,23 @@
                             </xsl:if>
                         </div>
                     </div>
-                    <h2 style="text-align:center;">
-                        <input type="range" min="1" max="{$amount}" value="{$currentIx}" data-rangeslider="" style="width:100%;"/>
-                        <a id="output" class="btn btn-main btn-outline-primary btn-sm" href="show.html?document=entry__1879-03-03.xml&amp;directory=editions" role="button">go to </a>
-                    </h2>
+                    
                 </div>
                 <div class="card-body">
                     <xsl:apply-templates select="//tei:div[@type='diary-day']"/>
                 </div>
                 <div class="card-footer text-muted" style="text-align:center">
-                    ACDH-OeAW,
-                    <i>
-                        <xsl:value-of select="//tei:title[@type='sub']"/> - 
-                        <xsl:value-of select="//tei:title[@type='main']"/>
-                    </i>
-                    <br/>
                     <a>
                         <xsl:attribute name="href">
                             <xsl:value-of select="$path2source"/>
                         </xsl:attribute>
-                        see the TEI source of this document
+                        TEI 
                     </a>
+                    | Zitierung
+                    <h6 style="text-align:center;">
+                        <input type="range" min="1" max="{$amount}" value="{$currentIx}" data-rangeslider="" style="width:100%;"/>
+                        <a id="output" class="btn btn-main btn-outline-primary btn-sm" href="show.html?document=entry__1879-03-03.xml&amp;directory=editions" role="button">go to </a>
+                    </h6>
                 </div>
             </div>
         </div>

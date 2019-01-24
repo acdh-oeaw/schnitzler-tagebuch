@@ -33,13 +33,7 @@
                         <div class="col-md-8" align="center">
                             <h1>
                                 <xsl:value-of select="//tei:title[@type='main']"/>                                
-                            </h1>
-                            <h5>
-                                <muted>
-                                    <xsl:value-of select="//tei:title[@type='sub']"/>
-                                </muted>
-                            </h5>
-                            
+                            </h1>                            
                         </div>
                         <div class="col-md-2" style="text-align:right">
                             <xsl:if test="$next">
@@ -59,18 +53,12 @@
                     <xsl:apply-templates select="//tei:body"/>
                 </div>
                 <div class="card-footer text-muted" style="text-align:center">
-                    ACDH-OeAW,
-                    <i>
-                        <xsl:value-of select="//tei:title[@type='sub']"/> - 
-                        <xsl:value-of select="//tei:title[@type='main']"/>
-                    </i>
-                    <br/>
                     <a>
                         <xsl:attribute name="href">
                             <xsl:value-of select="$path2source"/>
                         </xsl:attribute>
-                        see the TEI source of this document
-                    </a>
+                        TEI
+                    </a> | Zitierung
                 </div>
             </div>
         </div>

@@ -45,32 +45,34 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Menu
+                                Menü
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="index.html">Home</a>
-                                <a class="dropdown-item" href="show.html?document=about.xml&amp;directory=meta&amp;stylesheet=meta">About this website</a>
-                                <a class="dropdown-item" href="toc.html?collection=editions">Collection Editions</a>
-                                <a class="dropdown-item" href="persons.html">Persons</a>
-                                <a class="dropdown-item" href="places.html">Places</a>
-                                <a class="dropdown-item" href="calendar.html">Calendar</a>
+                                <a class="dropdown-item" href="show.html?document=about.xml&amp;directory=meta&amp;stylesheet=meta">Zur Edition</a>
+                                <a class="dropdown-item" href="calendar.html">Kalender</a>
+                                <a class="dropdown-item" href="persons.html">Personen</a>
+                                <a class="dropdown-item" href="places.html">Orte</a>
+                                <a class="dropdown-item" href="#">Werke (folgt)</a>
+                                <a class="dropdown-item" href="toc.html?collection=editions">Liste alle Tagebucheinträge</a>
+                                <div class="dropdown-divider"/>
+                                <a class="dropdown-item" href="../api/api.html">API</a>
+                                <a class="dropdown-item" href="../analyze/beacon.xql">GND-Beacon</a>
+                                
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Data endpoints
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="../../../../exist/restxq/schnitzler-tagebuch/editions/xml">Text as XML</a>
-                                <a class="dropdown-item" href="../../../../exist/restxq/schnitzler-tagebuch/editions/json">Text as JSON</a>                                
-                                <a class="dropdown-item" href="../ac/entity-ac.xql?query=">Person-Autocomplete</a>
-                                <a class="dropdown-item" href="../ac/entity-ac.xql?entity=place&amp;query=">Places-Autocomplete</a>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="calendar.html">Kalender</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="persons.html">Personen</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="places.html">Orte</a>
                         </li>
                     </ul>
                     <form method="get" action="ft_search.html" class="form-inline my-2 my-lg-0">
-                        <input name="searchexpr" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" pattern=".{3,}" required="" title="3 characters minimum"/>
-                        <button class="btn btn-main btn-outline-primary btn-mg" type="submit">Search</button>
+                        <input name="searchexpr" class="form-control mr-sm-2" type="text" placeholder="Suche" aria-label="Suche" pattern=".{3,}" required="" title="3 characters minimum"/>
+                        <button class="btn btn-main btn-outline-primary btn-mg" type="submit">Suche</button>
                     </form>
                 </div>
             </nav>

@@ -18,10 +18,10 @@ let $prefix :=
 
 let $nl := "&#10;"
 let $items :=  
-    for $x in doc($app:personIndex)//tei:person[starts-with(./tei:idno/text(), 'http://d-nb')]
+    for $x in doc($app:personIndex)//tei:person[./tei:idno[@type="GND"]]
         let $ownId := data($x/@xml:id)
         let $url := $root||'pages/hits.html?searchkey='||$ownId
-        let $entry :=$x/tei:idno/text()||'|'||$url
+        let $entry :=$x/tei:idno[@type='GND'][1]/text()||'|'||$url
     return $entry
 let $beacon := string-join(($prefix, $items), '&#10;')
     return $beacon
