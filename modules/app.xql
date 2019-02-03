@@ -215,7 +215,13 @@ for $title in ($entities, $terms)
 declare function app:listPers($node as node(), $model as map(*)) {
     let $hitHtml := "hits.html?searchkey="
     for $person in doc($app:personIndex)//tei:listPerson/tei:person
-    let $gnd := $person/tei:note/tei:p[3]/text()
+    let $gnd := $person/tei:idno[@type='GND']
+    let $gender := $person/tei:sex/text()
+    let $job := normalize-space(string-join($person//tei:occupation//text(), ', '))
+    let $birthday := $person/tei:birth/tei:date/text()
+    let $birthplace := $person/tei:birth/tei:placeName/text()
+    let $deathday := $person/tei:death/tei:date/text()
+    let $deathplace := $person/tei:death/tei:placeName/text()
     let $gnd_link := if ($gnd != "no gnd provided") then
         <a href="{$gnd}">{$gnd}</a>
         else
@@ -226,10 +232,28 @@ declare function app:listPers($node as node(), $model as map(*)) {
                 <a href="{concat($hitHtml,data($person/@xml:id))}">{$person/tei:persName/tei:surname}</a>
             </td>
             <td>
-                {$person/tei:persName/tei:forename}
+                <a href="{concat($hitHtml,data($person/@xml:id))}">{$person/tei:persName/tei:forename}</a>
+            </td>
+            <td>
+                {$birthday}
+            </td>
+            <td>
+                {$birthplace}
+            </td>
+            <td>
+                {$deathday}
+            </td>
+            <td>
+                {$deathplace}
             </td>
             <td>
                 {$gnd_link}
+            </td>
+            <td>
+                {$job}
+            </td>
+            <td>
+                {$gender}
             </td>
         </tr>
 };
@@ -315,7 +339,7 @@ let $xsl := if($xslPath eq "")
                 doc($config:app-root||'/resources/xslt/'||$xslPath||'.xsl')
             else
                 $app:defaultXsl
-let $path2source := string-join(('../../../../exist/restxq', $config:app-name, $collection, $ref, 'xml'), '/')
+let $path2source := string-join(('../../../../exist/restxq', $config:app-name,'api/collections', $collection, $ref), '/')
 let $params :=
 <parameters>
     <param name="app-name" value="{$config:app-name}"/>

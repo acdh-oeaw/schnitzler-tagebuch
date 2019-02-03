@@ -11,6 +11,10 @@
     <xsl:param name="currentIx"/>
     <xsl:param name="amount"/>
     <xsl:param name="progress"/>
+    
+    <xsl:variable name="doctitle">
+        <xsl:value-of select="//tei:title[@type='main']/text()"/>
+    </xsl:variable>
  <!--
 ##################################
 ### Seitenlayout und -struktur ###
@@ -35,7 +39,7 @@
                         </div>
                         <div class="col-md-8" align="center">
                             <h1>
-                                27. April 1879   
+                                <xsl:value-of select="substring-after($doctitle, ': ')"/>
                             </h1>
                             
                         </div>
