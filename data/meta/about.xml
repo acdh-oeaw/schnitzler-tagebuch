@@ -7,18 +7,18 @@
                 <title type="sub">Digital Edition of Schnitzler's Diary</title>
                 <author>
                     <persName>
-                        <forename>forename</forename>
-                        <surname>surename</surname>
+                        <forename>Martin Anton</forename>
+                        <surname>Müller</surname>
                     </persName>
                 </author>
             </titleStmt>
             <publicationStmt>
                 <publisher/>
                 <availability>
-                       <licence target="https://creativecommons.org/licenses/by/4.0/">
-                           <p>The (CC BY 4.0)-License applies to this document.</p>
-                       </licence>
-                   </availability>
+                    <licence target="https://creativecommons.org/licenses/by/4.0/">
+                        <p>The (CC BY 4.0)-License applies to this document.</p>
+                    </licence>
+                </availability>
             </publicationStmt>
             <sourceDesc>
                 <p>Born digital.</p>
@@ -28,8 +28,46 @@
     <text>
         <body>
             <div>
-                <head>About</head>
-                <p>Some place to write your project</p>
+                <p> Dies ist eine erste Version des digitalen Tagebuchs von Arthur Schnitzler,
+                    veröffentlicht am XXX. März 2019. In Druckform erschien es erstmals zwischen
+                    1981 und 2000 in zehn Bänden, herausgegeben von der Kommission für literarische
+                    Gebrauchsformen der Österreichischen Akademie der Wissenschaften. Die Leitung
+                    unterstand Werner Welzig. Diese Kommission existiert seit XXXX nicht mehr. Die
+                    digitale Aufbereitung wurde von der Nachfolgeinstitution ACDH auf Basis der
+                    gedruckten Vorlage erstellt. Die digitale Version weicht vom Druck an mehreren
+                    Stellen ab. So sind Korrekturen und Ergänzungen, gerade was die erfassten
+                    Personen und die Auflösung von Personen betrifft, stillschweigend eingearbeitet.
+                    Die Personen werden erstmals mit vollständigem Geburts- und Sterbedaten sowie
+                    den dazugehörigen Orten genannt. Erstmals ist ein Ortsregister verfügbar. Zwei
+                    Register der gedruckten Ausgabe, mit den Werken und Zeitschriften, werden
+                    nachgereicht. Ebenso ist die Erweiterung um Faksimiles in einem zukünftigen
+                    Schritt vorgesehen </p>
+                <p> Die gedruckte Fassung verlegte der Verlag der Österreichischen Akademie der
+                    Wissenschaften. Die Bände sind seit 2018 als PDF über die <ref target="https://www.austriaca.at/arthur_schnitzler_tagebuch">Website des
+                        Verlags</ref> abrufbar. <list>
+                        <item>1879–1892. (Unter Mitwirkung von Peter Michael Braunwarth, Susanne
+                            Pertlik und Reinhard Urbach, 1987) </item>
+                        <item> 1893–1902. (Unter Mitwirkung von Peter Michael Braunwarth, Konstanze
+                            Fliedl, Susanne Pertlik und Reinhard Urbach, 1989) </item>
+                        <item> 1903–1908. (Unter Mitwirkung von Peter Michael Braunwarth, Susanne
+                            Pertlik und Reinhard Urbach, 1991)</item>
+                        <item> 1909–1912. (Unter Mitwirkung von Peter Michael Braunwarth, Richard
+                            Miklin, Maria Neyses, Susanne Pertlik, Walter Ruprechter und Reinhard
+                            Urbach, 1981)</item>
+                        <item> 1913–1916. (Unter Mitwirkung von Peter Michael Braunwarth, Richard
+                            Miklin, Susanne Pertlik, Walter Ruprechter und Reinhard Urbach,
+                            1983)</item>
+                        <item> 1917–1919. (Unter Mitwirkung von Peter Michael Braunwarth, Richard
+                            Miklin, Susanne Pertlik und Reinhard Urbach, 1985)</item>
+                        <item> 1920–1922. (Unter Mitwirkung von Peter Michael Braunwarth, Susanne
+                            Pertlik und Reinhard Urbach, 1993)</item>
+                        <item> 1923–1926. (Unter Mitwirkung von Peter Michael Braunwarth, Susanne
+                            Pertlik und Reinhard Urbach, 1995)</item>
+                    </list>
+                </p>
+                <p>
+                    An der digitalen Aufbereitung waren Peter Michael Braunwarth sowie Peter Andorfer, Asil Çetin, Ulrike Czeitschner, Matej Ďurčo und Martin Anton Müller beteiligt.
+                </p>
             </div>
         </body>
     </text>
