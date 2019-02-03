@@ -1,6 +1,3 @@
-body {
-    background-color: #A98E80;
-}
 
 .reference {
     cursor: pointer;
@@ -28,8 +25,8 @@ a:not([href]):not([tabindex]) {
     text-decoration: none;
 }
 
+
 .navbar .navbar-brand img {
     max-height: 50px;
     max-width: 175px;
 }
-
