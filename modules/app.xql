@@ -6,6 +6,7 @@ import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://www.digital-archiv.at/ns/schnitzler-tagebuch/config" at "config.xqm";
 import module namespace kwic = "http://exist-db.org/xquery/kwic" at "resource:org/exist/xquery/lib/kwic.xql";
 
+declare variable $app:data := $config:app-root||'/data';
 declare variable  $app:editions := $config:app-root||'/data/editions';
 declare variable  $app:indices := $config:app-root||'/data/indices';
 declare variable $app:placeIndex := $config:app-root||'/data/indices/listplace.xml';

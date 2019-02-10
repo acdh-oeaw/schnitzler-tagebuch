@@ -82,39 +82,7 @@
             position: absolute;
             }
         </style>
-        <script>
-            $(function() {
-                var $document = $(document);
-                var selector = '[data-rangeslider]';
-                var $element = $(selector);
-                // Example functionality to demonstrate a value feedback
-
-                $element.rangeslider({
-                
-                // Deactivate the feature detection
-                polyfill: false,
-                
-                // Callback function
-                onInit: function() {
-                    $('#output').hide()
-                },
-                
-                // Callback function
-                onSlideEnd: function(position, value) {
-                
-                    $.get( "../analyze/docname-by-index.xql?index="+ value, function( data ) {
-                        var linkToDoc = data.replace('"', '');
-                        console.log(linkToDoc)
-                        var out = $('#output'); 
-                        out.text( "go to entry: "+ value );
-                        out.attr("href", linkToDoc.replace('"', ''));
-                        out.show()
-                    });
-                    
-                }
-                });
-            });
-        </script>
+        
     </xsl:template>
     
     <xsl:template match="tei:rs[@ref or @key]">
