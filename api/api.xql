@@ -106,6 +106,20 @@ declare function api:utils-paginator(
             }
 };
 
+declare variable $api:TEXT := 
+<rest:response>
+    <http:response>
+        <http:header name="Access-Control-Allow-Origin" value="*"/>
+        <http:header name="X-Frame-Options" value="SAMEORIGIN"/>
+        <http:header name="Content-Language" value="en"/>
+        <http:header name="Content-Type" value="text/plain; charset=utf-8"/>
+    </http:response>
+    <output:serialization-parameters>
+        <output:method value='text'/>
+        <output:media-type value='text/plain'/>
+    </output:serialization-parameters>
+ </rest:response>;
+
 declare variable $api:JSON := 
 <rest:response>
     <http:response>
@@ -353,10 +367,17 @@ function api:api-list-entities($pageNumber as xs:integer*, $pageSize as xs:integ
 declare 
     %rest:GET
     %rest:path("/schnitzler-tagebuch/api/collections/{$collection}/{$id}")
-function api:api-show-doc($collection as xs:string, $id as xs:string) {
+    %rest:query-param("format", "{$format}", 'xml')
+function api:api-show-doc($collection as xs:string, $id as xs:string, $format as xs:string*) {
     let $result := doc($config:app-root||'/data/'||$collection||'/'||$id)
+    let $content := switch($format)
+        case ('text') return $result//tei:body
+        default return $result
+    let $serialization := switch($format)
+        case('xml') return $api:XML
+        default return $api:TEXT
     return 
-       ($api:XML, $result)
+       ($serialization, $content)
 };
 
 

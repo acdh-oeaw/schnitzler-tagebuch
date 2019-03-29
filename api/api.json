@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is the API for Schnitzler-Tagebuch (https://schnitzler-tagebuch.acdh-dev.oeaw.ac.at).",
+    "description": "This is the API for [schnitzler-tagebuch-Web-App](https://schnitzler-tagebuch-korrespondenz.acdh.oeaw.ac.at).",
     "version": "v1.0",
     "title": "schnitzler-tagebuch API",
     "termsOfService": "../pages/imprint.html",
@@ -144,6 +144,13 @@
             "in": "path",
             "description": "ID of the document to return",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "The format of the response, defaults to 'xml', alternative is 'text'",
+            "required": false,
             "type": "string"
           }
         ],
