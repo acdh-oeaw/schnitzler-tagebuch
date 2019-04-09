@@ -78,7 +78,7 @@
         </div>
         <style>
             .rangeslider__fill {
-            background: #87A0BA;
+            background: #efd861;
             position: absolute;
             }
         </style>
