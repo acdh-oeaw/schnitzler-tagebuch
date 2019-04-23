@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei" version="2.0"><!-- <xsl:strip-space elements="*"/>-->
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:functx="http://www.functx.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="tei" version="2.0"><!-- <xsl:strip-space elements="*"/>-->
     <xsl:import href="shared/base.xsl"/>
     <xsl:param name="document"/>
     <xsl:param name="app-name"/>
@@ -11,9 +11,34 @@
     <xsl:param name="currentIx"/>
     <xsl:param name="amount"/>
     <xsl:param name="progress"/>
+    <xsl:function name="functx:repeat-string" as="xs:string">
+        <xsl:param name="stringToRepeat" as="xs:string?"/>
+        <xsl:param name="count" as="xs:integer"/>
+        
+        <xsl:sequence select="             string-join((for $i in 1 to $count return $stringToRepeat),             '')             "/>
+        
+    </xsl:function>
+    <xsl:function name="functx:pad-integer-to-length" as="xs:string">
+        <xsl:param name="integerToPad" as="xs:anyAtomicType?"/>
+        <xsl:param name="length" as="xs:integer"/>
+        
+        <xsl:sequence select="             if ($length &lt; string-length(string($integerToPad)))             then error(xs:QName('functx:Integer_Longer_Than_Length'))             else concat             (functx:repeat-string(             '0',$length - string-length(string($integerToPad))),             string($integerToPad))             "/>
+        
+    </xsl:function>
     
     <xsl:variable name="doctitle">
         <xsl:value-of select="//tei:title[@type='main']/text()"/>
+    </xsl:variable>
+    
+    <xsl:variable name="source_volume">
+        <xsl:value-of select="replace(//tei:monogr//tei:biblScope[@unit='volume']/text(), '-', '_')"/>
+    </xsl:variable>
+    <xsl:variable name="source_base_url">https://austriaca.at/buecher/files/arthur_schnitzler_tagebuch/Tagebuch1879-1931Einzelseiten/schnitzler_tb_</xsl:variable>
+    <xsl:variable name="source_page_nr">
+        <xsl:value-of select="functx:pad-integer-to-length(data(//tei:pb/@n), 3)"/>
+    </xsl:variable>
+    <xsl:variable name="source_pdf">
+        <xsl:value-of select="concat($source_base_url, $source_volume, 's', $source_page_nr, '.pdf')"/>
     </xsl:variable>
  <!--
 ##################################
@@ -69,6 +94,12 @@
                         TEI 
                     </a>
                     | Zitierung
+                    | <a>
+                        <xsl:attribute name="href">
+                            <xsl:value-of select="$source_pdf"/>
+                        </xsl:attribute>
+                       see source pdf
+                    </a>
                     <h6 style="text-align:center;">
                         <input type="range" min="1" max="{$amount}" value="{$currentIx}" data-rangeslider="" style="width:100%;"/>
                         <a id="output" class="btn btn-main btn-outline-primary btn-sm" href="show.html?document=entry__1879-03-03.xml&amp;directory=editions" role="button">gehe zu</a>
