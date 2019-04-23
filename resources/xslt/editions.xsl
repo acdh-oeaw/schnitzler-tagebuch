@@ -10,22 +10,7 @@
     <xsl:param name="next"/>
     <xsl:param name="currentIx"/>
     <xsl:param name="amount"/>
-    <xsl:param name="progress"/>
-    <xsl:function name="functx:repeat-string" as="xs:string">
-        <xsl:param name="stringToRepeat" as="xs:string?"/>
-        <xsl:param name="count" as="xs:integer"/>
-        
-        <xsl:sequence select="             string-join((for $i in 1 to $count return $stringToRepeat),             '')             "/>
-        
-    </xsl:function>
-    <xsl:function name="functx:pad-integer-to-length" as="xs:string">
-        <xsl:param name="integerToPad" as="xs:anyAtomicType?"/>
-        <xsl:param name="length" as="xs:integer"/>
-        
-        <xsl:sequence select="             if ($length &lt; string-length(string($integerToPad)))             then error(xs:QName('functx:Integer_Longer_Than_Length'))             else concat             (functx:repeat-string(             '0',$length - string-length(string($integerToPad))),             string($integerToPad))             "/>
-        
-    </xsl:function>
-    
+    <xsl:param name="progress"/>    
     <xsl:variable name="doctitle">
         <xsl:value-of select="//tei:title[@type='main']/text()"/>
     </xsl:variable>
@@ -35,7 +20,7 @@
     </xsl:variable>
     <xsl:variable name="source_base_url">https://austriaca.at/buecher/files/arthur_schnitzler_tagebuch/Tagebuch1879-1931Einzelseiten/schnitzler_tb_</xsl:variable>
     <xsl:variable name="source_page_nr">
-        <xsl:value-of select="functx:pad-integer-to-length(data(//tei:pb/@n), 3)"/>
+        <xsl:value-of select="format-number(data(//tei:pb/@n), '000')"/>
     </xsl:variable>
     <xsl:variable name="source_pdf">
         <xsl:value-of select="concat($source_base_url, $source_volume, 's', $source_page_nr, '.pdf')"/>
