@@ -2,6 +2,8 @@ xquery version "3.1";
 module namespace app="http://www.digital-archiv.at/ns/schnitzler-tagebuch/templates";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace functx = 'http://www.functx.com';
+
+import module namespace http="http://expath.org/ns/http-client";
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://www.digital-archiv.at/ns/schnitzler-tagebuch/config" at "config.xqm";
 import module namespace kwic = "http://exist-db.org/xquery/kwic" at "resource:org/exist/xquery/lib/kwic.xql";
@@ -14,6 +16,10 @@ declare variable $app:personIndex := $config:app-root||'/data/indices/listperson
 declare variable $app:orgIndex := $config:app-root||'/data/indices/listorg.xml';
 declare variable $app:workIndex := $config:app-root||'/data/indices/listwork.xml';
 declare variable $app:defaultXsl := doc($config:app-root||'/resources/xslt/xmlToHtml.xsl');
+
+
+declare variable $app:redmineBaseUrl := "https://shared.acdh.oeaw.ac.at/acdh-common-assets/api/imprint.php?serviceID=";
+declare variable $app:redmineID := "11833";
 
 declare function functx:contains-case-insensitive
   ( $arg as xs:string? ,
@@ -417,5 +423,14 @@ declare function app:listOrg($node as node(), $model as map(*)) {
         </tr>
 };
 
-
+(:~
+ : fetches html snippets from ACDH's imprint service; Make sure you'll have $app:redmineBaseUrl and $app:redmineID set
+ :)
+declare function app:fetchImprint($node as node(), $model as map(*)) {
+    let $url := $app:redmineBaseUrl||$app:redmineID
+    let $request := 
+    <http:request href="{$url}" method="GET"/>
+    let $response := http:send-request($request)
+        return $response[2]
+};
 
