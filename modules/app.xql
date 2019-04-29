@@ -434,3 +434,12 @@ declare function app:fetchImprint($node as node(), $model as map(*)) {
         return $response[2]
 };
 
+(:~
+ : fetches the first document in the given collection
+ :)
+declare function app:firstDoc($node as node(), $model as map(*)) {
+    let $all := sort(xmldb:get-child-resources($app:editions))
+    let $href := "show.html?document="||$all[1]||"&amp;directory=editions"
+        return
+            <a class="btn btn-main btn-outline-primary btn-lg" href="{$href}" role="button">Anfangen zu Lesen</a>
+};
