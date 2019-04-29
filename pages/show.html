@@ -44,7 +44,7 @@
         console.log(data);
         var linkToDoc = data.url;
         var out = $('#output'); 
-        out.text( "gehe zu Eintrag: "+ data.title );
+        out.text(data.title );
         out.attr("href", linkToDoc);
         out.show()
         });
