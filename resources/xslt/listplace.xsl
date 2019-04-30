@@ -115,6 +115,14 @@
                                             </xsl:when>
                                         </xsl:choose>
                                     </table>
+                                    <p>
+                                        <a>
+                                            <xsl:attribute name="href">
+                                                <xsl:value-of select="concat('../resolver/resolve-id.xql?id=', $entiyID)"/>
+                                            </xsl:attribute>
+                                            TEI
+                                        </a>
+                                    </p>
                                 </div>
                             </xsl:when>
                         </xsl:choose>
