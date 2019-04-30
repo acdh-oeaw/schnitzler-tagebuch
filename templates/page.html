@@ -43,22 +43,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Menü
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="show.html?document=about.xml&amp;directory=meta&amp;stylesheet=meta">Zur Edition</a>
-                                <a class="dropdown-item" href="calendar.html">Kalender</a>
-                                <a class="dropdown-item" href="persons.html">Personen</a>
-                                <a class="dropdown-item" href="places.html">Orte</a>
-                                <a class="dropdown-item" href="#">Werke (folgt)</a>
-                                <a class="dropdown-item" href="toc.html?collection=editions">Liste alle Tagebucheinträge</a>
-                                <div class="dropdown-divider"/>
-                                <a class="dropdown-item" href="../api/api.html">API</a>
-                                <a class="dropdown-item" href="../analyze/beacon.xql">GND-Beacon</a>
-                                
-                            </div>
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="show.html?document=about.xml&amp;directory=meta&amp;stylesheet=meta">Zur Edition</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="calendar.html">Kalender</a>
@@ -68,6 +54,15 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="places.html">Orte</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                API
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="../api/api.html">API</a>
+                                <a class="dropdown-item" href="../analyze/beacon.xql">GND-Beacon</a>
+                            </div>
                         </li>
                     </ul>
                     <form method="get" action="ft_search.html" class="form-inline my-2 my-lg-0">

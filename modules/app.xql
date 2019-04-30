@@ -182,12 +182,13 @@ let $href := concat('show.html','?document=', app:getDocName($node), '&amp;direc
  for $hit in collection(concat($config:app-root, '/data/editions/'))//*[.//tei:p[ft:query(.,$searchterm)]]
     let $href := concat(app:hrefToDoc($hit), "&amp;searchexpr=", $searchterm)
     let $score as xs:float := ft:score($hit)
-    order by $score descending
+    let $docname := app:getDocName($hit)
+    let $day := substring-before(substring-after($docname, 'entry__'), '.xml')
+    order by $docname descending
     return
     <tr>
-        <td>{$score}</td>
+        <td><a href="{$href}">{$day}</a></td>
         <td class="KWIC">{kwic:summarize($hit, <config width="100" link="{$href}" />)}</td>
-        <td>{app:getDocName($hit)}</td>
     </tr>
  else
     <div>Nothing to search for</div>
