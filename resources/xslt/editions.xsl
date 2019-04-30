@@ -142,6 +142,11 @@
                     <xsl:apply-templates/>
                 </span>
             </xsl:when>
+            <xsl:when test="starts-with(data(./@ref), '#genID__bibl')">
+                <span class="unlinked-entity-bibl">
+                    <xsl:apply-templates/>
+                </span>
+            </xsl:when>
             <xsl:otherwise>
                 <strong>
                     <xsl:element name="a">
