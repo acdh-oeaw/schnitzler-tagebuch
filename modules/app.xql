@@ -204,10 +204,10 @@ for $title in ($entities, $terms)
     let $hits := if (count(root($title)//*[@ref=$searchkey]) = 0) then 1 else count(root($title)//*[@ref=$searchkey])
     let $snippet :=
         for $entity in root($title)//*[@ref=$searchkey]
-                let $before := $entity/preceding::text()[1]
-                let $after := $entity/following::text()[1]
+                let $before := string-join(($entity/preceding::text()[3],$entity/preceding::text()[2], $entity/preceding::text()[1]), '')
+                let $after := substring(normalize-space(string-join($entity/following::text(), '')), 1, 50)
                 return
-                    <p>... {$before} <strong><a href="{concat(app:hrefToDoc($title), "&amp;searchkey=", $indexSerachKey)}"> {$entity/text()}</a></strong> {$after}...<br/></p>
+                    <p>... {concat($before, ' ')} <strong><a href="{concat(app:hrefToDoc($title), "&amp;searchkey=", $indexSerachKey)}"> {string-join($entity//text(), '')}</a></strong> {concat(' ', $after)}...<br/></p>
     let $zitat := $title//tei:msIdentifier
     return
             <tr>
