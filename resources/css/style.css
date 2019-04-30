@@ -1,7 +1,7 @@
 
 .reference {
     cursor: pointer;
-    color: #efd861;
+    color: #037a33;
 }
 
 span.data-hr {
@@ -13,15 +13,15 @@ span.data-hr {
 }
 
 .unlinked-entity {
-    color: #efd861;
+    color: #037a33;
 }
 
 a {
-    color: #efd861;
+    color: #037a33;
 }
 
 a:not([href]):not([tabindex]) {
-    color: #efd861;
+    color: #037a33;
     text-decoration: none;
 }
 

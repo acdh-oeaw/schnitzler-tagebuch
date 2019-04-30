@@ -12,12 +12,22 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="checker" as="text()">
+        <xsl:choose>
+            <xsl:when test="//tei:person[@xml:id=$entiyID][1]">
+                <xsl:value-of select="'yes'"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="'no'"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
     <xsl:template match="/">       
         <div class="modal" tabindex="-1" role="dialog" id="myModal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <xsl:choose>
-                        <xsl:when test="$entity">
+                        <xsl:when test="$checker = 'yes'">
                             <div class="modal-header">
                                 <xsl:variable name="entity" select="//tei:person[@xml:id=$entiyID]"/>
                                 <h3 class="modal-title">
@@ -36,7 +46,7 @@
                                                 <xsl:value-of select="concat('hits.html?searchkey=', $entiyID)"/>
                                             </xsl:attribute>
                                             <xsl:attribute name="target">_blank</xsl:attribute>
-                                            mentioned in
+                                            weitere Erwähnungen
                                         </a>
                                     </small>
                                 </h3>
@@ -63,89 +73,115 @@
                                                         <xsl:value-of select="./tei:surname"/>
                                                     </xsl:when>
                                                     <xsl:otherwise>
-                                                        hallo
+                                                        keine Angaben zu Namen vorhanden
                                                     </xsl:otherwise>
                                                 </xsl:choose>                                                
                                             </td>
                                         </tr>
                                         <xsl:choose>
-                                            <xsl:when test="$entity//tei:roleName">
+                                            <xsl:when test="$entity//tei:occupation/text()">
                                                 <tr>
                                                     <th>
-                                                        role name(s)
+                                                        Beruf(e)
                                                     </th>
                                                     <td>
-                                                        <xsl:for-each select="$entity//tei:roleName">
-                                                            <xsl:value-of select="."/>
-                                                            <br/>
+                                                        <xsl:for-each select="$entity//tei:occupation">
+                                                            <li>
+                                                                <xsl:value-of select="./text()"/>
+                                                            </li>
                                                         </xsl:for-each>
                                                     </td>
                                                 </tr>
                                             </xsl:when>
                                         </xsl:choose>
                                         <xsl:choose>
-                                            <xsl:when test="$entity//tei:birth and $entity//tei:death">
-                                                <tr>
-                                                    <th>
-                                                        birth and death
-                                                    </th>
-                                                    <td>
-                                                       <xsl:value-of select="$entity//tei:birth"/>
-                                                        <br/>
-                                                        <xsl:value-of select="$entity//tei:death"/>
-                                                    </td>
-                                                </tr>
-                                            </xsl:when>
                                             <xsl:when test="$entity//tei:birth">
                                                 <tr>
                                                     <th>
-                                                        birth
+                                                        geboren am
                                                     </th>
                                                     <td>
-                                                        <xsl:value-of select="$entity//tei:birth"/>
+                                                       <xsl:value-of select="$entity//tei:birth/tei:date/text()"/>
                                                     </td>
                                                 </tr>
-                                            </xsl:when>
-                                            <xsl:when test="$entity//tei:death">
                                                 <tr>
                                                     <th>
-                                                        death
+                                                        geboren in
                                                     </th>
                                                     <td>
-                                                        <xsl:value-of select="$entity//tei:death"/>
+                                                        <xsl:value-of select="$entity//tei:birth/tei:placeName/text()"/>
                                                     </td>
                                                 </tr>
                                             </xsl:when>
                                         </xsl:choose>
                                     </xsl:for-each>
-                                    <xsl:if test="$entity/tei:idno[@type='URL']">
-                                        <tr>
-                                            <th>URL:</th>
-                                            <td>
-                                                <a>
-                                                    <xsl:attribute name="href">
-                                                        <xsl:value-of select="$entity/tei:idno[@type='URL']/text()"/>
-                                                    </xsl:attribute>
-                                                    <xsl:value-of select="$entity/tei:idno[@type='URL']/text()"/>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </xsl:if>
+                                    <xsl:choose>
+                                        <xsl:when test="$entity//tei:death">
+                                            <tr>
+                                                <th>
+                                                    gestorben am
+                                                </th>
+                                                <td>
+                                                    <xsl:value-of select="$entity//tei:death/tei:date/text()"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    gestorben in
+                                                </th>
+                                                <td>
+                                                    <xsl:value-of select="$entity//tei:death/tei:placeName/text()"/>
+                                                </td>
+                                            </tr>
+                                        </xsl:when>
+                                    </xsl:choose>
+                                    <xsl:choose>
+                                        <xsl:when test="$entity//tei:idno[@type='GND']">
+                                            <tr>
+                                                <th>
+                                                    GND-ID
+                                                </th>
+                                                <td>
+                                                    <a>
+                                                        <xsl:attribute name="href">
+                                                            <xsl:value-of select="$entity//tei:idno[@type='GND']/text()"/>
+                                                        </xsl:attribute>
+                                                        <xsl:value-of select="$entity//tei:idno[@type='GND']/text()"/>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </xsl:when>
+                                    </xsl:choose>
+                                    <xsl:choose>
+                                        <xsl:when test="$entity//@xml:id">
+                                            <tr>
+                                                <th>
+                                                    Interne-ID
+                                                </th>
+                                                <td>
+                                                    <xsl:value-of select="data($entity/@xml:id)"/>
+                                                </td>
+                                            </tr>
+                                        </xsl:when>
+                                    </xsl:choose>
+                                    <xsl:choose>
+                                        <xsl:when test="$entity//@xml:id">
+                                            <tr>
+                                                <th>
+                                                    PMB
+                                                </th>
+                                                <td>
+                                                    <a>
+                                                        <xsl:attribute name="href">
+                                                            <xsl:value-of select="concat('https://pmb.acdh.oeaw.ac.at/apis/id?=', data($entity/@xml:id))"/>
+                                                        </xsl:attribute>
+                                                        <xsl:value-of select="concat('https://pmb.acdh.oeaw.ac.at/apis/id?=', data($entity/@xml:id))"/>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </xsl:when>
+                                    </xsl:choose>
                                 </table>
-                                <div>
-                                    <h4 data-toggle="collapse" data-target="#more"> more (tei structure)</h4>
-                                    <div id="more" class="collapse">
-                                        <xsl:choose>
-                                            <xsl:when test="//*[@xml:id=$entiyID or @id=$entiyID]">
-                                                <xsl:apply-templates select="//*[@xml:id=$entiyID or @id=$entiyID]" mode="start"/>
-                                            </xsl:when>
-                                            <xsl:otherwise>Looks like there exists no index entry for ID<strong>
-                                                <xsl:value-of select="concat(' ', $entiyID)"/>
-                                            </strong> 
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </div>
-                                </div>
                             </div>
                         </xsl:when>
                         <xsl:otherwise>
@@ -153,17 +189,17 @@
                                 <button type="button" class="close" data-dismiss="modal">
                                     <span class="fa fa-times"/>
                                 </button>
-                                <h3 class="modal-title">
-                                    Looks like there doesn't exist an index entry <strong>
+                                <p class="modal-title">
+                                    Für die übergebene ID <strong>
                                         <xsl:value-of select="$entiyID"/>
-                                    </strong> for the entity you were looking for  
-                                </h3>
+                                    </strong> konnte kein Registereintrag gefunden werden.  
+                                </p>
                                 
                             </div>
                         </xsl:otherwise>
                     </xsl:choose>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
                     </div>
                 </div>
             </div>
