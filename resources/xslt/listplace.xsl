@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei" version="2.0">
     <xsl:import href="shared/base_index.xsl"/>
     <xsl:param name="entiyID"/>
+    <xsl:variable name="apis-resolver">https://pmb.acdh.oeaw.ac.at/apis/api2/uri?uri=https://schnitzler-tagebuch.acdh.oeaw.ac.at/</xsl:variable>
     <xsl:variable name="entity" as="node()">
         <xsl:choose>
             <xsl:when test="not(empty(//tei:place[@xml:id=$entiyID][1]))">
@@ -31,7 +32,7 @@
                                                     <xsl:value-of select="concat('hits.html?searchkey=', $entiyID)"/>
                                                 </xsl:attribute>
                                                 <xsl:attribute name="target">_blank</xsl:attribute>
-                                                mentioned in
+                                                weitere Erwähnungen
                                             </a>
                                         </small>
                                     </h3>
@@ -51,55 +52,74 @@
                                         <xsl:if test="count($entity//tei:placeName) &gt; 1">
                                             <xsl:for-each select="$entity//tei:placeName[position()&gt;1]">
                                                 <tr>
-                                                    <th>alternative names</th>
+                                                    <th>Alternative Namen</th>
                                                     <td>
                                                         <xsl:value-of select="."/>
                                                     </td>
                                                 </tr>
                                             </xsl:for-each>
                                         </xsl:if>
+                                        <xsl:choose>
+                                            <xsl:when test="$entity//tei:geo">
+                                                <tr>
+                                                    <th>
+                                                        Koordinaten
+                                                    </th>
+                                                    <td>
+                                                        <xsl:value-of select="$entity//tei:geo/text()"/>
+                                                    </td>
+                                                </tr>
+                                            </xsl:when>
+                                        </xsl:choose>
                                         
-                                        <xsl:if test="$entity/tei:idno[@type='URL']">
+                                        <xsl:choose>
+                                            <xsl:when test="$entity//tei:idno[@type='geonames']">
+                                                <tr>
+                                                    <th>
+                                                        GND-ID
+                                                    </th>
+                                                    <td>
+                                                        <a>
+                                                            <xsl:attribute name="href">
+                                                                <xsl:value-of select="$entity//tei:idno[@type='geonames']/text()"/>
+                                                            </xsl:attribute>
+                                                            <xsl:value-of select="$entity//tei:idno[@type='geonames']/text()"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </xsl:when>
+                                        </xsl:choose>
+                                        <xsl:if test="$entity/@xml:id">
                                             <tr>
-                                                <th>URL:</th>
+                                                <th>Interne-ID:</th>
                                                 <td>
-                                                    <a>
-                                                        <xsl:attribute name="href">
-                                                            <xsl:value-of select="$entity/tei:idno[@type='URL']/text()"/>
-                                                        </xsl:attribute>
-                                                        <xsl:value-of select="$entity/tei:idno[@type='URL']/text()"/>
-                                                    </a>
+                                                    <xsl:value-of select="$entity/@xml:id"/>
                                                 </td>
                                             </tr>
                                         </xsl:if>
-                                        <xsl:if test="$entity/tei:idno">
-                                            <tr>
-                                                <th>URL:</th>
-                                                <td>
-                                                    <xsl:value-of select="$entity/tei:idno/text()"/>
-                                                </td>
-                                            </tr>
-                                        </xsl:if>
+                                        <xsl:choose>
+                                            <xsl:when test="$entity//@xml:id">
+                                                <tr>
+                                                    <th>
+                                                        PMB
+                                                    </th>
+                                                    <td>
+                                                        <a>
+                                                            <xsl:attribute name="href">
+                                                                <xsl:value-of select="concat($apis-resolver, data($entity/@xml:id))"/>
+                                                            </xsl:attribute>
+                                                            <xsl:value-of select="concat($apis-resolver, data($entity/@xml:id))"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </xsl:when>
+                                        </xsl:choose>
                                     </table>
-                                    <div>
-                                        <h4 data-toggle="collapse" data-target="#more"> more (tei structure)</h4>
-                                        <div id="more" class="collapse">
-                                            <xsl:choose>
-                                                <xsl:when test="//*[@xml:id=$entiyID or @id=$entiyID]">
-                                                    <xsl:apply-templates select="//*[@xml:id=$entiyID or @id=$entiyID]" mode="start"/>
-                                                </xsl:when>
-                                            <xsl:otherwise>Looks like there exists no index entry for ID<strong>
-                                                <xsl:value-of select="concat(' ', $entiyID)"/>
-                                            </strong> 
-                                            </xsl:otherwise>
-                                            </xsl:choose>
-                                        </div>
-                                    </div>
                                 </div>
                             </xsl:when>
                         </xsl:choose>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
                         </div>
                     </div>
                 </div>

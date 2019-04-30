@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei" version="2.0">
     <xsl:import href="shared/base_index.xsl"/>
     <xsl:param name="entiyID"/>
+    <xsl:variable name="apis-resolver">https://pmb.acdh.oeaw.ac.at/apis/api2/uri?uri=https://schnitzler-tagebuch.acdh.oeaw.ac.at/</xsl:variable>
     <xsl:variable name="entity" as="node()">
         <xsl:choose>
             <xsl:when test="//tei:person[@xml:id=$entiyID][1]">
@@ -32,8 +33,8 @@
                                 <xsl:variable name="entity" select="//tei:person[@xml:id=$entiyID]"/>
                                 <h3 class="modal-title">
                                     <xsl:choose>
-                                        <xsl:when test="//$entity//tei:surname[1]/text()">
-                                            <xsl:value-of select="$entity//tei:surname[1]/text()"/>
+                                        <xsl:when test="exists(//$entity/tei:persName[1]/tei:surname)">
+                                            <xsl:value-of select="$entity/tei:persName[1]/tei:surname[1]/text()"/>
                                         </xsl:when>
                                         <xsl:otherwise>
                                             <xsl:value-of select="$entity//tei:persName[1]"/>
@@ -78,43 +79,62 @@
                                                 </xsl:choose>                                                
                                             </td>
                                         </tr>
-                                        <xsl:choose>
-                                            <xsl:when test="$entity//tei:occupation/text()">
-                                                <tr>
-                                                    <th>
-                                                        Beruf(e)
-                                                    </th>
-                                                    <td>
-                                                        <xsl:for-each select="$entity//tei:occupation">
-                                                            <li>
-                                                                <xsl:value-of select="./text()"/>
-                                                            </li>
-                                                        </xsl:for-each>
-                                                    </td>
-                                                </tr>
-                                            </xsl:when>
-                                        </xsl:choose>
-                                        <xsl:choose>
-                                            <xsl:when test="$entity//tei:birth">
-                                                <tr>
-                                                    <th>
-                                                        geboren am
-                                                    </th>
-                                                    <td>
-                                                       <xsl:value-of select="$entity//tei:birth/tei:date/text()"/>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>
-                                                        geboren in
-                                                    </th>
-                                                    <td>
-                                                        <xsl:value-of select="$entity//tei:birth/tei:placeName/text()"/>
-                                                    </td>
-                                                </tr>
-                                            </xsl:when>
-                                        </xsl:choose>
                                     </xsl:for-each>
+                                    <xsl:choose>
+                                        <xsl:when test="count($entity//tei:persName) gt 1">
+                                            <xsl:for-each select="subsequence($entity//tei:persName, 2)">
+                                                <tr>
+                                                    <th>
+                                                        Alternative Namen
+                                                    </th>
+                                                    <td>
+                                                        <li>
+                                                            <xsl:value-of select="normalize-space(string-join(.//text(), ' '))"/>
+                                                            <xsl:if test="./@subtype">
+                                                                (<xsl:value-of select="./@subtype"/>)
+                                                            </xsl:if>
+                                                        </li>
+                                                    </td>
+                                                </tr>
+                                            </xsl:for-each>
+                                        </xsl:when>
+                                    </xsl:choose>
+                                    <xsl:choose>
+                                        <xsl:when test="$entity//tei:occupation/text()">
+                                            <tr>
+                                                <th>
+                                                    Beruf(e)
+                                                </th>
+                                                <td>
+                                                    <xsl:for-each select="$entity//tei:occupation">
+                                                        <li>
+                                                            <xsl:value-of select="./text()"/>
+                                                        </li>
+                                                    </xsl:for-each>
+                                                </td>
+                                            </tr>
+                                        </xsl:when>
+                                    </xsl:choose>
+                                    <xsl:choose>
+                                        <xsl:when test="$entity//tei:birth">
+                                            <tr>
+                                                <th>
+                                                    geboren am
+                                                </th>
+                                                <td>
+                                                    <xsl:value-of select="$entity//tei:birth/tei:date/text()"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    geboren in
+                                                </th>
+                                                <td>
+                                                    <xsl:value-of select="$entity//tei:birth/tei:placeName/text()"/>
+                                                </td>
+                                            </tr>
+                                        </xsl:when>
+                                    </xsl:choose>
                                     <xsl:choose>
                                         <xsl:when test="$entity//tei:death">
                                             <tr>
@@ -173,9 +193,9 @@
                                                 <td>
                                                     <a>
                                                         <xsl:attribute name="href">
-                                                            <xsl:value-of select="concat('https://pmb.acdh.oeaw.ac.at/apis/id?=', data($entity/@xml:id))"/>
+                                                            <xsl:value-of select="concat($apis-resolver, data($entity/@xml:id))"/>
                                                         </xsl:attribute>
-                                                        <xsl:value-of select="concat('https://pmb.acdh.oeaw.ac.at/apis/id?=', data($entity/@xml:id))"/>
+                                                        <xsl:value-of select="concat($apis-resolver, data($entity/@xml:id))"/>
                                                     </a>
                                                 </td>
                                             </tr>
