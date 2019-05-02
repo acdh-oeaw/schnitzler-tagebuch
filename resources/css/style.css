@@ -1,3 +1,6 @@
+body.fixed-nav {
+    padding-top: 85px;
+}
 
 .reference {
     cursor: pointer;
@@ -29,4 +32,18 @@ a:not([href]):not([tabindex]) {
 .navbar .navbar-brand img {
     max-height: 50px;
     max-width: 175px;
+}
+
+#wrapper-hero-content {
+    background-position: top;
+    padding: 4rem 0;
+}
+
+#wrapper-hero-content::after {
+    background-color: rgba(2, 121, 51, 0.10);
+}
+
+.container-fluid {
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
