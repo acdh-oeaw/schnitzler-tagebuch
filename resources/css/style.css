@@ -43,6 +43,10 @@ a:not([href]):not([tabindex]) {
     background-color: rgba(2, 121, 51, 0.10);
 }
 
+#wrapper-hero-content>#wrapper-hero-inner>p {
+    font-size: 1.25rem;
+}
+
 .container-fluid {
     padding-left: 2rem;
     padding-right: 2rem;
