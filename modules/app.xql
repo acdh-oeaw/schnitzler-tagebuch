@@ -3,14 +3,15 @@ module namespace app="http://www.digital-archiv.at/ns/schnitzler-tagebuch/templa
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace functx = 'http://www.functx.com';
 
+import module namespace util="http://exist-db.org/xquery/util";
 import module namespace http="http://expath.org/ns/http-client";
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://www.digital-archiv.at/ns/schnitzler-tagebuch/config" at "config.xqm";
 import module namespace kwic = "http://exist-db.org/xquery/kwic" at "resource:org/exist/xquery/lib/kwic.xql";
 
 declare variable $app:data := $config:app-root||'/data';
-declare variable  $app:editions := $config:app-root||'/data/editions';
-declare variable  $app:indices := $config:app-root||'/data/indices';
+declare variable $app:editions := $config:app-root||'/data/editions';
+declare variable $app:indices := $config:app-root||'/data/indices';
 declare variable $app:placeIndex := $config:app-root||'/data/indices/listplace.xml';
 declare variable $app:personIndex := $config:app-root||'/data/indices/listperson.xml';
 declare variable $app:orgIndex := $config:app-root||'/data/indices/listorg.xml';
@@ -444,4 +445,39 @@ declare function app:firstDoc($node as node(), $model as map(*)) {
     let $href := "show.html?document="||$all[1]||"&amp;directory=editions"
         return
             <a href="{$href}"><button class="btn btn-round">Anfangen zu Lesen</button></a>
+};
+
+
+(:~
+ : returns first n chars of random doc
+ :)
+declare function app:randomDoc($node as node(), $model as map(*), $maxlen as xs:integer) {
+    let $directory := 'editions'
+    let $collection := string-join(($app:data,$directory), '/')
+    let $all := sort(xmldb:get-child-resources($collection))
+    let $max := count($all)
+    let $random-nr := util:random($max)
+    let $random-nr-secure := if($random-nr = 0) then 1 else $random-nr
+    let $selectedDoc := $all[$random-nr-secure]
+    let $teinode := doc($collection||"/"||$selectedDoc)//tei:TEI
+    let $title := $teinode//tei:title[@type="main"]/text()
+    let $doc := normalize-space(string-join(doc($collection||"/"||$selectedDoc)//tei:div[@type="diary-day"]//text(), ' '))
+    let $shortdoc := substring($doc, 1, $maxlen)
+    let $url := "show.html?directory=editions&amp;document="||$selectedDoc
+    let $result := 
+    <div class="entry-text-content">
+        <header class="entry-header">
+            <h4 class="entry-title">
+                <a href="{$shortdoc}" rel="bookmark" class="light">{$title}</a>
+            </h4>
+        </header>
+        <!-- .entry-header -->
+        <div class="entry-content">
+            <p>{$shortdoc}</p>
+            <a class="btn btn-round mb-1" href="{$url}">Mehr</a>
+        </div>
+        <!-- .entry-content -->
+    </div>
+    return
+        $result
 };
