@@ -3,21 +3,125 @@
     <div class="wrapper" id="wrapper-hero">
         <!-- ******************* The Hero Area ******************* -->
         <div class="wrapper" id="wrapper-hero-content" style="background-image:url(https://shared.acdh.oeaw.ac.at/schnitzler-tagebuch/title-img.jpg)">
-            <div class="container hero-dark" id="wrapper-hero-inner" tabindex="-1">
+            <div class="container-fluid hero-light" id="wrapper-hero-inner" tabindex="-1">
                 <div>
-                    <h1>
-                        <span style="font-size:100%; color:white">Arthur Schnitzler </span>
-                        <br/>   
-                        <span style="font-size:350%; color:white">Tagebuch</span>
-                    </h1>
-                    <span style="font-size:2em; color:white">1879 – 1931</span>
+                    <h1 class="mb-0">Arthur Schnitzler</h1>
+                    <h1 class="display-3 mb-2">Tagebuch</h1>
+                    <h2>1879 – 1931</h2>
                 </div>
-                
-                <h3 style="margin-top:1.5em; color:white">Dies ist eine erste Version des digitalen Tagebuchs von Arthur Schnitzler, Literat und Schriftsteller.</h3>
-                <a class="btn btn-main btn-outline-primary btn-lg">Mehr erfahren</a>
+                <p class="mt-3">Dies ist eine erste Version des digitalen Tagebuchs von Arthur Schnitzler, Literat und Schriftsteller.</p>
+                <a href="show.html?document=about.xml&amp;directory=meta&amp;stylesheet=meta">
+                    <button class="btn btn-round">Mehr erfahren</button>
+                </a>
                 <a data-template="app:firstDoc"/>
             </div>
         </div>
         <!-- #wrapper-hero-content -->
+
+        <div class="wrapper" id="index-wrapper">
+            <div class="container-fluid" id="content" tabindex="-1">
+                <div class="row">
+                    <!-- Do the left sidebar check and opens the primary div -->
+                    <div class="col-md-12 content-area" id="primary">
+                        <main class="site-main" id="main">
+                            <!-- Use custom content block templates if they are defined -->
+                            <h5 class="content-block-title">
+                                <span class="separator-title">Cards with Images</span>
+                            </h5>
+                            <div class="card-wrapper">
+                                <article class="card col-md-6 flat-style">
+                                    <div class="card-inner card-vertical" style="min-height:420px;">
+                                        <a class="entry-top-thumbnail" style="height:230px;" href="#" rel="bookmark">
+                                            <img width="1024" height="684" src="" alt=""/>
+                                        </a>
+                                        <div data-template="app:randomDoc" data-template-maxlen="500"/>
+                                        <!-- .entry-text-content -->
+                                    </div>
+                                    <!-- .card-inner -->
+                                </article>
+                                <!-- #post-## -->
+                                <article class="card col-md-6 flat-style">
+                                    <div class="card-inner card-vertical" style="min-height:420px;">
+                                        <a class="entry-top-thumbnail" style="height:230px;" href="#" rel="bookmark">
+                                            <img width="1024" height="684" src="" alt=""/>
+                                        </a>
+                                        <div class="entry-text-content">
+                                            <header class="entry-header">
+                                                <h4 class="entry-title">
+                                                    <a href="calendar.html" rel="bookmark" class="light">Das Tagebuch in Kalenderansicht</a>
+                                                </h4>
+                                            </header>
+                                            <!-- .entry-header -->
+                                            <div class="entry-content">
+                                                <p>Use me to create accessible, modern and responsive websites that follow the design guidelines of ACDH.</p>
+                                                <a class="btn btn-round mb-1" href="calendar.html">Read More</a>
+                                            </div>
+                                            <!-- .entry-content -->
+                                        </div>
+                                        <!-- .entry-text-content -->
+                                    </div>
+                                    <!-- .card-inner -->
+                                </article>
+                                <!-- #post-## -->
+                                <article class="card col-md-6 flat-style">
+                                    <div class="card-inner card-vertical" style="min-height:420px;">
+                                        <a class="entry-top-thumbnail" style="height:230px;" href="#" rel="bookmark">
+                                            <img width="1024" height="684" src="" alt=""/>
+                                        </a>
+                                        <div class="entry-text-content">
+                                            <header class="entry-header">
+                                                <h4 class="entry-title">
+                                                    <a href="persons.html" rel="bookmark" class="light">Personenindex des Tagebuchs</a>
+                                                </h4>
+                                            </header>
+                                            <!-- .entry-header -->
+                                            <div class="entry-content">
+                                                <p>Use me to create accessible, modern and responsive websites that follow the design guidelines of ACDH.</p>
+                                                <a class="btn btn-round mb-1" href="persons.html">Read More</a>
+                                            </div>
+                                            <!-- .entry-content -->
+                                        </div>
+                                        <!-- .entry-text-content -->
+                                    </div>
+                                    <!-- .card-inner -->
+                                </article>
+                                <!-- #post-## -->
+                                <article class="card col-md-6 flat-style">
+                                    <div class="card-inner card-vertical" style="min-height:420px;">
+                                        <a class="entry-top-thumbnail" style="height:230px;" href="#" rel="bookmark">
+                                            <img width="1024" height="684" src="" alt=""/>
+                                        </a>
+                                        <div class="entry-text-content">
+                                            <header class="entry-header">
+                                                <h4 class="entry-title">
+                                                    <a href="places.html" rel="bookmark" class="light">Ortsindex des Tagebuchs</a>
+                                                </h4>
+                                            </header>
+                                            <!-- .entry-header -->
+                                            <div class="entry-content">
+                                                <p>Use me to create accessible, modern and responsive websites that follow the design guidelines of ACDH.</p>
+                                                <a class="btn btn-round mb-1" href="places.html">Read More</a>
+                                            </div>
+                                            <!-- .entry-content -->
+                                        </div>
+                                        <!-- .entry-text-content -->
+                                    </div>
+                                    <!-- .card-inner -->
+                                </article>
+                                <!-- #post-## -->
+                            </div>
+                            <!-- .card-wrapper -->
+                        </main>
+                        <!-- #main -->
+                        <!-- The pagination component -->
+                    </div>
+                    <!-- #primary -->
+                    <!-- Do the right sidebar check -->
+                </div>
+                <!-- .row -->
+            </div>
+            <!-- Container end -->
+        </div>
+
     </div>
 </div>
