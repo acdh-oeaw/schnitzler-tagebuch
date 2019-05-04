@@ -3,6 +3,24 @@
     <link rel="stylesheet" href="../resources/css/bootstrap-year-calendar.min.css"/>
     <script src="../resources/js/bootstrap-year-calendar-bs4/bootstrap-year-calendar.min.js"/>
     <style>
+    
+        .container-fluid &gt; .card {
+            border-top:none;
+        }
+        
+        
+        th.prev::before {
+            font-family:"Font Awesome 5 Free";
+            font-weight: 900;
+            content:"\f053";
+        }
+        
+        th.next::before {
+            font-family:"Font Awesome 5 Free";
+            font-weight: 900;
+            content:"\f054";
+        }
+        
         #loader {
         position: absolute;
         left: 50%;
@@ -30,25 +48,63 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
         }
+        
+        .calendar .year-neighbor, .calendar .year-neighbor2  {
+            display:none !important;
+        }
+        
+        .calendar .card {
+            border-top:none;
+        }
+        
+        .calendar .calendar-header table th {
+            padding:0;
+        }
+        
+        .yearbtn {
+            padding:2px;
+            border-radius:0;
+            background-color:transparent;
+            border:none;
+            font-size:0.9rem;
+        }
+        
+        
+        #years-table .btn-light:focus, #years-table .btn-light.focus {
+            box-shadow: 0 0 0 0.2rem rgba(3, 122, 51, 1);
+        }
+        
     </style>
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-header" style="text-align:center;">
-                <h1>
-                    Kalender
-                </h1>
-                <h3>
+       <div class="card">
+            <div class="card-header" style="text-align:center">
+                <h1 style="display:inline-block;margin-bottom:0;padding-right:5px;">
+                    Kalender</h1>
                     <a>
                         <i class="fas fa-info" title="Info" data-toggle="modal" data-target="#exampleModal"/>
                     </a>
-                    |
-                    <a href="../analyze/cache/calendar_datasource.json">
+                    <a style="padding-left:5px;" href="../analyze/cache/calendar_datasource.json">
                         <i class="fas fa-download" title="Data"/>
                     </a>
-                </h3>
             </div>
+            <div class="card-body">
             <div class="loader" id="loader"/>
-            <div id="calendar"/>
+                <div class="row">
+                    <div class="col-sm-2">
+                    <div class="row">
+                    <div class="col-sm-12">
+                        <p style="text-align:center;font-weight:bold;">Jahr</p>
+                    </div>
+                    </div>
+                    <div class="row justify-content-md-center" id="years-table">
+                    
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div id="calendar"/>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -82,6 +138,7 @@
                 document.getElementById("loader").style.display = "none";
                 console.log(data);
                 var $dataSource = [];
+                var years = [];
                 $.each( data, function( key, entry ) {
                   var $obj = {};
                   var $j = entry.startDate.substring(0,4);
@@ -90,15 +147,25 @@
                   $obj.endDate = new Date($j,$m-1,$d);
                   $obj.startDate = new Date($j,$m-1,$d);
                   $obj.id = entry.id;
+                  $obj.color = "#037a33";
+                   if (years.indexOf($j) === -1)
+                  {
+                    years.push($j)   
+                  }  
                   $dataSource.push($obj);
                 });
+                var yearsSorted = years.sort();
+                
                 $('#calendar').calendar({
                     dataSource: $dataSource,
                     startYear: 1908,
                     language: "de",
-                    minDate : new Date(1879,0,1),
-                    maxDate : new Date(1950,0,1),
                 });
+                
+                for (var i = 0; i &lt;= yearsSorted.length; i++){
+                    $('#years-table').append(createyearcell(yearsSorted[i]) +createyearcell(yearsSorted[i+1])+createyearcell(yearsSorted[i+2]));
+                    i += 3;
+                }
     
                 $('#calendar').clickDay(function(e){
                     var ids = []
@@ -109,6 +176,15 @@
                 });
             }
             });
+            function createyearcell(val) {
+                return (val !== undefined) ? '<div class="col-xs-6">\
+            <button class="btn btn-light yearbtn" value="'+val+'" onclick="updateyear(this.value)">'+val+'</button>\
+        </div>' : '' 
+            }
+                
+            function updateyear(year) {
+                $('#calendar').data('calendar').setYear(year);
+            }
 
 
     </script>
