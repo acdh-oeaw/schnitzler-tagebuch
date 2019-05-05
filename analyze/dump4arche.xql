@@ -4,120 +4,152 @@ import module namespace xmldb="http://exist-db.org/xquery/xmldb";
 import module namespace config="http://www.digital-archiv.at/ns/schnitzler-tagebuch/config" at "../modules/config.xqm";
 import module namespace app="http://www.digital-archiv.at/ns/schnitzler-tagebuch/templates" at "../modules/app.xql";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
+declare namespace acdh="https://vocabs.acdh.oeaw.ac.at/schema#";
+declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace util = "http://exist-db.org/xquery/util";
+
 declare option exist:serialize "method=xml media-type=text/xml omit-xml-declaration=no indent=yes";
 
 let $baseID := 'https://id.acdh.oeaw.ac.at/'
+let $personbase := $baseID||"schnitzler/schnitzler-tagebuch/persons/"
+let $placebase := $baseID||"schnitzler/schnitzler-tagebuch/places/"
+let $about := doc($app:data||'/project.rdf')/rdf:RDF
+let $topCollection := $about//acdh:Collection[not(acdh:isPartOf)]
+let $childCollections := $about//acdh:Collection[acdh:isPartOf]
+let $customResources := $about//acdh:Resource
+let $contributors := 
+    for $x in distinct-values(data($about//acdh:hasContributor/acdh:Person/@rdf:about))
+        return
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="{$x}"/>
+        </acdh:hasContributor>
+
+let $authors := 
+            <acdh:authors>
+                 <acdh:hasAuthor>
+                     <acdh:Person rdf:about="http://d-nb.info/gnd/118609807"/>
+                 </acdh:hasAuthor>
+                 <acdh:hasCreator>
+                     <acdh:Person rdf:about="http://d-nb.info/gnd/1145358152"/>
+                 </acdh:hasCreator>
+            </acdh:authors>  
+
+let $collection-uri := $app:editions
+
+
 let $RDF := 
-<rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:acdh="https://vocabs.acdh.oeaw.ac.at/#"
-    xmlns:acdhi="https://id.acdh.oeaw.ac.at/"
-    xmlns:foaf="http://xmlns.com/foaf/spec/#"
+    <rdf:RDF
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:acdh="https://vocabs.acdh.oeaw.ac.at/schema#"
+        xmlns:acdhi="https://id.acdh.oeaw.ac.at/"
+        xmlns:foaf="http://xmlns.com/foaf/spec/#"
+        xml:base="https://id.acdh.oeaw.ac.at/">
+            {$topCollection}
+            {$childCollections}
+            {
+            let $sample := collection($app:editions)//tei:TEI[@xml:id and @xml:base]
+            for $doc in subsequence($sample, 1, 2)
+(:            for $doc in $sample:)
+                let $xmlid := data($doc/@xml:id)
+                let $collID := data($doc/@xml:base)
+                let $date := substring-before(substring-after($xmlid, 'entry__'), '.xml')
+                let $resID := string-join(($collID, $xmlid), '/')
+                let $text := normalize-space(string-join($doc//tei:div[@type="diary-day"]//text(), ' '))
+                let $title := <acdh:hasTitle>{$doc//tei:title[@type="main"][1]/text()}</acdh:hasTitle>
+                let $schnitzler :=
+                    <acdh:Person rdf:about="http://d-nb.info/gnd/118609807">
+                        <acdh:hasLastName>Schnitzler</acdh:hasLastName>
+                        <acdh:hasFirstName>Arthur</acdh:hasFirstName>
+                    </acdh:Person>
 
-    xml:base="https://id.acdh.oeaw.ac.at/">
-    
-<!-- define involved Persons -->
-    
-        <acdh:Person rdf:about="https://viaf.org/viaf/251032539">
-            <acdh:hasLastName>Andorfer</acdh:hasLastName>
-            <acdh:hasFirstName>Peter</acdh:hasFirstName>
-        </acdh:Person>
-        
-<!-- define involved Organisations -->
-        
-        <acdh:Organisation rdf:about="http://d-nb.info/gnd/108889819X">
-            <acdh:hasTitle>Fonds zur Förderung der Wissenschaftlichen Forschung (Österreich)</acdh:hasTitle>
-        </acdh:Organisation>
-        
-<!-- define involved Project(s) -->        
+               let $startDate :=
+                    <acdh:hasCoverageStartDate>{$date}</acdh:hasCoverageStartDate>
+                    
+               let $description := if($text) then
+                        <acdh:hasDescription>{concat(substring($text, 1, 150), '...')}</acdh:hasDescription>
+                    else
+                        ()
 
-        <acdh:Project rdf:about="{$baseID||$config:app-name||'/project'}">
-            <acdh:hasTitle>{$config:app-name}</acdh:hasTitle>
-            <acdh:hasDescription>{$config:app-name}Project Description</acdh:hasDescription>
-            <acdh:hasStartDate>2010-07-01</acdh:hasStartDate>
-            <acdh:hasEndDate>2015-06-30</acdh:hasEndDate>
-            <acdh:hasPrincipalInvestigator>
-                <acdh:Person rdf:about="https://viaf.org/viaf/251032539"/>
-            </acdh:hasPrincipalInvestigator>
-            <acdh:hasFunder>
-                <acdh:Organisation rdf:about="http://d-nb.info/gnd/108889819X"/>
-            </acdh:hasFunder>
-        </acdh:Project>
-        
+               let $persons := 
+                    for $item in $doc//tei:listPerson//tei:person[./@xml:id]
+                         let $pername := $item//tei:surname[1]/text()
+                         let $firstname := $item//tei:forename[1]/text()
+                         let $xmlid := data($item/@xml:id)
+                         let $ID := $personbase||$xmlid
+                         let $normIDs := 
+                            for $x in $item//tei:idno/text()[starts-with(., 'http')]
+                            return
+                                <acdh:hasIdentifier rdf:resource="{$x}"/>
+                         return
+                             <acdh:hasActor>
+                                 <acdh:Person rdf:about="{$ID}">
+                                     <acdh:hasLastName>{$pername}</acdh:hasLastName>
+                                     <acdh:hasFirstName>{$firstname}</acdh:hasFirstName>
+                                     {$normIDs}
+                                 </acdh:Person>
+                             </acdh:hasActor>
 
-        <acdh:Collection rdf:about="{concat($baseID, $config:app-name)}">
-            <acdh:hasTitle>{$config:app-title}</acdh:hasTitle>
-            <acdh:hasDescription>{$config:repo-description/text()}</acdh:hasDescription>
-            <acdh:hasRelatedProject>
-                <acdh:Project rdf:about="{$baseID||$config:app-name||'/project'}"/>
-            </acdh:hasRelatedProject>
-            <acdh:hasContributor>
-                <acdh:Person rdf:about="https://viaf.org/viaf/251032539"/>
-            </acdh:hasContributor>
-            
-        </acdh:Collection>
-        <acdh:Collection rdf:about="{concat($baseID, string-join(($config:app-name, 'data'), '/'))}">
-            <acdh:hasTitle>{string-join(($config:app-name, 'data'), '/')}</acdh:hasTitle>
-            <acdh:isPartOf rdf:resource="{concat($baseID,$config:app-name)}"/>
-        </acdh:Collection>
+                let $places := 
+                    for $item in $doc//tei:listPlace//tei:place[./@xml:id]
+                         let $placename := $item//tei:placeName[1]/text()
+                         let $xmlid := data($item/@xml:id)
+                         let $ID := $placebase||$xmlid
+                         let $normIDs := 
+                            for $x in $item//tei:idno/text()[starts-with(., 'http')]
+                            return
+                                <acdh:hasIdentifier rdf:resource="{$x}"/>
+                         return
+                             <acdh:hasSpatialCoverage>
+                                 <acdh:Place rdf:about="{$ID}">
+                                     <acdh:hasTitle>{$placename}</acdh:hasTitle>
+                                     {$normIDs}
+                                 </acdh:Place>
+                             </acdh:hasSpatialCoverage>
 
-        {
-            for $x in xmldb:get-child-collections($config:data-root) 
-                return
-                    <acdh:Collection rdf:about="{concat($baseID,string-join(($config:app-name, 'data', $x), '/'))}">
-                        <acdh:hasTitle>{string-join(($config:app-name, 'data', $x), '/')}</acdh:hasTitle>
-                        <acdh:isPartOf rdf:resource="{concat($baseID, string-join(($config:app-name, 'data'), '/'))}"/>
-                    </acdh:Collection>
-        }
-        {
-            for $x in xmldb:get-child-collections($config:data-root)
-                for $doc in xmldb:get-child-resources($config:data-root||'/'||$x)
-                let $node := try {
-                        doc(string-join(($config:data-root, $x, $doc), '/'))
-                    } catch * {
-                        false()
-                    }
-                let $filename := string-join(($config:app-name, 'data', $x, $doc), '/')
-                let $title := try {
-                        <acdh:hasTitle>{normalize-space(string-join($node//tei:titleStmt/tei:title//text(), ' '))}</acdh:hasTitle>
-                    } catch * {
-                        <acdh:hasTitle>{tokenize($filename, '/')[last()]}</acdh:hasTitle>
-                    }
-                let $authors := try {
-                        
-                            for $y in $node//tei:titleStmt//tei:author//tei:persName
-                                let $uri := if(starts-with(data($y/@key), 'http')) 
-                                    then $y/@key
-                                    else $baseID||$config:app-name||'/'||data($y/@key)
-                            
-                                return
-                                    <acdh:hasAuthor>
-                                <acdh:Person rdf:about="{$uri}">
-                                    <acdh:hasLastName>
-                                        {$y/tei:surname/text()}
-                                    </acdh:hasLastName>
-                                    <acdh:hasFirstName>
-                                        {$y/tei:forename/text()}
-                                    </acdh:hasFirstName>
-                                </acdh:Person>
-                                </acdh:hasAuthor>
-                            
-                        
-                } catch * {()}
+                let $prev :=
+                    if(exists($doc/@next)) then
+                        <acdh:isContinuedBy rdf:resource="{data($doc/@next)}"/>
+                    else
+                        ()
 
-                
-                let $filename := string-join(($config:app-name, 'data', $x, $doc), '/')
-                return
-                    <acdh:Resource rdf:about="{concat($baseID, $filename)}">
+                let $next :=
+                    if(exists($doc/@prev)) then
+                        <acdh:continues rdf:resource="{data($doc/@prev)}"/>
+                    else
+                        ()
+
+                let $pid_str := $doc//tei:publicationStmt//tei:idno[@type="handle"]/text()
+                    
+                let $pid := if ($pid_str != "")
+                    then
+                        <acdh:hasPid rdf:about="{$pid_str}"/>
+                    else
+                        ()
+
+                return 
+                    <acdh:Resource rdf:about="{$resID}">
+                        <acdh:isPartOf rdf:resource="{$collID}"/>
+                        {$prev}
+                        {$next}
+                        {$pid}
+                        <acdh:hasCategory rdf:resource="https://vocabs.acdh.oeaw.ac.at/archecategory/dataset"/>
                         {$title}
-                        {$authors}
-                        <acdh:isPartOf rdf:resource="{concat($baseID, (string-join(($config:app-name, 'data', $x), '/')))}"/>
+                        {$startDate}
+                        {$description}
+                        {$persons}
+                        {$places}
+                        {for $x in $authors//acdh:hasAuthor return $x}
+                        {for $x in $authors//acdh:hasCreator return $x}
+                        {for $x in $contributors return $x}
+                        <acdh:hasDissService rdf:resource="https://id.acdh.oeaw.ac.at/dissemination/customTEI2HTML"/>
+                        <acdh:hasCustomXSL rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/tei2html.xsl"/>
+                        <acdh:hasSchema>https://www.tei-c.org/release/xml/tei/schema/relaxng/tei.rng</acdh:hasSchema>
+                        <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
                     </acdh:Resource>
         }
+        {$customResources}
 
-        
     </rdf:RDF>
     
 return

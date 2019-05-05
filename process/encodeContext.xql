@@ -12,7 +12,7 @@ declare namespace tei = "http://www.tei-c.org/ns/1.0";
 
 let $archeURL := "https://id.acdh.oeaw.ac.at/schnitzler/"
 let $projectURL := 'schnitzler-tagebuch/'
-let $dataURL := 'editions/'
+let $dataURL := 'editions'
 let $idURL := $archeURL||$projectURL||$dataURL
 
 
@@ -26,12 +26,12 @@ for $x in $all
     let $currentID := update insert attribute xml:id {$currentDocName} into $x
     let $prev := if($neighbors[1])
         then
-            update insert attribute prev {$idURL||$neighbors[1]} into $x 
+            update insert attribute prev {string-join(($idURL, $neighbors[1]), '/')} into $x 
         else
             ()
     let $next := if($neighbors[3])
         then
-            update insert attribute next {$idURL||$neighbors[3]} into $x 
+            update insert attribute next {string-join(($idURL, $neighbors[3]), '/')}into $x 
         else
             ()
     return
