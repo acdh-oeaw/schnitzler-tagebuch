@@ -468,7 +468,7 @@ declare function app:randomDoc($node as node(), $model as map(*), $maxlen as xs:
     <div class="entry-text-content">
         <header class="entry-header">
             <h4 class="entry-title">
-                <a href="{$shortdoc}" rel="bookmark" class="light">{$title}</a>
+                <a href="{$url}" rel="bookmark" class="light">{$title}</a>
             </h4>
         </header>
         <!-- .entry-header -->
