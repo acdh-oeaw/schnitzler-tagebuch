@@ -11,6 +11,7 @@
     <xsl:param name="currentIx"/>
     <xsl:param name="amount"/>
     <xsl:param name="progress"/>
+    <xsl:param name="quotationURL"/>
     <xsl:function name="functx:day-of-week" as="xs:integer?">
         <xsl:param name="date" as="xs:anyAtomicType?"/>
         
@@ -112,7 +113,7 @@
                         </xsl:attribute>
                         TEI 
                     </a>
-                    | Zitierung
+                    | Zitierung <xsl:value-of select="$quotationURL"/>
                     | <a>
                         <xsl:attribute name="href">
                             <xsl:value-of select="$source_pdf"/>
