@@ -49,8 +49,8 @@ let $RDF :=
             {$childCollections}
             {
             let $sample := collection($app:editions)//tei:TEI[@xml:id and @xml:base]
-(:            for $doc in subsequence($sample, 1, 2):)
-            for $doc in $sample
+            for $doc in subsequence($sample, 1, 1)
+(:            for $doc in $sample:)
                 let $xmlid := data($doc/@xml:id)
                 let $collID := data($doc/@xml:base)
                 let $date := substring-before(substring-after($xmlid, 'entry__'), '.xml')

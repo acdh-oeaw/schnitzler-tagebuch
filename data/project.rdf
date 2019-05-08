@@ -202,7 +202,7 @@
             </acdh:Person>
         </acdh:hasContributor>
     </acdh:Collection>
-    <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices/listerperson.xml">
+    <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices/listperson.xml">
         <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices"/>
         <acdh:hasDissService rdf:resource="https://id.acdh.oeaw.ac.at/dissemination/customTEI2HTML"/>
         <acdh:hasCustomXSL rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/listperson.xsl"/>

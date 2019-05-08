@@ -28,7 +28,7 @@ function fetchMentions(endpoint, sparqlQuery, resultTitleId, resultTitleString, 
     $.ajax(settings).done(function(response) {
         var mentionsAmount = response.results.bindings.length;
         const list = response.results.bindings.map(function(item) {
-            return `<li><a href='${item.acdhid.value}'>${item.title.value}</a></li>`
+            return `<li><a href='${item.acdhid.value}?format=customTEI2HTML'>${item.title.value}</a></li>`
         })
 
         document.querySelector(`#${resultTitleId}`).innerHTML = resultTitleString;
