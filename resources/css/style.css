@@ -55,3 +55,7 @@ a:not([href]):not([tabindex]) {
     padding-left: 2rem;
     padding-right: 2rem;
 }
+
+.sticky-navbar {
+    z-index: 9999;
+}
