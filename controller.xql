@@ -10,7 +10,13 @@ if ($exist:path eq '') then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="{request:get-uri()}/"/>
     </dispatch>
-    
+else if (contains($exist:path, "/v/")) then
+    let $ed := tokenize(substring-after($exist:path, "/v/"), "/")
+    let $base := substring-before(substring-after(substring-after(request:get-url(), '://'), '/'), '/v/')
+    return
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <redirect url="/{$base}/pages/show.html?document={$ed[2]}.xml&amp;collection={$ed[1]}"/>
+    </dispatch>
 else if ($exist:path eq "/") then
     (: forward root path to index.xql :)
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
