@@ -21,6 +21,7 @@ declare variable $app:defaultXsl := doc($config:app-root||'/resources/xslt/xmlTo
 
 declare variable $app:redmineBaseUrl := "https://shared.acdh.oeaw.ac.at/acdh-common-assets/api/imprint.php?serviceID=";
 declare variable $app:redmineID := "11833";
+declare variable $app:productionBaseURL := "https://schnitzler-tagebuch.acdh.oeaw.ac.at";
 
 declare function functx:contains-case-insensitive
   ( $arg as xs:string? ,
@@ -332,6 +333,7 @@ let $amount := $neighbors[4]
 let $currentIx := $neighbors[5]
 let $progress := ($currentIx div $amount)*100
 let $xslPath := xs:string(request:get-parameter("stylesheet", ""))
+let $quotationURL := string-join(($app:productionBaseURL, 'v', $collection, $refname), '/')
 let $xsl := if($xslPath eq "")
     then
         if(doc($config:app-root||'/resources/xslt/'||$collection||'.xsl'))
@@ -360,7 +362,8 @@ let $params :=
     <param name="amount" value="{$amount}"/>
     <param name="currentIx" value="{$currentIx}"/>
     <param name="progress" value="{$progress}"/>
-    
+    <param name="productionBaseUrl" value="{$app:productionBaseURL}"/>
+    <param name="quotationURL" value="{$quotationURL}"/>
    {
         for $p in request:get-parameter-names()
             let $val := request:get-parameter($p,())
