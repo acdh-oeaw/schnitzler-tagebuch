@@ -8,3 +8,5 @@ bower_components
 /data/editions/oko.xml
 /tryouts/play.xql
 /build
+sync-asil.xql
+/data/*.xpr

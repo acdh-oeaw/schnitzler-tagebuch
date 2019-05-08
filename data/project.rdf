@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:acdhid="https://id.acdh.oeaw.ac.at/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:acdh="https://vocabs.acdh.oeaw.ac.at/schema#" xml:lang="en">
+    
+    <!--    see https://arche.acdh.oeaw.ac.at/browser/formats-filenames-and-metadata#metadata -->
+
+        
+<!-- TOP COLLECTION -->
+    <acdh:Collection rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch">
+        <acdh:hasTitle>Arthur Schnitzler Tagebuch (1879-1931)</acdh:hasTitle>
+        <acdh:hasDescription>
+            Die Einträge des Tagebuches von Arthur Schnitzler kodiert in XML/TEI und ergänzt um Personen- und Ortsregister.
+        </acdh:hasDescription>
+        <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <acdh:hasLifeCycleStatus>active</acdh:hasLifeCycleStatus>
+        <acdh:hasPrincipalInvestigator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1145358152">
+                <acdh:hasLastName>Braunwarth</acdh:hasLastName>
+                <acdh:hasFirstName>Peter Michael</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasPrincipalInvestigator>
+<!--        CONTRIBUTORS die Personen die im gdoc aufgeführt wurden-->
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846">
+                <acdh:hasLastName>Andorfer</acdh:hasLastName>
+                <acdh:hasFirstName>Peter</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Basch</acdh:hasLastName>
+                <acdh:hasFirstName>Andreas</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Çetin</acdh:hasLastName>
+                <acdh:hasFirstName>Asil</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Czeitschner</acdh:hasLastName>
+                <acdh:hasFirstName>Ulrike</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Ďurčo</acdh:hasLastName>
+                <acdh:hasFirstName>Matej</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Kirnbauer</acdh:hasLastName>
+                <acdh:hasFirstName>Martin</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Mörth</acdh:hasLastName>
+                <acdh:hasFirstName>Karlheinz</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Müller</acdh:hasLastName>
+                <acdh:hasFirstName>Martin Anton</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+
+
+<!-- ARCHE CONTENT RELATED MD -->
+        <acdh:hasCoverageStartDate>1879</acdh:hasCoverageStartDate>
+        <acdh:hasCoverageEndDate>1931</acdh:hasCoverageEndDate>
+        <acdh:hasSubject>SUBJECT 1</acdh:hasSubject>
+        <acdh:hasSubject>SUBJECT 2</acdh:hasSubject>
+
+
+<!-- ARCHE LEGAL THINGS; I'd like to apply those information on each resource/collection where this information is required-->
+    <!--     METADATACREATORs please add whoever fits   -->
+        <acdh:hasMetadataCreator>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>LastName</acdh:hasLastName>
+                <acdh:hasFirstName>FirstName</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasMetadataCreator>  
+        <acdh:hasDepositor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>LastName</acdh:hasLastName>
+                <acdh:hasFirstName>FirstName</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasDepositor>
+        <acdh:hasContact>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>LastName</acdh:hasLastName>
+                <acdh:hasFirstName>FirstName</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContact>
+        <acdh:hasOwner>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>LastName</acdh:hasLastName>
+                <acdh:hasFirstName>FirstName</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasOwner>
+        <acdh:hasRightsholder>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>LastName</acdh:hasLastName>
+                <acdh:hasFirstName>FirstName</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasRightsholder>
+        <acdh:hasLicensor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>LastName</acdh:hasLastName>
+                <acdh:hasFirstName>FirstName</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasLicensor>
+    </acdh:Collection>
+    
+<!-- EDITIONS -->
+    <acdh:Collection rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/editions">
+        <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch"/>
+        <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <acdh:hasTitle>Editionen</acdh:hasTitle>
+        <acdh:hasDescription>XML/TEI Dokumente des Tagebuches von Arthur Schnitzler</acdh:hasDescription>
+<!--        BRAUNWARTH ?-->
+        <acdh:hasAuthor>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/118609807">
+                <acdh:hasLastName>Schnitzler</acdh:hasLastName>
+                <acdh:hasFirstName>Arthur</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasAuthor>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1145358152">
+                <acdh:hasLastName>Braunwarth</acdh:hasLastName>
+                <acdh:hasFirstName>Peter Michael</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasCreator>
+<!--        CONTRIBUTORS ich würde sagen, all jene Personen, die an den DATEN gearbeitet haben, sei es inhaltlich oder formal-->
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846">
+                <acdh:hasLastName>Andorfer</acdh:hasLastName>
+                <acdh:hasFirstName>Peter</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Basch</acdh:hasLastName>
+                <acdh:hasFirstName>Andreas</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Czeitschner</acdh:hasLastName>
+                <acdh:hasFirstName>Ulrike</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Ďurčo</acdh:hasLastName>
+                <acdh:hasFirstName>Matej</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Kirnbauer</acdh:hasLastName>
+                <acdh:hasFirstName>Martin</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Müller</acdh:hasLastName>
+                <acdh:hasFirstName>Martin Anton</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+<!--        inhaltliche Metadaten: copy&paste von parent-collection? -->
+    </acdh:Collection>
+
+<!-- INDICES  -->
+    <acdh:Collection rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices">
+        <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch"/>
+        <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <acdh:hasTitle>Register</acdh:hasTitle>
+        <acdh:hasDescription>XML/TEI kodiertes Orts- und Personenregister</acdh:hasDescription>
+    <!--        Braunwarth plus Kiki plus Martin K. und Martin M.?; Diese Informationen würde ich dann auch in die Registerdateien übernehmen und zu den Metadaten der Resourcen hinzufügen-->
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1145358152">
+                <acdh:hasLastName>Braunwarth</acdh:hasLastName>
+                <acdh:hasFirstName>Peter Michael</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasCreator>
+<!--        contributors Matej, Peter ???? -->
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846">
+                <acdh:hasLastName>Andorfer</acdh:hasLastName>
+                <acdh:hasFirstName>Peter</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Ďurčo</acdh:hasLastName>
+                <acdh:hasFirstName>Matej</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+    </acdh:Collection>
+    <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices/listperson.xml">
+        <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices"/>
+        <acdh:hasDissService rdf:resource="https://id.acdh.oeaw.ac.at/dissemination/customTEI2HTML"/>
+        <acdh:hasCustomXSL rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/listperson.xsl"/>
+        <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <acdh:hasTitle>Personenregister</acdh:hasTitle>
+        <acdh:hasDescription>PROVIDE SOME</acdh:hasDescription>
+        <acdh:hasCreator>
+            <!-- aus Collection übernehmen  -->
+        </acdh:hasCreator>
+    </acdh:Resource>
+    <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices/listplace.xml">
+        <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices"/>
+        <acdh:hasDissService rdf:resource="https://id.acdh.oeaw.ac.at/dissemination/customTEI2HTML"/>
+        <acdh:hasCustomXSL rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/listplace.xsl"/>
+        <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <acdh:hasTitle>Ortsregister</acdh:hasTitle>
+        <acdh:hasDescription>PROVIDE SOME</acdh:hasDescription>
+        <acdh:hasCreator>
+            <!-- aus Collection übernehmen  -->
+        </acdh:hasCreator>
+    </acdh:Resource>
+    
+<!-- UTILS -->
+    <acdh:Collection rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils">
+        <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch"/>
+        <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <acdh:hasTitle>Utility Files</acdh:hasTitle>
+        <acdh:hasDescription>XSL-Stylesheets</acdh:hasDescription>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846"/>
+        </acdh:hasCreator>
+    </acdh:Collection>
+    <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/tei2html.xsl">
+        <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils"/>
+        <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <acdh:hasTitle>XSL to transform XML/TEI to HTML</acdh:hasTitle>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846">
+                <acdh:hasLastName>Andorfer</acdh:hasLastName>
+                <acdh:hasFirstName>Peter</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasCreator>
+    </acdh:Resource>
+    <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/listperson.xsl">
+        <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils"/>
+        <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <acdh:hasTitle>XSL to transform XML/TEI (tei:listPerson) to HTML</acdh:hasTitle>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846"/>
+        </acdh:hasCreator>
+    </acdh:Resource>
+    <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/listplace.xsl">
+        <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils"/>
+        <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+        <acdh:hasTitle>XSL to transform XML/TEI (tei:listPlace) to HTML</acdh:hasTitle>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846"/>
+        </acdh:hasCreator>
+    </acdh:Resource>
+</rdf:RDF>

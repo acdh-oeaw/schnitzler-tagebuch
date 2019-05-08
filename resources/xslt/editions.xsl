@@ -14,7 +14,7 @@
     <xsl:function name="functx:day-of-week" as="xs:integer?">
         <xsl:param name="date" as="xs:anyAtomicType?"/>
         
-        <xsl:sequence select="             if (empty($date))             then ()             else xs:integer((xs:date($date) - xs:date('1901-01-06'))             div xs:dayTimeDuration('P1D')) mod 7             "/>
+        <xsl:sequence select="if (empty($date))then ()else xs:integer((xs:date($date) - xs:date('1901-01-06'))             div xs:dayTimeDuration('P1D')) mod 7             "/>
         
     </xsl:function>
     <xsl:function name="functx:written-date">
@@ -134,13 +134,13 @@
         </style>
         
     </xsl:template>
-    
+<!--  don't process any tei:pb information  -->
+    <xsl:template match="tei:pb"/>
+        
     <xsl:template match="tei:rs[@ref or @key]">
         <xsl:choose>
             <xsl:when test="ends-with(data(./@ref), '_')">
-                <span class="unlinked-entity">
                     <xsl:apply-templates/>
-                </span>
             </xsl:when>
             <xsl:when test="starts-with(data(./@ref), '#genID__bibl')">
                 <span class="unlinked-entity-bibl">
@@ -148,7 +148,6 @@
                 </span>
             </xsl:when>
             <xsl:otherwise>
-                <strong>
                     <xsl:element name="a">
                         <xsl:attribute name="class">reference</xsl:attribute>
                         <xsl:attribute name="data-type">
@@ -160,7 +159,6 @@
                         </xsl:attribute>
                         <xsl:value-of select="."/>
                     </xsl:element>
-                </strong>
             </xsl:otherwise>
         </xsl:choose>
         
