@@ -28,22 +28,10 @@
     <text>
         <body>
             <div>
-                <p> Dies ist eine erste Version des digitalen Tagebuchs von Arthur Schnitzler,
-                    veröffentlicht am XXX. März 2019. In Druckform erschien es erstmals zwischen
-                    1981 und 2000 in zehn Bänden, herausgegeben von der Kommission für literarische
-                    Gebrauchsformen der Österreichischen Akademie der Wissenschaften. Die Leitung
-                    unterstand Werner Welzig. Diese Kommission existiert seit XXXX nicht mehr. Die
-                    digitale Aufbereitung wurde von der Nachfolgeinstitution ACDH auf Basis der
-                    gedruckten Vorlage erstellt. Die digitale Version weicht vom Druck an mehreren
-                    Stellen ab. So sind Korrekturen und Ergänzungen, gerade was die erfassten
-                    Personen und die Auflösung von Personen betrifft, stillschweigend eingearbeitet.
-                    Die Personen werden erstmals mit vollständigem Geburts- und Sterbedaten sowie
-                    den dazugehörigen Orten genannt. Erstmals ist ein Ortsregister verfügbar. Zwei
-                    Register der gedruckten Ausgabe, mit den Werken und Zeitschriften, werden
-                    nachgereicht. Ebenso ist die Erweiterung um Faksimiles in einem zukünftigen
-                    Schritt vorgesehen </p>
-                <p> Die gedruckte Fassung verlegte der Verlag der Österreichischen Akademie der
-                    Wissenschaften. Die Bände sind seit 2018 als PDF über die <ref target="https://www.austriaca.at/arthur_schnitzler_tagebuch">Website des
+                <p>Vor über hundert Jahren, am 16. August 1918, brachte Arthur Schnitzler erstmals die Bedingungen auf Papier, unter denen seine Erben sein Tagebuch veröffentlichen durften. Vor über vierzig Jahren begann die Edition, die vor knapp zwanzig Jahren mit dem Erscheinen des letzten Jahrgangs samt Gesamtregisters beendet wurde. Unmittelbar darauf begann die Arbeit an einer digitalen Ausgabe, die immer wieder weiterentwickelt wurde, ohne je veröffentlicht zu werden. Nach mehreren Zwischenversionen wird nun das Material in der derzeit verfügbaren Form als »Beta-Version« zugänglich gemacht.
+                </p>
+                <p>Die Textgestalt folgt der Druckform, die erstmals zwischen 1981 und 2000 in zehn Bänden von der Kommission für literarische Gebrauchsformen der Österreichischen Akademie der Wissenschaften herausgegeben wurde. Die Leitung unterstand Werner Welzig. Die Bände sind zusätzlich zur papiernen Gestalt als PDF über die Website des Verlags abrufbar:
+                    <ref target="https://www.austriaca.at/arthur_schnitzler_tagebuch">Website des
                         Verlags</ref> abrufbar. <list>
                         <item>1879–1892. (Unter Mitwirkung von Peter Michael Braunwarth, Susanne
                             Pertlik und Reinhard Urbach, 1987) </item>
@@ -65,9 +53,38 @@
                             Pertlik und Reinhard Urbach, 1995)</item>
                     </list>
                 </p>
-                <p>
-                    An der digitalen Aufbereitung waren Peter Michael Braunwarth sowie Peter Andorfer, Asil Çetin, Ulrike Czeitschner, Matej Ďurčo und Martin Anton Müller beteiligt.
-                </p>
+                <p>Die digitale Version weicht an verschiedenen Stellen von der gedruckten ab.
+                    Korrekturen und Ergänzungen, gerade was die erfassten Personen und die Auflösung
+                    von Personen betrifft, wurden stillschweigend eingearbeitet. Die Personen werden
+                    erstmals mit vollständigen Geburts- und Sterbedaten sowie den dazugehörigen
+                    Orten genannt. Erstmals ist ein Ortsregister verfügbar. Hingegen verfügt die
+                    frühere Version über Register, die in der digitalen nicht implementiert sind:
+                    Werke, Zeitschriften und Verlage. Im digitalen Personenregister, das über
+                    100.000 Stellen ausweist, sind 2.000 Namensformen, vor allem von Initialen, noch
+                    nicht mit der richtigen Person verknüpft. Derzeit noch fehlende Verknüpfungen
+                    mit den Faksimiles des Manuskripts sollen in einem zukünftigen Schritt
+                    hergestellt werden. </p>
+                <p>Für die inhaltliche Aufbereitung der digitalen Version zeichnet zum größten Teil
+                    Peter Michael Braunwarth verantwortlich. An der Kuratierung der digitalen Daten
+                    waren daneben auch Ulrike Czeitschner, Martin Kirnbauer und Martin Anton Müller
+                    beteiligt. Die technische Umsetzung wurde von Peter Andorfer, Andreas Basch,
+                    Asil Çetin, Matej Ďurčo und Karlheinz Mörth durchgeführt.</p>
+                <p>Während die Editionsprinzipien des gedruckten Tagebuchs weitgehend übernommen
+                    werden konnten, war an einer Stelle ein Eingriff nötig. Besonders in den frühen
+                    Jahren verfasste Schnitzler immer wieder für einen bestimmten Zeitraum mehrere
+                    Einträge auf einmal – er verwendet dafür den Begriff »Chroniken«. Dadurch konnte
+                    es in seltenen Fällen geschehen, dass es zu einem Tag einen Tagebuch- und einen
+                    Chronikeintrag gab. Da die Abgrenzung zwischen den beiden Eintragungsweisen
+                    schwierig ist, wurde folgende Vorgangsweise gewählt: Chronik- wie
+                    Tagebucheinträge werden im Normalfall dem Tag zugeordnet, den sie behandeln. In
+                    diesen Fällen, an denen zwei Einträge zu einem Tag vorhanden sind, wird zuerst
+                    der Tagebucheintrag gesetzt, dann folgt die Überschrift des Chronikteils in
+                    eckiger Klammer und der Chronik-Eintrag. </p>
+                <p>Die Paratexte der gedruckten Edition und die wenigen, aus Abschriften bestehenden
+                    Texte aus dem Tagebuch vor 1879 wurden nicht in die digitale Version
+                    aufgenommen. Sie sind sämtlich in den PDFs des Verlags einsehbar. </p>
+                <p>Die Nutzerinnen und Nutzer des digitalen Tagebuchs werden gebeten, uns
+                    Beobachtungen, Korrekturen und Ergänzungen mitzuteilen. </p>
             </div>
         </body>
     </text>
