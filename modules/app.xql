@@ -226,23 +226,26 @@ declare function app:listPers($node as node(), $model as map(*)) {
     let $hitHtml := "hits.html?searchkey="
     for $person in doc($app:personIndex)//tei:listPerson/tei:person
     let $gnd := $person/tei:idno[@type='GND']
-    let $gender := $person/tei:sex/text()
+    let $gender := if ($person/tei:sex/text() != "") then $person/tei:sex/text() else '-'
     let $job := normalize-space(string-join($person//tei:occupation//text(), ', '))
-    let $birthday := $person/tei:birth/tei:date/text()
-    let $birthplace := $person/tei:birth/tei:placeName/text()
-    let $deathday := $person/tei:death/tei:date/text()
-    let $deathplace := $person/tei:death/tei:placeName/text()
+    let $jobstring := if ($job != '') then $job else '-'
+    let $birthday := if ($person/tei:birth/tei:date/text() != "") then $person/tei:birth/tei:date/text() else '-'
+    let $surname := if ($person/tei:persName/tei:surname) then $person/tei:persName/tei:surname else '-'
+    let $forename := if ($person/tei:persName/tei:forename) then $person/tei:persName/tei:forename else '-'
+    let $birthplace := if ($person/tei:birth/tei:placeName/text() != "") then $person/tei:birth/tei:placeName/text() else '-'
+    let $deathday := if ($person/tei:death/tei:date/text() != "") then $person/tei:death/tei:date/text() else '-'
+    let $deathplace := if ($person/tei:death/tei:placeName/text() != "") then $person/tei:death/tei:placeName/text() else '-' 
     let $gnd_link := if ($gnd != "no gnd provided") then
-        <a href="{$gnd}">{$gnd}</a>
+        <a href="{$gnd}">gnd:{tokenize($gnd, '/')[last()]}</a>
         else
         "-"
         return
         <tr>
             <td>
-                <a href="{concat($hitHtml,data($person/@xml:id))}">{$person/tei:persName/tei:surname}</a>
+                <a href="{concat($hitHtml,data($person/@xml:id))}">{$surname}</a>
             </td>
             <td>
-                <a href="{concat($hitHtml,data($person/@xml:id))}">{$person/tei:persName/tei:forename}</a>
+                <a href="{concat($hitHtml,data($person/@xml:id))}">{$forename}</a>
             </td>
             <td>
                 {$birthday}
@@ -260,7 +263,7 @@ declare function app:listPers($node as node(), $model as map(*)) {
                 {$gnd_link}
             </td>
             <td>
-                {$job}
+                {$jobstring}
             </td>
             <td>
                 {$gender}
@@ -276,13 +279,16 @@ declare function app:listPlace($node as node(), $model as map(*)) {
     for $place in doc($app:placeIndex)//tei:listPlace/tei:place
     let $lat := tokenize($place//tei:geo/text(), ' ')[1]
     let $lng := tokenize($place//tei:geo/text(), ' ')[2]
+    let $idno := if ($place//tei:idno/text() != "") then analyze-string($place//tei:idno/text(), '\d*')//*:match else '-'
+    let $idnolink := if ($place//tei:idno/text() != "") then  <a href="{$place//tei:idno/text()}">geonames:{$idno}</a> else '-'
+
         return
         <tr>
             <td>
                 <a href="{concat($hitHtml, data($place/@xml:id))}">{functx:capitalize-first($place/tei:placeName[1])}</a>
             </td>
             <td>{for $altName in $place//tei:placeName return <li>{$altName/text()}</li>}</td>
-            <td>{$place//tei:idno/text()}</td>
+            <td>{$idnolink}</td>
             <td>{$lat}</td>
             <td>{$lng}</td>
         </tr>
