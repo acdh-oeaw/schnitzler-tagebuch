@@ -1,12 +1,1 @@
-bower_components
-/build/old_rita-new-1.0.xar
-/tryouts/hansi.xql
-/WhoAreYou.rdf
-/build/rita-new-1.0.xar
-/build/old_rita-new-1.0.xar
-/build/schnitzler-tagebuch-1.0.xar
-/data/editions/oko.xml
-/tryouts/play.xql
-/build
-sync-asil.xql
-/data/*.xpr
+sync-mam.xql
