@@ -107,22 +107,29 @@
                     <xsl:apply-templates select="//tei:div[@type='diary-day']"/>
                 </div>
                 <div class="card-footer text-muted" style="text-align:center">
-                    <a>
+                    <p id="srcbuttons">
+                        <a>
                         <xsl:attribute name="href">
                             <xsl:value-of select="$path2source"/>
                         </xsl:attribute>
-                        TEI 
+                        <!--TEI-->
+                        <i class="fa-lg far fa-file-code"/>
                     </a>
-                    | Zitierung <xsl:value-of select="$quotationURL"/>
-                    | <a>
+                    <button class="btn btn-link quotationbtn" data-clipboard-text="{$quotationURL}">Zitieren <i class="fa-lg far fa-clipboard"/>
+                    </button>
+                    
+                    <!--<xsl:value-of select="$quotationURL"/>-->
+                     <a>
                         <xsl:attribute name="href">
                             <xsl:value-of select="$source_pdf"/>
                         </xsl:attribute>
-                       see source pdf
+                       <!--see source pdf-->
+                       <i class="fa-lg far fa-file-pdf"/>
                     </a>
+                    </p>
                     <h6 style="text-align:center;">
                         <input type="range" min="1" max="{$amount}" value="{$currentIx}" data-rangeslider="" style="width:100%;"/>
-                        <a id="output" class="btn btn-main btn-outline-primary btn-sm" href="show.html?document=entry__1879-03-03.xml&amp;directory=editions" role="button">gehe zu</a>
+                        <a id="output" class="btn btn-main btn-outline-success btn-sm" href="show.html?document=entry__1879-03-03.xml&amp;directory=editions" role="button">gehe zu</a>
                     </h6>
                 </div>
             </div>

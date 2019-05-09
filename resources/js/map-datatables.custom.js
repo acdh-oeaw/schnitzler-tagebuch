@@ -45,6 +45,7 @@
         ],
         responsive: true,
         orderCellsTop: true,
+        "pageLength": 50,
         keepConditions: true,
         });
         var tiles = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -71,7 +72,8 @@
         }
         
         $(document).ready(function() {
-        $("#myTableBody").show({});
+         $("#loader").hide();    
+        $("#myTable").show();
         $('#myTable thead #filterrow th').each( function (colIndex) {
         var title = $(this).text();
         $(this).html( '<input type="text"/>' );
@@ -85,7 +87,7 @@
         } );
         });
         
-      
+      table.responsive.recalc();
         });
         
         table.on( 'search.dt', function () {

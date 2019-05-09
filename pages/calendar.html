@@ -21,33 +21,6 @@
             content:"\f054";
         }
         
-        #loader {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        z-index: 1;
-        width: 150px;
-        height: 150px;
-        margin: -75px 0 0 -75px;
-        border: 16px solid #f3f3f3;
-        border-radius: 50%;
-        border-top: 16px solid #3498db;
-        width: 120px;
-        height: 120px;
-        -webkit-animation: spin 2s linear infinite;
-        animation: spin 2s linear infinite;
-        }
-        
-        /* Safari */
-        @-webkit-keyframes spin {
-        0% { -webkit-transform: rotate(0deg); }
-        100% { -webkit-transform: rotate(360deg); }
-        }
-        
-        @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-        }
         
         .calendar .year-neighbor, .calendar .year-neighbor2  {
             display:none !important;
@@ -59,6 +32,10 @@
         
         .calendar .calendar-header table th {
             padding:0;
+        }
+        
+        .yearscol {
+            visibility: hidden;
         }
         
         .yearbtn {
@@ -76,6 +53,7 @@
         
     </style>
     <div class="container-fluid">
+    <div class="loader" id="loader"/>
        <div class="card">
             <div class="card-header" style="text-align:center">
                 <h1 style="display:inline-block;margin-bottom:0;padding-right:5px;">
@@ -87,13 +65,12 @@
                         <i class="fas fa-download" title="Data"/>
                     </a>
             </div>
-            <div class="card-body">
-            <div class="loader" id="loader"/>
+            <div class="card-body containingloader">
                 <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 yearscol">
                     <div class="row">
                     <div class="col-sm-12">
-                        <p style="text-align:center;font-weight:bold;">Jahr</p>
+                        <p style="text-align:center;font-weight:bold;margin-bottom:0;">Jahr</p>
                     </div>
                     </div>
                     <div class="row justify-content-md-center" id="years-table">

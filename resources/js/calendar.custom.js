@@ -29,8 +29,15 @@
                 
                 $('#calendar').calendar({
                     dataSource: $dataSource,
-                    startYear: 1908,
+                    startYear: 1900,
                     language: "de",
+                    renderEnd: function(e) {
+                        $(".yearbtn").removeClass("focus");
+                        $(".yearbtn[value="+e.currentYear+"]").addClass("focus");
+                        if ($(".yearscol").css("visibility") === "hidden") {
+                            $(".yearscol").css("visibility","visible");
+                        }
+                    }
                 });
                 
                 for (var i = 0; i <= yearsSorted.length; i++){
