@@ -1,3 +1,7 @@
+i {
+    cursor:pointer;
+}
+
 .reference {
     cursor: pointer;
     color: #037a33;
@@ -58,4 +62,75 @@ a:not([href]):not([tabindex]) {
 
 .sticky-navbar {
     z-index: 9999;
+}
+
+#srcbuttons {
+    margin-bottom:0;
+    padding:0.5rem;
+}
+
+.rangeslider {
+        margin-bottom: 1rem;
+}
+
+.btn-link {
+        color:#037a33;
+        font-size:1.2rem;
+    }
+
+.btn-link.quotationbtn {
+    color: #037a33;
+    padding-top:0;
+    text-decoration:none;
+} 
+
+.btn-outline-success {
+    border-color:#037a33;
+    color:#037a33;
+}
+
+ .btn-xs {
+  padding: .25rem .4rem;
+  font-size: .875rem;
+  line-height: .5;
+}
+
+ #loader {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index:999;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #037a33;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        }
+        
+        /* Safari */
+        @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+        }
+        
+        @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+        }
+
+.containingloader {
+    min-height:500px;
+}       
+
+.table td {
+    padding:0.5rem;
+}
+
+td li {
+    list-style-type:none;
 }

@@ -3,7 +3,7 @@
         "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/German.json"
         },
         keepConditions: true,
-        "pageLength": 25,
+        "pageLength": 50,
          orderCellsTop: true,
         dom:"'<'row'<'col-sm-4'f><'col-sm-4'i><'col-sm-4 exportbuttons'Br>>'"+
             "'<'row'<'col-sm-12't>>'"+
@@ -49,7 +49,8 @@
         });
         
         $(document).ready(function() {
-        $("#myTableBody").show({});
+        $("#loader").hide();    
+        $("#myTable").show();
         $('#myTable thead #filterrow th').each( function (colIndex) {
         var title = $(this).text();
         $(this).html( '<input type="text"/>' );
@@ -65,5 +66,5 @@
        
       
        
-      //  table.columns.adjust().draw();
+      table.responsive.recalc();
         });
