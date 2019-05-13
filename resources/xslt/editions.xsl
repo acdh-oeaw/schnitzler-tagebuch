@@ -120,8 +120,9 @@
         </style>
         
     </xsl:template>
-<!--  don't process any tei:pb information  -->
+<!--  don't process any tei:pb, tei:fw information  -->
     <xsl:template match="tei:pb"/>
+    <xsl:template match="tei:fw"/>
         
     <xsl:template match="tei:rs[@ref or @key]">
         <xsl:choose>
