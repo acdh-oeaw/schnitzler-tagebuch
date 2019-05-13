@@ -83,14 +83,14 @@
                 <div class="card-footer text-muted" style="text-align:center">
                     <p id="srcbuttons">
                         <a>
-                        <xsl:attribute name="href">
-                            <xsl:value-of select="$path2source"/>
-                        </xsl:attribute>
-                        <!--TEI-->
-                        <i class="fa-lg far fa-file-code"/>
-                    </a>
-                    <button class="btn btn-link quotationbtn" data-clipboard-text="{$quotationURL}">Zitieren <i class="fa-lg far fa-clipboard"/>
-                    </button>
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$path2source"/>
+                            </xsl:attribute>
+                            <!--TEI-->
+                            <i class="fa-lg far fa-file-code"/>
+                        </a>
+                        <button class="btn btn-link quotationbtn" data-clipboard-text="{$quotationURL}">Zitieren <i class="fa-lg far fa-clipboard"/>
+                        </button>
                     
                     <!--<xsl:value-of select="$quotationURL"/>-->
                         <xsl:choose>

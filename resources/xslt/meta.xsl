@@ -8,6 +8,7 @@
     <xsl:param name="ref"/>
     <xsl:param name="prev"/>
     <xsl:param name="next"/>
+    <xsl:param name="quotationURL"/>
     <!--
 ##################################
 ### Seitenlayout und -struktur ###
@@ -53,12 +54,30 @@
                     <xsl:apply-templates select="//tei:body"/>
                 </div>
                 <div class="card-footer text-muted" style="text-align:center">
-                    <a>
-                        <xsl:attribute name="href">
-                            <xsl:value-of select="$path2source"/>
-                        </xsl:attribute>
-                        TEI
-                    </a> | Zitierung
+                    <p id="srcbuttons">
+                        <a>
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$path2source"/>
+                            </xsl:attribute>
+                            <!--TEI-->
+                            <i class="fa-lg far fa-file-code"/>
+                        </a>
+                        <button class="btn btn-link quotationbtn" data-clipboard-text="{$quotationURL}">Zitieren <i class="fa-lg far fa-clipboard"/>
+                        </button>
+                        
+                        <!--<xsl:value-of select="$quotationURL"/>-->
+                        <xsl:choose>
+                            <xsl:when test=".//tei:monogr//tei:biblScope[@unit='page']">
+                                <!--<a>
+                                    <xsl:attribute name="href">
+                                        <xsl:value-of select="$source_pdf"/>
+                                    </xsl:attribute>
+                                    <!-\-see source pdf-\->
+                                    <i class="fa-lg far fa-file-pdf"/>
+                                </a>-->
+                            </xsl:when>
+                        </xsl:choose>
+                    </p>
                 </div>
             </div>
         </div>
