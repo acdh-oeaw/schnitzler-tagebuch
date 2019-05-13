@@ -12,7 +12,29 @@
                     </persName>
                 </author>
             </titleStmt>
-            
+            <publicationStmt>
+                <publisher>
+                    <orgName>Austrian Centre for Digital Humanities, Austrian Academy of
+                        Sciences</orgName>
+                    <address>
+                        <addrLine>Sonnenfelsgasse 19</addrLine>
+                        <addrLine>1010 Vienna</addrLine>
+                    </address>
+                </publisher>
+                <publisher>
+                    <orgName>Verlag der Österreichischen Akademie der Wissenschaften</orgName>
+                </publisher>
+                <pubPlace ref="http://d-nb.info/gnd/4066009-6">Vienna</pubPlace>
+                <date when="2017">2017</date>
+                <availability>
+                    <licence target="https://creativecommons.org/licenses/by/4.0/">
+                        <p>The Creative Commons Attribution 4.0 International (CC BY 4.0) License
+                            applies to this text.</p>
+                        <p>The CC BY 4.0 License also applies to this TEI XML file.</p>
+                    </licence>
+                </availability>
+                <idno type="URI">https://schnitzler-tagebuch.acdh.oeaw.ac.at/pages/show.html?document=about.xml</idno>
+            </publicationStmt>
             <sourceDesc>
                 <p>Born digital.</p>
             </sourceDesc>
@@ -21,7 +43,7 @@
     <text>
         <body>
             <div>
-                <p>Vor über hundert Jahren, am 16. August 1918, brachte Arthur Schnitzler erstmals die Bedingungen auf Papier, unter denen seine Erben sein Tagebuch veröffentlichen durften. Vor über vierzig Jahren begann die Edition, die vor knapp zwanzig Jahren mit dem Erscheinen des letzten Jahrgangs samt Gesamtregisters beendet wurde. Unmittelbar darauf begann die Arbeit an einer digitalen Ausgabe, die immer wieder weiterentwickelt wurde, ohne je veröffentlicht zu werden. Nach mehreren Zwischenversionen wird nun das Material in der derzeit verfügbaren Form als »Beta-Version« zugänglich gemacht.
+                <p>Vor über hundert Jahren, am 16. August 1918, brachte Arthur Schnitzler erstmals die Bedingungen auf Papier, unter denen seine Erben sein Tagebuch veröffentlichen durften. Vor über vierzig Jahren begann die Edition, die vor knapp zwanzig Jahren mit dem Erscheinen des letzten Jahrgangs samt Gesamtregisters beendet wurde. Unmittelbar darauf begann die Arbeit an einer digitalen Ausgabe, die immer wieder weiterentwickelt wurde, ohne je veröffentlicht zu werden. Nach mehreren Zwischenversionen wird nun das Material in der derzeit verfügbaren Form als »Beta-Version« zugänglich gemacht.
                 </p>
                 <p>Die Textgestalt folgt der Druckform, die erstmals zwischen 1981 und 2000 in zehn Bänden von der Kommission für literarische Gebrauchsformen der Österreichischen Akademie der Wissenschaften herausgegeben wurde. Die Leitung unterstand Werner Welzig. Die Bände sind zusätzlich zur papiernen Gestalt als PDF über die Website des Verlags abrufbar:
                     <ref target="https://www.austriaca.at/arthur_schnitzler_tagebuch">Website des
@@ -54,9 +76,12 @@
                     frühere Version über Register, die in der digitalen nicht implementiert sind:
                     Werke, Zeitschriften und Verlage. Im digitalen Personenregister, das über
                     100.000 Stellen ausweist, sind 2.000 Namensformen, vor allem von Initialen, noch
-                    nicht mit der richtigen Person verknüpft. Derzeit noch fehlende Verknüpfungen
+                    nicht mit der richtigen Person verknüpft. Überhaupt ist der Index gegenwärtig als Annäherung
+                    zu verstehen, da sich bei der automatisierten Verknüpfung auch von anderen Entitäten
+                    Fehler eingeschlichen haben können. 
+                    Derzeit noch fehlende Verknüpfungen
                     mit den Faksimiles des Manuskripts sollen in einem zukünftigen Schritt
-                    hergestellt werden. </p>
+                    hergestellt werden.</p>
                 <p>Für die inhaltliche Aufbereitung der digitalen Version zeichnet zum größten Teil
                     Peter Michael Braunwarth verantwortlich. An der Kuratierung der digitalen Daten
                     waren daneben auch Ulrike Czeitschner, Martin Kirnbauer und Martin Anton Müller
@@ -76,6 +101,10 @@
                 <p>Die Paratexte der gedruckten Edition und die wenigen, aus Abschriften bestehenden
                     Texte aus dem Tagebuch vor 1879 wurden nicht in die digitale Version
                     aufgenommen. Sie sind sämtlich in den PDFs des Verlags einsehbar. </p>
+                <p>Zusätzlich zur gegenwärtigen Darbietung auf <ref target="https://schnitzler-tagebuch.acdh.oeaw.ac.at">https://schnitzler-tagebuch.acdh.oeaw.ac.at</ref>
+                    stehen die Daten auf <ref target="https://www.oeaw.ac.at/acdh/tools/arche/">ARCHE</ref>, der Plattform für Langzeitarchivierung des ACDH,
+                    zur Verfügung. Wenngleich nicht mit dem vollen Funktionsumfang, so können auf diese
+                    Weise doch Links zu den Daten geschaffen werden, deren Funktionieren auch in fernerer Zukunft garantiert ist.</p>
                 <p>Die Nutzerinnen und Nutzer des digitalen Tagebuchs werden gebeten, uns
                     Beobachtungen, Korrekturen und Ergänzungen mitzuteilen. </p>
             </div>
