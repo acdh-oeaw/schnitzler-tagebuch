@@ -12,12 +12,12 @@
     <xsl:param name="amount"/>
     <xsl:param name="progress"/>
     <xsl:param name="quotationURL"/>
-    
-    
+
+
     <xsl:variable name="doctitle">
         <xsl:value-of select="//tei:title[@type='main']/text()"/>
     </xsl:variable>
-        
+
     <xsl:variable name="source_volume">
         <xsl:value-of select="replace(//tei:monogr//tei:biblScope[@unit='volume']/text(), '-', '_')"/>
     </xsl:variable>
@@ -32,8 +32,8 @@
         <xsl:value-of select="substring-after($doctitle, ': ')"/>
     </xsl:variable>
 
-    
-    
+
+
  <!--
 ##################################
 ### Seitenlayout und -struktur ###
@@ -60,7 +60,7 @@
                             <h1>
                                 <xsl:value-of select="//tei:title[@type='main']/text()"/>
                             </h1>
-                            
+
                         </div>
                         <div class="col-md-2" style="text-align:right">
                             <xsl:if test="$next">
@@ -75,36 +75,45 @@
                             </xsl:if>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="card-body">
                     <xsl:apply-templates select="//tei:div[@type='diary-day']"/>
                 </div>
                 <div class="card-footer text-muted" style="text-align:center">
-                    <p id="srcbuttons">
-                        <a>
-                            <xsl:attribute name="href">
-                                <xsl:value-of select="$path2source"/>
-                            </xsl:attribute>
-                            <!--TEI-->
-                            <i class="fa-lg far fa-file-code"/>
-                        </a>
-                        <button class="btn btn-link quotationbtn" data-clipboard-text="{$quotationURL}">Zitieren <i class="fa-lg far fa-clipboard"/>
-                        </button>
-                    
+                    <div id="srcbuttons">
+                   <!-- <button class="btn btn-link quotationbtn" data-copyuri="{$quotationURL}"><i class="fa-lg far fa-clipboard"/> Zitieren
+                    </button>-->
+                    <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
+            <span id="copy-url-button">
+               <i class="fas fa-quote-right"/> ZITIEREN
+               <!-- {{ "Copy Resource Link"|trans }}-->
+            </span>
+            <span id="copyLinkTextfield-wrapper">
+                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationURL}">
+                    <i class="far fa-copy"/>
+                </span>
+                <input type="text" name="copyLinkTextfield" id="copyLinkTextfield" value="{$quotationURL}"/>
+            </span>
+        </div>
+
                     <!--<xsl:value-of select="$quotationURL"/>-->
-                        <xsl:choose>
-                            <xsl:when test=".//tei:monogr//tei:biblScope[@unit='page']">
-                                <!--<a>
-                                    <xsl:attribute name="href">
-                                        <xsl:value-of select="$source_pdf"/>
-                                    </xsl:attribute>
-                                    <!-\-see source pdf-\->
-                                    <i class="fa-lg far fa-file-pdf"/>
-                                </a>-->
-                            </xsl:when>
-                        </xsl:choose>
-                    </p>
+                    <!-- <a class="ml-3">
+                        <xsl:attribute name="href">
+                            <xsl:value-of select="$source_pdf"/>
+        -->
+                        <!--</xsl:attribute>-->
+                       <!--see source pdf-->
+                       <!--<i class="fa-lg far fa-file-pdf"/> PDF
+                    </a>-->
+                     <a class="ml-3">
+                        <xsl:attribute name="href">
+                            <xsl:value-of select="$path2source"/>
+                        </xsl:attribute>
+
+                        <i class="fa-lg far fa-file-code"/> TEI
+                    </a>
+                    </div>
                     <h6 style="text-align:center;">
                         <input type="range" min="1" max="{$amount}" value="{$currentIx}" data-rangeslider="" style="width:100%;"/>
                         <a id="output" class="btn btn-main btn-outline-success btn-sm" href="show.html?document=entry__1879-03-03.xml&amp;directory=editions" role="button">gehe zu</a>
@@ -118,12 +127,12 @@
             position: absolute;
             }
         </style>
-        
+
     </xsl:template>
 <!--  don't process any tei:pb, tei:fw information  -->
     <xsl:template match="tei:pb"/>
     <xsl:template match="tei:fw"/>
-        
+
     <xsl:template match="tei:rs[@ref or @key]">
         <xsl:choose>
             <xsl:when test="ends-with(data(./@ref), '_')">
@@ -148,6 +157,6 @@
                     </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
-        
+
     </xsl:template>
 </xsl:stylesheet>
