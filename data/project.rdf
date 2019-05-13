@@ -6,9 +6,8 @@
         
 <!-- TOP COLLECTION -->
     <acdh:Collection rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch">
-        <acdh:hasTitle>Arthur Schnitzler Tagebuch (1879-1931)</acdh:hasTitle>
-        <acdh:hasDescription>
-            Die Einträge des Tagebuches von Arthur Schnitzler kodiert in XML/TEI und ergänzt um Personen- und Ortsregister.
+        <acdh:hasTitle>Arthur Schnitzler Tagebuch (1879–1931)</acdh:hasTitle>
+        <acdh:hasDescription>Die Einträge des Tagebuches von Arthur Schnitzler kodiert in XML/TEI und ergänzt um ein Personen- und ein Ortsregister.
         </acdh:hasDescription>
         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
         <acdh:hasLifeCycleStatus>active</acdh:hasLifeCycleStatus>
@@ -56,13 +55,13 @@
             </acdh:Person>
         </acdh:hasContributor>
         <acdh:hasContributor>
-            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+            <acdh:Person rdf:about="http://d-nb.info/gnd/115146970">
                 <acdh:hasLastName>Mörth</acdh:hasLastName>
                 <acdh:hasFirstName>Karlheinz</acdh:hasFirstName>
             </acdh:Person>
         </acdh:hasContributor>
         <acdh:hasContributor>
-            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1050382196">
                 <acdh:hasLastName>Müller</acdh:hasLastName>
                 <acdh:hasFirstName>Martin Anton</acdh:hasFirstName>
             </acdh:Person>
@@ -72,9 +71,8 @@
 <!-- ARCHE CONTENT RELATED MD -->
         <acdh:hasCoverageStartDate>1879</acdh:hasCoverageStartDate>
         <acdh:hasCoverageEndDate>1931</acdh:hasCoverageEndDate>
-        <acdh:hasSubject>SUBJECT 1</acdh:hasSubject>
-        <acdh:hasSubject>SUBJECT 2</acdh:hasSubject>
-
+        <acdh:hasSubject>Tagebuch</acdh:hasSubject>
+        <acdh:hasSubject>Literarisches Werk</acdh:hasSubject>
 
 <!-- ARCHE LEGAL THINGS; I'd like to apply those information on each resource/collection where this information is required-->
     <!--     METADATACREATORs please add whoever fits   -->
@@ -122,7 +120,6 @@
         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
         <acdh:hasTitle>Editionen</acdh:hasTitle>
         <acdh:hasDescription>XML/TEI Dokumente des Tagebuches von Arthur Schnitzler</acdh:hasDescription>
-<!--        BRAUNWARTH ?-->
         <acdh:hasAuthor>
             <acdh:Person rdf:about="http://d-nb.info/gnd/118609807">
                 <acdh:hasLastName>Schnitzler</acdh:hasLastName>
@@ -133,6 +130,48 @@
             <acdh:Person rdf:about="http://d-nb.info/gnd/1145358152">
                 <acdh:hasLastName>Braunwarth</acdh:hasLastName>
                 <acdh:hasFirstName>Peter Michael</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasCreator>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/104110392">
+                <acdh:hasLastName>Welzig</acdh:hasLastName>
+                <acdh:hasFirstName>Werner</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasCreator>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/11731398X">
+                <acdh:hasLastName>Urbach</acdh:hasLastName>
+                <acdh:hasFirstName>Reinhard</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasCreator>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Pertlik</acdh:hasLastName>
+                <acdh:hasFirstName>Susanne</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasCreator>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/11819853X">
+                <acdh:hasLastName>Fliedl</acdh:hasLastName>
+                <acdh:hasFirstName>Konstanze</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasCreator>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Neyses</acdh:hasLastName>
+                <acdh:hasFirstName>Maria</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasCreator>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1080273964">
+                <acdh:hasLastName>Ruprechter</acdh:hasLastName>
+                <acdh:hasFirstName>Walter</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasCreator>
+        <acdh:hasCreator>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/122350006">
+                <acdh:hasLastName>Miklin</acdh:hasLastName>
+                <acdh:hasFirstName>Richard</acdh:hasFirstName>
             </acdh:Person>
         </acdh:hasCreator>
 <!--        CONTRIBUTORS ich würde sagen, all jene Personen, die an den DATEN gearbeitet haben, sei es inhaltlich oder formal-->
@@ -167,7 +206,7 @@
             </acdh:Person>
         </acdh:hasContributor>
         <acdh:hasContributor>
-            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1050382196">
                 <acdh:hasLastName>Müller</acdh:hasLastName>
                 <acdh:hasFirstName>Martin Anton</acdh:hasFirstName>
             </acdh:Person>
@@ -181,14 +220,12 @@
         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
         <acdh:hasTitle>Register</acdh:hasTitle>
         <acdh:hasDescription>XML/TEI kodiertes Orts- und Personenregister</acdh:hasDescription>
-    <!--        Braunwarth plus Kiki plus Martin K. und Martin M.?; Diese Informationen würde ich dann auch in die Registerdateien übernehmen und zu den Metadaten der Resourcen hinzufügen-->
         <acdh:hasCreator>
             <acdh:Person rdf:about="http://d-nb.info/gnd/1145358152">
                 <acdh:hasLastName>Braunwarth</acdh:hasLastName>
                 <acdh:hasFirstName>Peter Michael</acdh:hasFirstName>
             </acdh:Person>
         </acdh:hasCreator>
-<!--        contributors Matej, Peter ???? -->
         <acdh:hasContributor>
             <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846">
                 <acdh:hasLastName>Andorfer</acdh:hasLastName>
@@ -197,8 +234,26 @@
         </acdh:hasContributor>
         <acdh:hasContributor>
             <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Czeitschner</acdh:hasLastName>
+                <acdh:hasFirstName>Ulrike</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
                 <acdh:hasLastName>Ďurčo</acdh:hasLastName>
                 <acdh:hasFirstName>Matej</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Kirnbauer</acdh:hasLastName>
+                <acdh:hasFirstName>Martin</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1050382196">
+                <acdh:hasLastName>Müller</acdh:hasLastName>
+                <acdh:hasFirstName>Martin Anton</acdh:hasFirstName>
             </acdh:Person>
         </acdh:hasContributor>
     </acdh:Collection>
@@ -208,10 +263,27 @@
         <acdh:hasCustomXSL rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/listperson.xsl"/>
         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
         <acdh:hasTitle>Personenregister</acdh:hasTitle>
-        <acdh:hasDescription>PROVIDE SOME</acdh:hasDescription>
+        <acdh:hasDescription>Personendaten zum Tagebuch Arthur Schnitzlers. Im Unterschied zu der Buchausgabe enthält es vollständige
+        Geburtsdaten und auch Geburtsorte. Automatisches Erkennen von Entitäten hat zu falschen und übersehenen Einträgen geführt. Mehrere Entitäten noch nicht mit einem Identifier verknüpft.</acdh:hasDescription>
         <acdh:hasCreator>
-            <!-- aus Collection übernehmen  -->
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1145358152">
+                <acdh:hasLastName>Braunwarth</acdh:hasLastName>
+                <acdh:hasFirstName>Peter Michael</acdh:hasFirstName>
+            </acdh:Person>
         </acdh:hasCreator>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Kirnbauer</acdh:hasLastName>
+                <acdh:hasFirstName>Martin</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+       
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1050382196">
+                <acdh:hasLastName>Müller</acdh:hasLastName>
+                <acdh:hasFirstName>Martin Anton</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
     </acdh:Resource>
     <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices/listplace.xml">
         <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices"/>
@@ -219,10 +291,27 @@
         <acdh:hasCustomXSL rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/listplace.xsl"/>
         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
         <acdh:hasTitle>Ortsregister</acdh:hasTitle>
-        <acdh:hasDescription>PROVIDE SOME</acdh:hasDescription>
+        <acdh:hasDescription>Ortsregister zum Tagebuch Arthur Schnitzlers mit Georeferenzierung. Automatisches Erfassen und händisches
+        Kuratieren hat weitestgehend funktioniert. Trotzdem teilweise Inkonsequenzen wie Theater und Kaffeehäuser, die auch als Institutionen geführt
+        werden könnten. </acdh:hasDescription>
         <acdh:hasCreator>
-            <!-- aus Collection übernehmen  -->
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1145358152">
+                <acdh:hasLastName>Braunwarth</acdh:hasLastName>
+                <acdh:hasFirstName>Peter Michael</acdh:hasFirstName>
+            </acdh:Person>
         </acdh:hasCreator>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://i-dont-know/pick-someone">
+                <acdh:hasLastName>Czeitschner</acdh:hasLastName>
+                <acdh:hasFirstName>Ulrike</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
+        <acdh:hasContributor>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/1050382196">
+                <acdh:hasLastName>Müller</acdh:hasLastName>
+                <acdh:hasFirstName>Martin Anton</acdh:hasFirstName>
+            </acdh:Person>
+        </acdh:hasContributor>
     </acdh:Resource>
     
 <!-- UTILS -->
