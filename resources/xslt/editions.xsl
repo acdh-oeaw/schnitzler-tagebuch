@@ -12,18 +12,8 @@
     <xsl:param name="amount"/>
     <xsl:param name="progress"/>
     <xsl:param name="quotationURL"/>
-    <xsl:function name="functx:day-of-week" as="xs:integer?">
-        <xsl:param name="date" as="xs:anyAtomicType?"/>
-        
-        <xsl:sequence select="if (empty($date))then ()else xs:integer((xs:date($date) - xs:date('1901-01-06'))             div xs:dayTimeDuration('P1D')) mod 7             "/>
-        
-    </xsl:function>
-    <xsl:function name="functx:written-date">
-        <xsl:param name="date" as="xs:anyAtomicType?"/>
-        
-        <xsl:sequence select="             if ($date = 0) then ('Sonntag')             else if ($date = 1)then ('Montag')             else if ($date = 2)then ('Dienstag')             else if ($date = 3)then ('Mittwoch')             else if ($date = 4)then ('Donnerstag')             else if ($date = 5)then ('Freitag')             else ('Samstag')             "/>
-        
-    </xsl:function>
+    
+    
     <xsl:variable name="doctitle">
         <xsl:value-of select="//tei:title[@type='main']/text()"/>
     </xsl:variable>
@@ -33,7 +23,7 @@
     </xsl:variable>
     <xsl:variable name="source_base_url">https://austriaca.at/buecher/files/arthur_schnitzler_tagebuch/Tagebuch1879-1931Einzelseiten/schnitzler_tb_</xsl:variable>
     <xsl:variable name="source_page_nr">
-        <xsl:value-of select="format-number(data(//tei:pb/@n), '000')"/>
+        <xsl:value-of select="format-number(//tei:monogr//tei:biblScope[@unit='page']/text(), '000')"/>
     </xsl:variable>
     <xsl:variable name="source_pdf">
         <xsl:value-of select="concat($source_base_url, $source_volume, 's', $source_page_nr, '.pdf')"/>
@@ -103,13 +93,17 @@
                     </button>
                     
                     <!--<xsl:value-of select="$quotationURL"/>-->
-                     <a>
-                        <xsl:attribute name="href">
-                            <xsl:value-of select="$source_pdf"/>
-                        </xsl:attribute>
-                       <!--see source pdf-->
-                       <i class="fa-lg far fa-file-pdf"/>
-                    </a>
+                        <xsl:choose>
+                            <xsl:when test=".//tei:monogr//tei:biblScope[@unit='page']">
+                                <!--<a>
+                                    <xsl:attribute name="href">
+                                        <xsl:value-of select="$source_pdf"/>
+                                    </xsl:attribute>
+                                    <!-\-see source pdf-\->
+                                    <i class="fa-lg far fa-file-pdf"/>
+                                </a>-->
+                            </xsl:when>
+                        </xsl:choose>
                     </p>
                     <h6 style="text-align:center;">
                         <input type="range" min="1" max="{$amount}" value="{$currentIx}" data-rangeslider="" style="width:100%;"/>

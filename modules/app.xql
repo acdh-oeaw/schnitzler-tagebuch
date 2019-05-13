@@ -202,7 +202,7 @@ let $searchkey:= '#'||$searchkey
 let $entities := collection($app:editions)//tei:TEI[.//*/@ref=$searchkey]
 let $terms := collection($app:editions)//tei:TEI[.//tei:term[./text() eq substring-after($searchkey, '#')]]
 for $title in ($entities, $terms)
-    let $docTitle := string-join(root($title)//tei:titleStmt/tei:title//text(), ' ')
+    let $docTitle := root($title)//tei:titleStmt/tei:title[@type='iso-date']/text()
     let $hits := if (count(root($title)//*[@ref=$searchkey]) = 0) then 1 else count(root($title)//*[@ref=$searchkey])
     let $snippet :=
         for $entity in root($title)//*[@ref=$searchkey]

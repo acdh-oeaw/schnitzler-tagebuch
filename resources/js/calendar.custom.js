@@ -3,7 +3,7 @@
     
  $.ajax({
             cache: true,
-            url: "../analyze/calendar_datasource.xql",
+            url: "../analyze/cache/calendar_datasource.json",
             dataType: "json",
             success: function(data) {
 
