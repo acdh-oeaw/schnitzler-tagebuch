@@ -77,12 +77,22 @@ a:not([href]):not([tabindex]) {
         color:#037a33;
         font-size:1.2rem;
     }
+    
+#srcbuttons a:hover {
+        text-decoration:none;
+}    
 
 .btn-link.quotationbtn {
     color: #037a33;
     padding-top:0;
     text-decoration:none;
+    font-size: 1rem;
+    line-height: 1.5;
 } 
+
+.quotationbtn:hover {
+    color:black;
+}
 
 .btn-outline-success {
     border-color:#037a33;
@@ -133,4 +143,62 @@ a:not([href]):not([tabindex]) {
 
 td li {
     list-style-type:none;
+}
+
+
+#copyLinkTextfield-wrapper:before {
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+    bottom: -5px;
+    left: 50%;
+    margin-left: -5px;
+    content: "";
+    border-width: 5px 5px 0 5px;
+    border-color: black transparent transparent transparent;
+    z-index: 99;
+}
+
+
+#copyLinkTextfield-wrapper {
+    position: absolute;
+    width: 300px;
+    left: -100px;
+    top: -28px;
+    display: none;
+}
+
+
+#res-act-button-copy-url {
+    position: relative;
+    z-index: 9;
+    display:inline-block;
+    color: #037a33;
+    cursor:pointer;
+}
+
+.res-act-button:hover {
+    color:black !important;
+}
+
+#copyLinkInputBtn {
+    position: absolute;
+    z-index: 99;
+    left: 10px;
+    top: 3px;
+    color: #037a33;
+}
+
+#copyLinkTextfield {
+    position: relative;
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 2px 5px 2px 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: #037a33;
+    font-family: inherit;
+    font-style: italic;
+    font-size: 13px;
+    text-align: left;
 }
