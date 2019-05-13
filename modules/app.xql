@@ -356,7 +356,6 @@ let $xsl := if($xslPath eq "")
                 doc($config:app-root||'/resources/xslt/'||$xslPath||'.xsl')
             else
                 $app:defaultXsl
-(:let $path2source := string-join(('../../../../exist/restxq', $config:app-name,'api/collections', $collection, $ref), '/'):)
 let $path2source := "../resolver/resolve-doc.xql?doc-name="||$ref||"&amp;collection="||$collection
 let $params :=
 <parameters>

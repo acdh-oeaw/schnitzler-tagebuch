@@ -41,23 +41,7 @@
     <xsl:variable name="current-date">
         <xsl:value-of select="substring-after($doctitle, ': ')"/>
     </xsl:variable>
-    <xsl:variable name="current-year">
-        <xsl:value-of select="tokenize($current-date, '-')[1]"/>
-    </xsl:variable>
-    <xsl:variable name="current-month">
-        <xsl:value-of select="tokenize($current-date, '-')[2]"/>
-    </xsl:variable>
-    <xsl:variable name="current-day">
-        <xsl:value-of select="tokenize($current-date, '-')[3]"/>
-    </xsl:variable>
-    
-    <xsl:variable name="current-day-nr">
-        <xsl:value-of select="functx:day-of-week(             xs:date($current-date))"/>
-    </xsl:variable>
-    
-    <xsl:variable name="german-date">
-        <xsl:value-of select="concat(functx:written-date($current-day-nr), ', ', format-number($current-day, '0'),'. ', $current-month, '. ', $current-year)"/>
-    </xsl:variable>
+
     
     
  <!--
@@ -84,7 +68,7 @@
                         </div>
                         <div class="col-md-8" align="center">
                             <h1>
-                                <xsl:value-of select="$german-date"/>
+                                <xsl:value-of select="//tei:title[@type='main']/text()"/>
                             </h1>
                             
                         </div>

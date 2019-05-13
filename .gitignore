@@ -11,3 +11,4 @@ bower_components
 /build
 sync-asil.xql
 /data/*.xpr
+/process/delete_idnos.xql
