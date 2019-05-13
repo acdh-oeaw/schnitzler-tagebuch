@@ -184,7 +184,7 @@
                                             </tr>
                                         </xsl:when>
                                     </xsl:choose>
-                                    <xsl:choose>
+                                    <!--<xsl:choose>
                                         <xsl:when test="$entity//@xml:id">
                                             <tr>
                                                 <th>
@@ -200,16 +200,19 @@
                                                 </td>
                                             </tr>
                                         </xsl:when>
-                                    </xsl:choose>
+                                    </xsl:choose>-->
+                                    <tr>
+                                        <th>TEI</th>
+                                        <td>
+                                            <a>
+                                                <xsl:attribute name="href">
+                                                    <xsl:value-of select="concat('../resolver/resolve-id.xql?id=', $entiyID)"/>
+                                                </xsl:attribute>
+                                                <i class="fa-lg far fa-file-code"/>
+                                            </a>
+                                        </td>
+                                    </tr>
                                 </table>
-                                <p>
-                                    <a>
-                                        <xsl:attribute name="href">
-                                            <xsl:value-of select="concat('../resolver/resolve-id.xql?id=', $entiyID)"/>
-                                        </xsl:attribute>
-                                        TEI
-                                    </a>
-                                </p>
                             </div>
                         </xsl:when>
                         <xsl:otherwise>

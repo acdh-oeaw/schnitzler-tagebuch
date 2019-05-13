@@ -5,4 +5,4 @@ declare option exist:serialize "method=xml media-type=text/xml omit-xml-declarat
 let $id := request:get-parameter('id', 'person_13089')
 let $node := collection($app:data)//id($id)
 
-return $node
+return $node[1]
