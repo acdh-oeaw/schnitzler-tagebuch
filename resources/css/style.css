@@ -162,9 +162,9 @@ td li {
 
 #copyLinkTextfield-wrapper {
     position: absolute;
-    width: 300px;
-    left: -100px;
-    top: -28px;
+    width:500px;
+    left: -200px;
+    top: -75px;
     display: none;
 }
 
@@ -201,6 +201,8 @@ td li {
     font-style: italic;
     font-size: 13px;
     text-align: left;
+    overflow:hidden;
+    resize: none;
 }
 
 .btn-outline-success:hover {

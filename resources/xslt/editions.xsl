@@ -99,7 +99,9 @@
                                 <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationString}">
                                     <i class="far fa-copy"/>
                                 </span>
-                                <input type="text" name="copyLinkTextfield" id="copyLinkTextfield" value="{$quotationString}"/>
+                                <textarea rows="3" name="copyLinkTextfield" id="copyLinkTextfield" value="">
+                                <xsl:value-of select="$quotationString"/>
+                                </textarea>
                             </span>
                         </div>
                         <a class="ml-3">
