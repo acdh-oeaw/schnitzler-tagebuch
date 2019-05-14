@@ -54,30 +54,26 @@
                     <xsl:apply-templates select="//tei:body"/>
                 </div>
                 <div class="card-footer text-muted" style="text-align:center">
-                    <p id="srcbuttons">
-                        <a>
+                    <div id="srcbuttons">
+                        <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
+                            <span id="copy-url-button">
+                                <i class="fas fa-quote-right"/> ZITIEREN
+                                <!-- {{ "Copy Resource Link"|trans }}-->
+                            </span>
+                            <span id="copyLinkTextfield-wrapper">
+                                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationURL}">
+                                    <i class="far fa-copy"/>
+                                </span>
+                                <input type="text" name="copyLinkTextfield" id="copyLinkTextfield" value="{$quotationURL}"/>
+                            </span>
+                        </div>
+                        <a class="ml-3">
                             <xsl:attribute name="href">
                                 <xsl:value-of select="$path2source"/>
                             </xsl:attribute>
-                            <!--TEI-->
-                            <i class="fa-lg far fa-file-code"/>
+                            <i class="fa-lg far fa-file-code"/>TEI
                         </a>
-                        <button class="btn btn-link quotationbtn" data-clipboard-text="{$quotationURL}">Zitieren <i class="fa-lg far fa-clipboard"/>
-                        </button>
-                        
-                        <!--<xsl:value-of select="$quotationURL"/>-->
-                        <xsl:choose>
-                            <xsl:when test=".//tei:monogr//tei:biblScope[@unit='page']">
-                                <!--<a>
-                                    <xsl:attribute name="href">
-                                        <xsl:value-of select="$source_pdf"/>
-                                    </xsl:attribute>
-                                    <!-\-see source pdf-\->
-                                    <i class="fa-lg far fa-file-pdf"/>
-                                </a>-->
-                            </xsl:when>
-                        </xsl:choose>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>

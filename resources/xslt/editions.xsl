@@ -82,37 +82,31 @@
                 </div>
                 <div class="card-footer text-muted" style="text-align:center">
                     <div id="srcbuttons">
-                   <!-- <button class="btn btn-link quotationbtn" data-copyuri="{$quotationURL}"><i class="fa-lg far fa-clipboard"/> Zitieren
-                    </button>-->
-                    <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
-            <span id="copy-url-button">
-               <i class="fas fa-quote-right"/> ZITIEREN
-               <!-- {{ "Copy Resource Link"|trans }}-->
-            </span>
-            <span id="copyLinkTextfield-wrapper">
-                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationURL}">
-                    <i class="far fa-copy"/>
-                </span>
-                <input type="text" name="copyLinkTextfield" id="copyLinkTextfield" value="{$quotationURL}"/>
-            </span>
-        </div>
-
-                    <!--<xsl:value-of select="$quotationURL"/>-->
-                    <!-- <a class="ml-3">
-                        <xsl:attribute name="href">
-                            <xsl:value-of select="$source_pdf"/>
-        -->
-                        <!--</xsl:attribute>-->
-                       <!--see source pdf-->
-                       <!--<i class="fa-lg far fa-file-pdf"/> PDF
-                    </a>-->
-                     <a class="ml-3">
-                        <xsl:attribute name="href">
-                            <xsl:value-of select="$path2source"/>
-                        </xsl:attribute>
-
-                        <i class="fa-lg far fa-file-code"/> TEI
-                    </a>
+                        <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
+                            <span id="copy-url-button">
+                               <i class="fas fa-quote-right"/> ZITIEREN
+                               <!-- {{ "Copy Resource Link"|trans }}-->
+                            </span>
+                            <span id="copyLinkTextfield-wrapper">
+                                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationURL}">
+                                    <i class="far fa-copy"/>
+                                </span>
+                                <input type="text" name="copyLinkTextfield" id="copyLinkTextfield" value="{$quotationURL}"/>
+                            </span>
+                        </div>
+                        <a class="ml-3">
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$path2source"/>
+                            </xsl:attribute>
+                            <i class="fa-lg far fa-file-code"/>TEI
+                        </a>
+                        <a class="ml-3">
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$source_pdf"/>
+                            </xsl:attribute>
+                            <!--<i class="fa-lg far fa-file-pdf"/> 
+                            PDF-->
+                        </a>
                     </div>
                     <h6 style="text-align:center;">
                         <input type="range" min="1" max="{$amount}" value="{$currentIx}" data-rangeslider="" style="width:100%;"/>
