@@ -146,6 +146,24 @@ let $RDF :=
                         <acdh:hasCustomXSL rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/tei2html.xsl"/>
                         <acdh:hasSchema>https://www.tei-c.org/release/xml/tei/schema/relaxng/tei.rng</acdh:hasSchema>
                         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+                         <acdh:hasMetadataCreator>
+                             <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+                         </acdh:hasMetadataCreator>  
+                         <acdh:hasDepositor>
+                             <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+                         </acdh:hasDepositor>
+                         <acdh:hasContact>
+                             <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+                         </acdh:hasContact>
+                         <acdh:hasOwner>
+                             <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+                         </acdh:hasOwner>
+                         <acdh:hasRightsholder>
+                             <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/oeaw"/>
+                         </acdh:hasRightsholder>
+                         <acdh:hasOwner>
+                             <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+                         </acdh:hasOwner>
                     </acdh:Resource>
         }
         {$customResources}

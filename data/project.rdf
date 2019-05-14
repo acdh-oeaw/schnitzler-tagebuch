@@ -61,6 +61,10 @@
             </acdh:Person>
         </acdh:hasContributor>
         
+        <acdh:hasActor>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/118609807"/>
+        </acdh:hasActor>
+        
         
         <!-- ARCHE CONTENT RELATED MD -->
         <acdh:hasCoverageStartDate>1879</acdh:hasCoverageStartDate>
@@ -114,6 +118,29 @@
         <acdh:hasContributor>
             <acdh:Person rdf:about="https://orcid.org/0000-0001-7081-2280"/> <!-- Kirnbauer -->
         </acdh:hasContributor>
+        <acdh:hasActor>
+            <acdh:Person rdf:about="http://d-nb.info/gnd/118609807"/>
+        </acdh:hasActor>
+        
+        <!-- ARCHE LEGAL THINGS -->
+        <acdh:hasMetadataCreator>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasMetadataCreator>  
+        <acdh:hasDepositor>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasDepositor>
+        <acdh:hasContact>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasContact>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
+        <acdh:hasRightsholder>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/oeaw"/>
+        </acdh:hasRightsholder>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
     </acdh:Collection>
     
     <!-- INDICES  -->
@@ -140,6 +167,26 @@
         <acdh:hasContributor>
             <acdh:Person rdf:about="https://orcid.org/0000-0001-7081-2280"/> <!-- Kirnbauer -->
         </acdh:hasContributor>
+        
+        <!-- ARCHE LEGAL THINGS -->
+        <acdh:hasMetadataCreator>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasMetadataCreator>  
+        <acdh:hasDepositor>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasDepositor>
+        <acdh:hasContact>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasContact>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
+        <acdh:hasRightsholder>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/oeaw"/>
+        </acdh:hasRightsholder>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
     </acdh:Collection>
     <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices/listperson.xml">
         <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices"/>
@@ -166,6 +213,23 @@
         <acdh:hasContributor>
             <acdh:Person rdf:about="https://orcid.org/0000-0001-7081-2280"/> <!-- Kirnbauer -->
         </acdh:hasContributor>
+        
+        <!-- ARCHE LEGAL THINGS -->
+        <acdh:hasMetadataCreator>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasMetadataCreator>  
+        <acdh:hasDepositor>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasDepositor>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
+        <acdh:hasRightsholder>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/oeaw"/>
+        </acdh:hasRightsholder>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
     </acdh:Resource>
     <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices/listplace.xml">
         <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices"/>
@@ -192,6 +256,23 @@
         <acdh:hasContributor>
             <acdh:Person rdf:about="https://orcid.org/0000-0001-7081-2280"/> <!-- Kirnbauer -->
         </acdh:hasContributor>
+        
+        <!-- ARCHE LEGAL THINGS -->
+        <acdh:hasMetadataCreator>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasMetadataCreator>  
+        <acdh:hasDepositor>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasDepositor>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
+        <acdh:hasRightsholder>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/oeaw"/>
+        </acdh:hasRightsholder>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
     </acdh:Resource>
     
     <!-- META -->
@@ -218,6 +299,26 @@
         <acdh:hasCreator>
             <acdh:Person rdf:about="http://d-nb.info/gnd/1050382196"/>
         </acdh:hasCreator>
+        
+        <!-- ARCHE LEGAL THINGS -->
+        <acdh:hasMetadataCreator>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasMetadataCreator>  
+        <acdh:hasDepositor>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasDepositor>
+        <acdh:hasContact>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasContact>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
+        <acdh:hasRightsholder>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/oeaw"/>
+        </acdh:hasRightsholder>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
     </acdh:Resource>
     
     <!-- UTILS -->
@@ -225,33 +326,104 @@
         <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch"/>
         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
         <acdh:hasTitle>Utility Files</acdh:hasTitle>
-        <acdh:hasDescription>XSL-Stylesheets</acdh:hasDescription>
+        <acdh:hasDescription>XSLT-Stylesheets</acdh:hasDescription>
         <acdh:hasCreator>
             <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846"/>
         </acdh:hasCreator>
+        
+        <!-- ARCHE LEGAL THINGS -->
+        <acdh:hasMetadataCreator>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasMetadataCreator>  
+        <acdh:hasDepositor>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasDepositor>
+        <acdh:hasContact>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasContact>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
+        <acdh:hasRightsholder>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/oeaw"/>
+        </acdh:hasRightsholder>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
     </acdh:Collection>
     <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/tei2html.xsl">
         <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils"/>
         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
-        <acdh:hasTitle>XSL to transform XML/TEI to HTML</acdh:hasTitle>
+        <acdh:hasTitle>XSLT zur Generierung von HTML aus XML/TEI</acdh:hasTitle>
         <acdh:hasCreator>
             <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846"/>
         </acdh:hasCreator>
+        
+        <!-- ARCHE LEGAL THINGS -->
+        <acdh:hasMetadataCreator>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasMetadataCreator>  
+        <acdh:hasDepositor>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasDepositor>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
+        <acdh:hasRightsholder>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/oeaw"/>
+        </acdh:hasRightsholder>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
     </acdh:Resource>
     <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/listperson.xsl">
         <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils"/>
         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
-        <acdh:hasTitle>XSL to transform XML/TEI (tei:listPerson) to HTML</acdh:hasTitle>
+        <acdh:hasTitle>XSLT zur Generierung von HTML (tei:listperson) aus XML/TEI</acdh:hasTitle>
         <acdh:hasCreator>
             <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846"/>
         </acdh:hasCreator>
+        
+        <!-- ARCHE LEGAL THINGS -->
+        <acdh:hasMetadataCreator>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasMetadataCreator>  
+        <acdh:hasDepositor>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasDepositor>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
+        <acdh:hasRightsholder>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/oeaw"/>
+        </acdh:hasRightsholder>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
     </acdh:Resource>
     <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/listplace.xsl">
         <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils"/>
         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
-        <acdh:hasTitle>XSL to transform XML/TEI (tei:listPlace) to HTML</acdh:hasTitle>
+        <acdh:hasTitle>XSLT zur Generierung von HTML (tei:listplace) aus XML/TEI</acdh:hasTitle>
         <acdh:hasCreator>
             <acdh:Person rdf:about="http://d-nb.info/gnd/1043833846"/>
         </acdh:hasCreator>
+        
+        <!-- ARCHE LEGAL THINGS -->
+        <acdh:hasMetadataCreator>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasMetadataCreator>  
+        <acdh:hasDepositor>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasDepositor>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
+        <acdh:hasRightsholder>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/oeaw"/>
+        </acdh:hasRightsholder>
+        <acdh:hasOwner>
+            <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
+        </acdh:hasOwner>
     </acdh:Resource>
 </rdf:RDF>
