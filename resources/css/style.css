@@ -202,3 +202,14 @@ td li {
     font-size: 13px;
     text-align: left;
 }
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: green;
+    border-color: green;
+}
+.btn-outline-success:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: #037a33;
+    border-color: #037a33;
+}

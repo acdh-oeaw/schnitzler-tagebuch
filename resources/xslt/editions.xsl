@@ -12,10 +12,19 @@
     <xsl:param name="amount"/>
     <xsl:param name="progress"/>
     <xsl:param name="quotationURL"/>
-
-
+    
     <xsl:variable name="doctitle">
         <xsl:value-of select="//tei:title[@type='main']/text()"/>
+    </xsl:variable>
+    <xsl:variable name="currentDate">
+        <xsl:value-of select="format-date(current-date(), '[Y]-[M]-[D]')"/>
+    </xsl:variable>
+    <xsl:variable name="pid">
+        <xsl:value-of select="//tei:publicationStmt//tei:idno[@type='URI']/text()"/>
+    </xsl:variable>
+    
+    <xsl:variable name="quotationString">
+        <xsl:value-of select="concat('Arthur Schnitzler: Tagebuch. Digitale Edition, ', $doctitle, ', ', $quotationURL, ' (Stand ', $currentDate, ') PID: ', $pid)"/>
     </xsl:variable>
 
     <xsl:variable name="source_volume">
@@ -60,7 +69,6 @@
                             <h1>
                                 <xsl:value-of select="//tei:title[@type='main']/text()"/>
                             </h1>
-
                         </div>
                         <div class="col-md-2" style="text-align:right">
                             <xsl:if test="$next">
@@ -88,17 +96,17 @@
                                <!-- {{ "Copy Resource Link"|trans }}-->
                             </span>
                             <span id="copyLinkTextfield-wrapper">
-                                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationURL}">
+                                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationString}">
                                     <i class="far fa-copy"/>
                                 </span>
-                                <input type="text" name="copyLinkTextfield" id="copyLinkTextfield" value="{$quotationURL}"/>
+                                <input type="text" name="copyLinkTextfield" id="copyLinkTextfield" value="{$quotationString}"/>
                             </span>
                         </div>
                         <a class="ml-3">
                             <xsl:attribute name="href">
                                 <xsl:value-of select="$path2source"/>
                             </xsl:attribute>
-                            <i class="fa-lg far fa-file-code"/>TEI
+                            <i class="fa-lg far fa-file-code"/> TEI
                         </a>
                         <a class="ml-3">
                             <xsl:attribute name="href">

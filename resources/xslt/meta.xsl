@@ -9,6 +9,19 @@
     <xsl:param name="prev"/>
     <xsl:param name="next"/>
     <xsl:param name="quotationURL"/>
+    <xsl:variable name="doctitle">
+        <xsl:value-of select="//tei:title[@type='main']/text()"/>
+    </xsl:variable>
+    <xsl:variable name="currentDate">
+        <xsl:value-of select="format-date(current-date(), '[Y]-[M]-[D]')"/>
+    </xsl:variable>
+    <xsl:variable name="pid">
+        <xsl:value-of select="//tei:publicationStmt//tei:idno[@type='URI']/text()"/>
+    </xsl:variable>
+    
+    <xsl:variable name="quotationString">
+        <xsl:value-of select="concat('Arthur Schnitzler: Tagebuch. Digitale Edition, ', $doctitle, ', ', $quotationURL, ' (Stand ', $currentDate, ') PID: ', $pid)"/>
+    </xsl:variable>
     <!--
 ##################################
 ### Seitenlayout und -struktur ###
@@ -55,16 +68,16 @@
                 </div>
                 <div class="card-footer text-muted" style="text-align:center">
                     <div id="srcbuttons">
-                        <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
+                        <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationString}">
                             <span id="copy-url-button">
                                 <i class="fas fa-quote-right"/> ZITIEREN
                                 <!-- {{ "Copy Resource Link"|trans }}-->
                             </span>
                             <span id="copyLinkTextfield-wrapper">
-                                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationURL}">
+                                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationString}">
                                     <i class="far fa-copy"/>
                                 </span>
-                                <input type="text" name="copyLinkTextfield" id="copyLinkTextfield" value="{$quotationURL}"/>
+                                <input type="text" name="copyLinkTextfield" id="copyLinkTextfield" value="{$quotationString}"/>
                             </span>
                         </div>
                         <a class="ml-3">
