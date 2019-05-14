@@ -26,9 +26,6 @@ let $contributors :=
 
 let $authors := 
             <acdh:authors>
-                 <acdh:hasAuthor>
-                     <acdh:Person rdf:about="http://d-nb.info/gnd/118609807"/>
-                 </acdh:hasAuthor>
                  <acdh:hasCreator>
                      <acdh:Person rdf:about="http://d-nb.info/gnd/1145358152"/>
                  </acdh:hasCreator>
@@ -73,8 +70,8 @@ let $RDF :=
 
                let $persons := 
                     for $item in $doc//tei:listPerson//tei:person[./@xml:id]
-                         let $pername := $item//tei:surname[1]/text()
-                         let $firstname := $item//tei:forename[1]/text()
+                         let $pername := $item/tei:persName[1]/tei:surname[1]/text()
+                         let $firstname := $item/tei:persName[1]/tei:forename[1]/text()
                          let $xmlid := data($item/@xml:id)
                          let $ID := $personbase||$xmlid
                          let $normIDs := 
@@ -119,11 +116,11 @@ let $RDF :=
                     else
                         ()
 
-                let $pid_str := $doc//tei:publicationStmt//tei:idno[@type="handle"]/text()
+                let $pid_str := $doc//tei:publicationStmt//tei:idno[@type="URI"]/text()
                     
                 let $pid := if ($pid_str != "")
                     then
-                        <acdh:hasPid rdf:about="{$pid_str}"/>
+                        <acdh:hasPid rdf:resource="{$pid_str}"/>
                     else
                         ()
 
@@ -137,6 +134,9 @@ let $RDF :=
                         {$title}
                         {$startDate}
                         {$description}
+                        <acdh:hasActor>
+                            <acdh:Person rdf:about="http://d-nb.info/gnd/118609807"/>
+                        </acdh:hasActor>
                         {$persons}
                         {$places}
                         {for $x in $authors//acdh:hasAuthor return $x}
