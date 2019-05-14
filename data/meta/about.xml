@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
     <teiHeader>
         <fileDesc>
@@ -39,8 +40,7 @@
                     Bänden von der Kommission für literarische Gebrauchsformen der Österreichischen
                     Akademie der Wissenschaften herausgegeben wurde. Die Leitung unterstand Werner
                     Welzig. Die Bände sind zusätzlich zur papiernen Gestalt als PDF über die Website
-                    des Verlags abrufbar: <ref
-                        target="https://www.austriaca.at/arthur_schnitzler_tagebuch">Website des
+                    des Verlags abrufbar: <ref target="https://www.austriaca.at/arthur_schnitzler_tagebuch">Website des
                         Verlags</ref> abrufbar. <list>
                         <item>1879–1892. (Unter Mitwirkung von Peter Michael Braunwarth, Susanne
                             Pertlik und Reinhard Urbach, 1987) </item>
@@ -93,14 +93,10 @@
                 <p>Die Paratexte der gedruckten Edition und die wenigen, aus Abschriften bestehenden
                     Texte aus dem Tagebuch vor 1879 wurden nicht in die digitale Version
                     aufgenommen. Sie sind sämtlich in den PDFs des Verlags einsehbar. </p>
-                <p>Zusätzlich zur gegenwärtigen Darbietung auf <ref
-                        target="https://schnitzler-tagebuch.acdh.oeaw.ac.at"
-                        >https://schnitzler-tagebuch.acdh.oeaw.ac.at</ref> stehen die Daten auf
+                <p>Zusätzlich zur gegenwärtigen Darbietung auf <ref target="https://schnitzler-tagebuch.acdh.oeaw.ac.at">https://schnitzler-tagebuch.acdh.oeaw.ac.at</ref> stehen die Daten auf
                     <ref target="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch">ARCHE</ref>, der Plattform für Langzeitarchivierung des ACDH, tageweise in TEI-Format
-                    zur Verfügung. Das ganze Repository kann zudem über Github (<ref
-                        target="https://github.com/acdh-oeaw/schnitzler-tagebuch-data">Daten</ref>,
-                        <ref target="https://github.com/acdh-oeaw/schnitzler-tagebuch"
-                    >Website</ref>) bezogen werden.</p>
+                    zur Verfügung. Das ganze Repository kann zudem über Github (<ref target="https://github.com/acdh-oeaw/schnitzler-tagebuch-data">Daten</ref>,
+                        <ref target="https://github.com/acdh-oeaw/schnitzler-tagebuch">Website</ref>) bezogen werden.</p>
                 <p>Die Nutzerinnen und Nutzer des digitalen Tagebuchs werden gebeten, uns
                     Beobachtungen, Korrekturen und Ergänzungen mitzuteilen. </p>
             </div>
