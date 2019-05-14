@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
    <teiHeader>
       <fileDesc>
@@ -44,8 +43,7 @@
                   <p>The CC BY 4.0 License also applies to this TEI XML file.</p>
                </licence>
             </availability>
-         <tei:idno xmlns:tei="http://www.tei-c.org/ns/1.0" type="URI">http://hdl.handle.net/21.11115/0000-000C-1CDF-B</tei:idno>
-            </publicationStmt>
+         </publicationStmt>
          <sourceDesc>
             <p>Born Digital</p>
          </sourceDesc>

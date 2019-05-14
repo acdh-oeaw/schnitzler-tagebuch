@@ -13,3 +13,6 @@ sync-asil.xql
 /data/*.xpr
 /process/delete_idnos.xql
 /sync-data.xql
+/data/editions/*.xml
+/data/indices/*.xml
+/data/meta/*.xml
