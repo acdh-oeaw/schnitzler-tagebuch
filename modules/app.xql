@@ -213,7 +213,7 @@ for $title in ($entities, $terms)
     let $zitat := $title//tei:msIdentifier
     return
             <tr>
-               <td>{$docTitle}</td>
+               <td style="white-space: nowrap;"><a href="{concat(app:hrefToDoc($title), "&amp;searchkey=", $indexSerachKey)}">{$docTitle}</a></td>
                <td>{$hits}</td>
                <td>{$snippet}</td>
             </tr>
