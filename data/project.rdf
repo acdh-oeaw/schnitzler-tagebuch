@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:acdhid="https://id.acdh.oeaw.ac.at/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:acdh="https://vocabs.acdh.oeaw.ac.at/schema#" xml:lang="en">
     
     <!--    see https://arche.acdh.oeaw.ac.at/browser/formats-filenames-and-metadata#metadata -->
@@ -194,6 +195,7 @@
         </acdh:hasOwner>
     </acdh:Collection>
     <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices/listperson.xml">
+        <acdh:hasPid rdf:resource="http://hdl.handle.net/21.11115/0000-000C-1CE0-8"/>
         <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices"/>
         <acdh:hasDissService rdf:resource="https://id.acdh.oeaw.ac.at/dissemination/customTEI2HTML"/>
         <acdh:hasCustomXSL rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/listperson.xsl"/>
@@ -237,6 +239,7 @@
         </acdh:hasOwner>
     </acdh:Resource>
     <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices/listplace.xml">
+        <acdh:hasPid rdf:resource="http://hdl.handle.net/21.11115/0000-000C-1CDF-B"/>
         <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/indices"/>
         <acdh:hasDissService rdf:resource="https://id.acdh.oeaw.ac.at/dissemination/customTEI2HTML"/>
         <acdh:hasCustomXSL rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/utils/listplace.xsl"/>
@@ -294,6 +297,7 @@
         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
     </acdh:Collection>
     <acdh:Resource rdf:about="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/meta/about.xml">
+        <acdh:hasPid rdf:resource="http://hdl.handle.net/21.11115/0000-000C-1CE2-6"/>
         <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/meta"/>
         <acdh:hasLicense rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
         <acdh:hasDissService rdf:resource="https://id.acdh.oeaw.ac.at/dissemination/customTEI2HTML"/>

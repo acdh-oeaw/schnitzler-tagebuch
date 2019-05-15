@@ -215,7 +215,7 @@ for $title in ($entities, $terms)
             <tr>
                <td>{$docTitle}</td>
                <td>{$hits}</td>
-               <td>{$snippet}<p style="text-align:right">({<a href="{concat(app:hrefToDoc($title), "&amp;searchkey=", $indexSerachKey)}">{app:getDocName($title)}</a>})</p></td>
+               <td>{$snippet}</td>
             </tr>
 };
 

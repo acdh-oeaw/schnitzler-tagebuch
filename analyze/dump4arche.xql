@@ -130,7 +130,7 @@ let $RDF :=
                         {$prev}
                         {$next}
                         {$pid}
-                        <acdh:hasCategory rdf:resource="https://vocabs.acdh.oeaw.ac.at/archecategory/dataset"/>
+                        <acdh:hasCategory rdf:resource="https://vocabs.acdh.oeaw.ac.at/archecategory/text"/>
                         {$title}
                         {$startDate}
                         {$description}

@@ -138,13 +138,16 @@ a:not([href]):not([tabindex]) {
 }
 
 .table td {
-    padding:0.5rem;
+    padding:0.3rem;
 }
 
 td li {
     list-style-type:none;
 }
 
+td p {
+    margin-bottom: 0.2rem;
+}
 
 #copyLinkTextfield-wrapper:before {
     position: absolute;
