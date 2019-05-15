@@ -42,7 +42,7 @@
                 
                 for (var i = 0; i <= yearsSorted.length; i++){
                     $('#years-table').append(createyearcell(yearsSorted[i]) +createyearcell(yearsSorted[i+1])+createyearcell(yearsSorted[i+2]));
-                    i += 3;
+                    i += 2;
                 }
     
                 $('#calendar').clickDay(function(e){
