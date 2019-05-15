@@ -16,3 +16,4 @@ sync-asil.xql
 /data/editions/*.xml
 /data/indices/*.xml
 /data/meta/*.xml
+/analyze/cache/calendar_datasource.json
