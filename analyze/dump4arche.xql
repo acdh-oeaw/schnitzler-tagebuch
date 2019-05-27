@@ -46,8 +46,8 @@ let $RDF :=
             {$childCollections}
             {
             let $sample := collection($app:editions)//tei:TEI[@xml:id and @xml:base]
-            for $doc in subsequence($sample, 1, 1)
-(:            for $doc in $sample:)
+(:            for $doc in subsequence($sample, 1, 10):)
+            for $doc in $sample
                 let $xmlid := data($doc/@xml:id)
                 let $collID := data($doc/@xml:base)
                 let $date := substring-before(substring-after($xmlid, 'entry__'), '.xml')
@@ -78,12 +78,13 @@ let $RDF :=
                             for $x in $item//tei:idno/text()[starts-with(., 'http')]
                             return
                                 <acdh:hasIdentifier rdf:resource="{$x}"/>
+                        group by $ID
                          return
                              <acdh:hasActor>
-                                 <acdh:Person rdf:about="{$ID}">
-                                     <acdh:hasLastName>{$pername}</acdh:hasLastName>
-                                     <acdh:hasFirstName>{$firstname}</acdh:hasFirstName>
-                                     {$normIDs}
+                                 <acdh:Person rdf:about="{$ID[1]}">
+                                     <acdh:hasLastName>{$pername[1]}</acdh:hasLastName>
+                                     <acdh:hasFirstName>{$firstname[1]}</acdh:hasFirstName>
+                                     {$normIDs[1]}
                                  </acdh:Person>
                              </acdh:hasActor>
 
@@ -96,11 +97,12 @@ let $RDF :=
                             for $x in $item//tei:idno/text()[starts-with(., 'http')]
                             return
                                 <acdh:hasIdentifier rdf:resource="{$x}"/>
+                        group by $ID
                          return
                              <acdh:hasSpatialCoverage>
-                                 <acdh:Place rdf:about="{$ID}">
-                                     <acdh:hasTitle>{$placename}</acdh:hasTitle>
-                                     {$normIDs}
+                                 <acdh:Place rdf:about="{$ID[1]}">
+                                     <acdh:hasTitle>{$placename[1]}</acdh:hasTitle>
+                                     {$normIDs[1]}
                                  </acdh:Place>
                              </acdh:hasSpatialCoverage>
 
