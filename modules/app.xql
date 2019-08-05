@@ -332,7 +332,7 @@ let $xmlPath := concat(xs:string(request:get-parameter("directory", "editions"))
 let $xml := doc(replace(concat($config:app-root,'/data/', $xmlPath, $ref), '/exist/', '/db/'))
 let $collectionName := util:collection-name($xml)
 let $collection := functx:substring-after-last($collectionName, '/')
-let $neighbors := app:doc-context($collectionName, $ref)
+let $neighbors := try{app:doc-context($collectionName, $ref)} catch * {false()}
 let $prev := if($neighbors[1]) then 'show.html?document='||$neighbors[1]||'&amp;directory='||$collection else ()
 let $next := if($neighbors[3]) then 'show.html?document='||$neighbors[3]||'&amp;directory='||$collection else ()
 let $amount := $neighbors[4]
@@ -376,8 +376,9 @@ let $params :=
                    <param name="{$p}"  value="{$val}"/>
    }
 </parameters>
+let $result := if ($neighbors) then transform:transform($xml, $xsl, $params) else <h1>Kein Eintrag für diesen Tag</h1>
 return
-    transform:transform($xml, $xsl, $params)
+    $result
 };
 
 (:~
