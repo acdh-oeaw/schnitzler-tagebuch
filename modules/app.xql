@@ -376,7 +376,7 @@ let $params :=
                    <param name="{$p}"  value="{$val}"/>
    }
 </parameters>
-let $result := if ($neighbors) then transform:transform($xml, $xsl, $params) else <h1>Kein Eintrag für diesen Tag</h1>
+let $result := if (not($neighbors castable as xs:boolean)) then transform:transform($xml, $xsl, $params) else <h1>Kein Eintrag für diesen Tag</h1>
 return
     $result
 };
