@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
    <teiHeader>
       <fileDesc>
@@ -13,7 +12,7 @@
                </persName>
             </respStmt>
             <respStmt>
-               <resp>Data transformation to TEI by</resp>
+               <resp>Damta transformation to TEI by</resp>
                <persName>
                   <forename>Peter</forename>
                   <surname>Andorfer</surname>
@@ -8395,21 +8394,20 @@
                <geo decls="#LatLng">48.214864 16.350985</geo>
             </location>
          </place>
+            <place xml:id="place_langen">
+               <placeName type="city">Langen am Arlberg</placeName>
+               <location>
+                  <geo decls="#LatLng">47.13333 10.11667</geo>
+               </location>
+               <idno type="geonames">http://www.geonames.org/2773017</idno>
+               <note type="done"/>
+            </place>
          <place xml:id="place_939f7d0e30877e65d6e6569a84ed28fb">
             <placeName type="city">Langenzersdorf</placeName>
             <location>
                <geo decls="#LatLng">48.30432 16.36143</geo>
             </location>
-            <idno type="geonames">http://www.geonames.org/2772998/</idno>
-            <note type="done"/>
-         </place>
-         <place xml:id="place_e85fa447419d9e067da870ff404788b1">
-            <placeName type="city">Lang-Enzersdorf</placeName>
-            <placeName type="alt">Langenzersdorf</placeName>
-            <location>
-               <geo decls="#LatLng">48.30432 16.36143</geo>
-            </location>
-            <idno type="geonames">http://www.geonames.org/2772998/</idno>
+            <idno type="geonames">http://www.geonames.org/2772998</idno>
             <note type="done"/>
          </place>
          <place xml:id="place_fd9072f72b17e43816f917505f756f24">
@@ -9514,11 +9512,11 @@
             <note type="done"/>
          </place>
          <place xml:id="place_3e025a812a3b11058ad4e4fdd240b0e5">
-            <placeName type="city">Maria Trost</placeName>
+            <placeName type="district">Maria Trost</placeName>
             <location>
-               <geo decls="#LatLng">-25.08535 30.3974</geo>
+               <geo decls="#LatLng">47.107222 15.491389</geo>
             </location>
-            <idno type="geonames">http://www.geonames.org/978858/</idno>
+            <idno type="geonames">2771896</idno>
             <note type="done"/>
          </place>
          <place xml:id="place_b5278d675be5865677245bf168cf1439">

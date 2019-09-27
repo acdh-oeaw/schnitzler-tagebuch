@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:functx="http://www.functx.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="tei" version="2.0"><!-- <xsl:strip-space elements="*"/>-->
     <xsl:import href="shared/base.xsl"/>
     <xsl:param name="document"/>
@@ -26,7 +25,7 @@
     <xsl:variable name="quotationString">
         <xsl:value-of select="concat('Arthur Schnitzler: Tagebuch. Digitale Edition, ', $doctitle, ', ', $quotationURL, ' (Stand ', $currentDate, ') PID: ', $pid)"/>
     </xsl:variable>
-
+    
     <xsl:variable name="source_volume">
         <xsl:value-of select="replace(//tei:monogr//tei:biblScope[@unit='volume']/text(), '-', '_')"/>
     </xsl:variable>
@@ -40,10 +39,10 @@
     <xsl:variable name="current-date">
         <xsl:value-of select="substring-after($doctitle, ': ')"/>
     </xsl:variable>
-
-
-
- <!--
+    
+    
+    
+    <!--
 ##################################
 ### Seitenlayout und -struktur ###
 ##################################
@@ -83,7 +82,7 @@
                             </xsl:if>
                         </div>
                     </div>
-
+                    
                 </div>
                 <div class="card-body">
                     <xsl:apply-templates select="//tei:div[@type='diary-day']"/>
@@ -92,15 +91,15 @@
                     <div id="srcbuttons">
                         <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
                             <span id="copy-url-button">
-                               <i class="fas fa-quote-right"/> ZITIEREN
-                               <!-- {{ "Copy Resource Link"|trans }}-->
+                                <i class="fas fa-quote-right"/> ZITIEREN
+                                <!-- {{ "Copy Resource Link"|trans }}-->
                             </span>
                             <span id="copyLinkTextfield-wrapper">
                                 <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationString}">
                                     <i class="far fa-copy"/>
                                 </span>
                                 <textarea rows="3" name="copyLinkTextfield" id="copyLinkTextfield" value="">
-                                <xsl:value-of select="$quotationString"/>
+                                    <xsl:value-of select="$quotationString"/>
                                 </textarea>
                             </span>
                         </div>
@@ -131,16 +130,19 @@
             position: absolute;
             }
         </style>
-
+        
     </xsl:template>
-<!--  don't process any tei:pb, tei:fw information  -->
+    <!--  don't process any tei:pb, tei:fw information  -->
     <xsl:template match="tei:pb"/>
     <xsl:template match="tei:fw"/>
-
+    <xsl:template match="tei:bibl">
+        <xsl:apply-templates/>
+    </xsl:template>
+    
     <xsl:template match="tei:rs[@ref or @key]">
         <xsl:choose>
             <xsl:when test="ends-with(data(./@ref), '_')">
-                    <xsl:apply-templates/>
+                <xsl:apply-templates/>
             </xsl:when>
             <xsl:when test="starts-with(data(./@ref), '#genID__bibl')">
                 <span class="unlinked-entity-bibl">
@@ -148,19 +150,19 @@
                 </span>
             </xsl:when>
             <xsl:otherwise>
-                    <xsl:element name="a">
-                        <xsl:attribute name="class">reference</xsl:attribute>
-                        <xsl:attribute name="data-type">
-                            <xsl:value-of select="concat('list', data(@type), '.xml')"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="data-key">
-                            <xsl:value-of select="substring-after(data(@ref), '#')"/>
-                            <xsl:value-of select="@key"/>
-                        </xsl:attribute>
-                        <xsl:value-of select="."/>
-                    </xsl:element>
+                <xsl:element name="a">
+                    <xsl:attribute name="class">reference</xsl:attribute>
+                    <xsl:attribute name="data-type">
+                        <xsl:value-of select="concat('list', data(@type), '.xml')"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="data-key">
+                        <xsl:value-of select="substring-after(data(@ref), '#')"/>
+                        <xsl:value-of select="@key"/>
+                    </xsl:attribute>
+                    <xsl:value-of select="."/>
+                </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
-
+        
     </xsl:template>
 </xsl:stylesheet>
