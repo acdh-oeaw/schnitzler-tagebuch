@@ -160,9 +160,9 @@ let $RDF :=
                          <acdh:hasOwner>
                              <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
                          </acdh:hasOwner>
-                         <acdh:hasRightsholder>
+                         <acdh:hasRightsHolder>
                              <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/oeaw"/>
-                         </acdh:hasRightsholder>
+                         </acdh:hasRightsHolder>
                          <acdh:hasOwner>
                              <acdh:Organisation rdf:about="https://id.acdh.oeaw.ac.at/acdh"/>
                          </acdh:hasOwner>
