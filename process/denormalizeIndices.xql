@@ -9,7 +9,7 @@ declare namespace tei = "http://www.tei-c.org/ns/1.0";
 (: 'denormalizes' indeces by fetching index entries
  : and writing them in tei:back element:)
 
-(:BE AWARE! Already exisitng back elements will be deleted :)
+(:BE AWARE! Already existing back elements will be deleted :)
 
 for $x in collection($app:editions)//tei:TEI
     let $removeBack := update delete $x//tei:back
