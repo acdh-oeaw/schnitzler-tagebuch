@@ -1,6 +1,6 @@
 xquery version "3.0";
-import module namespace config="http://www.digital-archiv.at/ns/schnitzler-tagebuch/config" at "modules/config.xqm";
-import module namespace app="http://www.digital-archiv.at/ns/schnitzler-tagebuch/templates" at "modules/app.xql";
+import module namespace config="http://www.digital-archiv.at/ns/config" at "modules/config.xqm";
+import module namespace app="http://www.digital-archiv.at/ns/templates" at "modules/app.xql";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 
 (: grant general execution rights to all scripts in analyze and modules collection :)
