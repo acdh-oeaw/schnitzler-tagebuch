@@ -30,31 +30,29 @@ let $collections :=
                 <synced>{$synced}</synced>
             </response>
 
-let $root-files :=  xmldb:get-child-resources(xs:anyURI($config:app-root))
-let $synced-root-files :=
-    for $x in $root-files
-        let $target := $target-base||"/"||$app-name
-        let $source := $config:app-root||"/"||$x
-        let $synced := 
-            try{
+let $meta_dir :=  $config:app-root||'/data/meta'
+let $synced_meta_dir :=
+    let $target := $target-base||"/"||$app-name||"/data/meta"
+    let $source := $meta_dir
+    let $synced := 
+        try{
+            let $synced-files :=  file:sync($source, $target, ())
+            return $synced-files
         
-                let $synced-files :=  file:sync($source, $target, ())
-                return $synced-files
-            
-            } catch * {
-                let $log := util:log("ERROR", ($err:code, $err:description) )
-                return <ERROR>{($err:code, $err:description)}</ERROR>
-            }
-        return 
-            <response>
-                <source>{$source}</source>
-                <target>{$target}</target>
-                <synced>{$synced}</synced>
-            </response>
+        } catch * {
+            let $log := util:log("ERROR", ($err:code, $err:description) )
+            return <ERROR>{($err:code, $err:description)}</ERROR>
+        }
+     return 
+        <response>
+            <source>{$source}</source>
+            <target>{$target}</target>
+            <synced>{$synced}</synced>
+        </response>
 
 return 
     <result>
         {$collections}
-        {$synced-root-files}
+        {$synced_meta_dir}
     </result>
     
