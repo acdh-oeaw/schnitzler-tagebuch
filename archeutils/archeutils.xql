@@ -28,5 +28,5 @@ declare variable $archeutils:constants :=
         else
             $app:data;
 
-declare variable $archeutils:collection_constants : = $archeutils:constants//acdh:Collection/*;
-declare variable $archeutils:resource_constants : = $archeutils:constants//acdh:Resource/*;
+declare variable $archeutils:repoobject_constants : = $archeutils:constants//acdh:RepoObject/*;
+declare variable $archeutils:resource_constants : = ($archeutils:repoobject_constants, $archeutils:constants//acdh:Resource/*);
