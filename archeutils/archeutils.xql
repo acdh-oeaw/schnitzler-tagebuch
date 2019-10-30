@@ -99,5 +99,6 @@ for $x in $archeutils:tei_lookups/*
         case 'date' return element {$el_name} {attribute date { $el_value }}
         case 'resource' return element {$el_name} {attribute rdf:resource { $el_value }}
         default return element {$el_name} {$el_value}
+    where $el_value
     return $el
 };
