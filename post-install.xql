@@ -9,7 +9,7 @@ for $resource in xmldb:get-child-resources(xs:anyURI($config:app-root||"/analyze
 
 (: grant general execution rights to all scripts in analyze and modules collection :)
 for $resource in xmldb:get-child-resources(xs:anyURI($config:app-root||"/archeutils/"))
-    return sm:chmod(xs:anyURI($config:app-root||'/analyze/'||$resource), "rwxrwxr-x"),
+    return sm:chmod(xs:anyURI($config:app-root||'/archeutils/'||$resource), "rwxrwxr-x"),
 
 for $resource in xmldb:get-child-resources(xs:anyURI($config:app-root||"/modules/"))
     return sm:chmod(xs:anyURI($config:app-root||'/modules/'||$resource), "rwxrwxr-x"),

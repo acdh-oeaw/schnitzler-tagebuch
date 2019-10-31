@@ -7,6 +7,6 @@
     <target name="xar">
         <mkdir dir="${build.dir}"/>
         <zip basedir="." destfile="${build.dir}/${project.app}-${project.version}.xar"
-		excludes="${build.dir}/* data/temp/** data/work-index-preliminaryWork/** temp/** data/*.xpr data/LICENSE data/README.md" />
+		excludes="${build.dir}/* data/temp/** data/work-index-preliminaryWork/** temp/** data/*.xpr data/LICENSE data/README.md archeutils/LICENSE archeutils/README.md"/>
     </target>
 </project>
