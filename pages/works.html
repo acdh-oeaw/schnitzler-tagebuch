@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div data-template="templates:surround" data-template-with="templates/datatable.html" data-template-at="datatable">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h1>Werkverzeichnis</h1>
+                        <a>
+                            <i class="fas fa-info" title="Info zum Werkverzeichnis" data-toggle="modal" data-target="#exampleModal"/>
+                            
+                        </a>
+                        <a href="../resolver/resolve-doc.xql?doc-name=worklist.xml&amp;collection=indices">
+                            <i class="fas fa-download" title="show TEI source"/>
+                        </a>
+                    </div>
+                    
+                    <div class="card-body containingloader">
+                        <div class="loader" id="loader"/>
+                        <table id="myTable" style="width:100%;display:none;" class="table table-striped table-condensed table-hover">   
+                            <thead>
+                                <tr>
+                                    <th>Titel</th>
+                                    <th>Nennungen</th>
+                                    <th>Anmerkung 1</th>
+                                    <th>Anmerkung 2</th>
+                                </tr>
+                                <tr id="filterrow">
+                                    <th>Titel</th>
+                                    <th>Nennungen</th>
+                                    <th>Anmerkung 1</th>
+                                    <th>Anmerkung 2</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTableBody">
+                                <tr data-template="app:listWork"/>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Info zum Werkregister</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    Das Personenverzeichnis wurde von Peter Michael Braunwarth mit den Karteikarten 
+                                    verfasst, die im Zuge der Erstellung der gedruckten Fassung
+                                    des Tagebuchs angelegt wurden. Es wurde überprüft, dass die Identifikationsnummern der in den
+                                    Einträgen verlinkten Personen auch in dieser Datei aufgelöst werden. Da aber bislang ca. 5% der
+                                    ausgezeichneten Personenstellen nicht mit Personennummern versehen sind, wurden nicht jene Namen
+                                    aus der Liste entfernt, die gegenwärtig keine Tagebuchstelle ausweisen. In dem betreffenden Fall – wenn
+                                    ein Name keinen Fundort hat — sei behelfsmäßig auf das gedruckte Gesamtregister verwiesen, das unter https://www.austriaca.at/arthur_schnitzler_tagebuch?frames=yes
+                                    eingesehen werden kann.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../resources/js/datatables.custom.js"/>
+</div>

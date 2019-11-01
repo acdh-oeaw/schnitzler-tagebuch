@@ -199,7 +199,7 @@ let $href := concat('show.html','?document=', app:getDocName($node), '&amp;direc
 declare function app:indexSearch_hits($node as node(), $model as map(*),  $searchkey as xs:string?, $path as xs:string?){
 let $indexSerachKey := $searchkey
 let $searchkey:= '#'||$searchkey
-let $entities := collection($app:editions)//tei:TEI[.//*/@ref=$searchkey]
+let $entities := collection($app:editions)//tei:TEI[.//*/@ref=$searchkey or .//*/@xml:id=substring-after($searchkey, '#')]
 let $terms := collection($app:editions)//tei:TEI[.//tei:term[./text() eq substring-after($searchkey, '#')]]
 for $title in ($entities, $terms)
     let $docTitle := root($title)//tei:titleStmt/tei:title[@type='iso-date']/text()
@@ -217,6 +217,22 @@ for $title in ($entities, $terms)
                <td>{$hits}</td>
                <td>{$snippet}</td>
             </tr>
+};
+
+
+(:~
+ : creates a basic work-index derived from the  '/data/indices/listwork.xml'
+ :)
+declare function app:listWork($node as node(), $model as map(*)) {
+    let $hitHtml := "hits.html?searchkey="
+    for $item in doc($app:workIndex)//tei:body//tei:item
+        return
+        <tr>
+            <td>{$item/tei:title/text()}</td>
+            <td><a href="{concat($hitHtml, data($item/tei:title/@key))}">{count($item//tei:date)}</a></td>
+            <td>{$item/tei:note[1]}</td>
+            <td>{$item/tei:note[2]}</td>
+        </tr>
 };
 
 (:~

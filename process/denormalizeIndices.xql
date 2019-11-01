@@ -45,4 +45,32 @@ for $x in collection($app:editions)//tei:TEI
     
     let $update := update insert $back into $x/tei:text
     
-    return "done"
+    return "done",
+
+
+let $listbibls := 
+<result xmlns="http://www.tei-c.org/ns/1.0">{
+
+for $x in doc($app:workIndex)//tei:body/tei:list//tei:date[@when]
+    let $groupkey := data($x/@when)
+    let $book := $x/ancestor::tei:item/tei:title
+    group by $groupkey 
+    return 
+        <listbibl key="{concat('entry__', $groupkey[1], '.xml')}" xmlns="http://www.tei-c.org/ns/1.0">
+            {
+                for $y in $book
+                return
+                    <bibl xml:id="{data($y/@key)}" xmlns="http://www.tei-c.org/ns/1.0">
+                        <title xmlns="http://www.tei-c.org/ns/1.0">{$y/text()}</title>
+                    </bibl>
+            }
+        </listbibl>
+}
+</result>
+
+for $x in $listbibls/*
+    let $doc := doc($app:editions||'/'||$x/@key)
+    let $bibl := $x
+    let $back := $doc//tei:back
+    let $update := update insert $bibl into $back
+    return "bibl"
