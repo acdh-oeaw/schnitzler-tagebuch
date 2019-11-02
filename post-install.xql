@@ -78,4 +78,9 @@ for $x in $listbibls/*
     let $bibl := $x
     let $back := $doc//tei:back
     let $update := update insert $bibl into $back
-    return "bibl"
+    return "bibl",
+
+let $data := app:populate_cache()
+
+let $newIndex := xmldb:reindex($app:data)
+return "done"
