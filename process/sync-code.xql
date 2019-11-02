@@ -50,6 +50,26 @@ let $synced_meta_dir :=
             <synced>{$synced}</synced>
         </response>
 
+let $meta_dir :=  $config:app-root||'/data/indices'
+let $synced_meta_dir :=
+    let $target := $target-base||"/"||$app-name||"/data/indices"
+    let $source := $meta_dir
+    let $synced := 
+        try{
+            let $synced-files :=  file:sync($source, $target, ())
+            return $synced-files
+        
+        } catch * {
+            let $log := util:log("ERROR", ($err:code, $err:description) )
+            return <ERROR>{($err:code, $err:description)}</ERROR>
+        }
+     return 
+        <response>
+            <source>{$source}</source>
+            <target>{$target}</target>
+            <synced>{$synced}</synced>
+        </response>
+
 return 
     <result>
         {$collections}

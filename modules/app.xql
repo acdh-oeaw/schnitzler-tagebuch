@@ -122,6 +122,26 @@ let $name := functx:substring-after-last(document-uri(root($node)), '/')
 };
 
 (:~
+: renders the name element of the passed in entity node.
+:)
+declare function app:nameOfIndexWork($node as node(), $model as map (*)){
+    let $searchkey := xs:string(request:get-parameter("searchkey", "No search key provided"))
+    let $item := doc($app:workIndex)//tei:item[./tei:title[@key=$searchkey]]
+    let $name := $item/tei:title/text()
+    let $noOfterms := count($item//tei:date)
+    return
+     <h1 style="text-align:center;">
+        <small>
+            <span id="hitcount"/>{$noOfterms} Treffer für</small>
+        <br/>
+        <strong>
+            {$name}
+        </strong>
+    </h1>
+};
+
+
+(:~
 : renders the name element of the passed in entity node as a link to entity's info-modal.
 :)
 declare function app:nameOfIndexEntry($node as node(), $model as map (*)){
@@ -199,9 +219,8 @@ let $href := concat('show.html','?document=', app:getDocName($node), '&amp;direc
 declare function app:indexSearch_hits($node as node(), $model as map(*),  $searchkey as xs:string?, $path as xs:string?){
 let $indexSerachKey := $searchkey
 let $searchkey:= '#'||$searchkey
-let $entities := collection($app:editions)//tei:TEI[.//*/@ref=$searchkey or .//*/@xml:id=substring-after($searchkey, '#')]
-let $terms := collection($app:editions)//tei:TEI[.//tei:term[./text() eq substring-after($searchkey, '#')]]
-for $title in ($entities, $terms)
+let $entities := collection($app:editions)//tei:TEI[.//*/@ref=$searchkey]
+for $title in ($entities)
     let $docTitle := root($title)//tei:titleStmt/tei:title[@type='iso-date']/text()
     let $hits := if (count(root($title)//*[@ref=$searchkey]) = 0) then 1 else count(root($title)//*[@ref=$searchkey])
     let $snippet :=
@@ -220,11 +239,22 @@ for $title in ($entities, $terms)
 };
 
 
+declare function app:workIndexSearchResults($node as node(), $model as map(*),  $searchkey as xs:string?, $path as xs:string?){
+let $entities := collection($app:editions)//tei:TEI[.//*/@xml:id=$searchkey]
+for $title in ($entities)
+    let $docTitle := root($title)//tei:titleStmt/tei:title[@type='iso-date']/text()
+    return
+            <tr>
+               <td style="white-space: nowrap;"><a href="{concat(app:hrefToDoc($title), "&amp;searchkey=", $searchkey)}">{$docTitle}</a></td>
+            </tr>
+};
+
+
 (:~
  : creates a basic work-index derived from the  '/data/indices/listwork.xml'
  :)
 declare function app:listWork($node as node(), $model as map(*)) {
-    let $hitHtml := "hits.html?searchkey="
+    let $hitHtml := "work-search.html?searchkey="
     for $item in doc($app:workIndex)//tei:body//tei:item
         return
         <tr>
