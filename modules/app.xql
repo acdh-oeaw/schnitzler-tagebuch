@@ -536,3 +536,25 @@ declare function app:randomDoc($node as node(), $model as map(*), $maxlen as xs:
     return
         $result
 };
+
+declare function app:populate_cache(){
+let $contents := 
+<result>{
+for $x in collection($app:editions)//tei:TEI[.//tei:date[@when castable as xs:date]]
+    let $startDate : = data($x//*[@when castable as xs:date][1]/@when)
+    let $name := $x//tei:titleStmt/tei:title[@type="main"]/text()
+    let $id := app:hrefToDoc($x)
+    return
+        <item>
+            <name>{$name}</name>
+            <startDate>{$startDate}</startDate>
+            <id>{$id}</id>
+        </item>
+}
+</result>
+let $rm-cache := try {xmldb:remove($app:data||'/cache')} catch * {'ok'}
+let $target-col := xmldb:create-collection($app:data, 'cache')
+let $json := xmldb:store($target-col, 'calender_datasource.xml', $contents)
+
+return $json
+};

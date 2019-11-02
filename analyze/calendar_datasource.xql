@@ -4,13 +4,12 @@ import module namespace app="http://www.digital-archiv.at/ns/templates" at "../m
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 declare option exist:serialize "method=json media-type=text/javascript";
 
-for $x in collection($app:editions)//tei:TEI[.//tei:date[@when castable as xs:date]]
-    let $startDate : = data($x//*[@when castable as xs:date][1]/@when)
-    let $name := $x//tei:titleStmt/tei:title[@type="main"]/text()
-    let $id := app:hrefToDoc($x)
+let $data := doc($app:data||'/cache/calender_datasource.xml')//item
+
+for $x in $data
     return
         map {
-                "name": $name,
-                "startDate": $startDate,
-                "id": $id
+            "name": $x/name/text(),
+            "startDate": $x/startDate/text(),
+            "id": $x/id/text()
         }
