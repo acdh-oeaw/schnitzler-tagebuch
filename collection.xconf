@@ -11,6 +11,7 @@
             <create qname="@when" type="xs:string"/>
         </range>
         <lucene>
+            <text qname="tei:body"/>
             <text qname="tei:p"/>
         </lucene>
     </index>
