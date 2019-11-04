@@ -258,10 +258,9 @@ declare function app:listWork($node as node(), $model as map(*)) {
     for $item in doc($app:workIndex)//tei:body//tei:item
         return
         <tr>
-            <td>{$item/tei:title/text()}</td>
+            <td><a href="{concat($hitHtml, data($item/tei:title/@key))}">{$item/tei:title/text()}</a></td>
             <td><a href="{concat($hitHtml, data($item/tei:title/@key))}">{count($item//tei:date)}</a></td>
             <td>{$item/tei:note[1]}</td>
-            <td>{$item/tei:note[2]}</td>
         </tr>
 };
 
