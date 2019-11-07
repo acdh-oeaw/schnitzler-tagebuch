@@ -11,11 +11,7 @@ declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare option output:method "json";
 declare option output:media-type "application/json";
 
-let $doc-name := request:get-parameter('doc-name', 'entry__1879-11-18.xml')
-let $collection := request:get-parameter('collection', 'editions')
+let $node := '#person_13082'
+let $hansi := collection($app:editions)//tei:TEI[.//*/@ref=$node]
 
-let $netivs_conf := $netvis:config
-let $doc_path := string-join(($app:data, $collection, $doc-name), '/')
-let $node := doc($doc_path)/tei:TEI
-let $graph := netvis:item_as_graph($node, 'Brief')
-return $graph
+return $hansi

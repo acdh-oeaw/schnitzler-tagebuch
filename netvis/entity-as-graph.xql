@@ -12,8 +12,8 @@ declare option output:method "json";
 declare option output:media-type "application/json";
 
 let $netivs_conf := $netvis:config
-let $entity-id := request:get-parameter('id', 'bibl_36006')
-let $entity-type := request:get-parameter('type', 'Werk')
+let $entity-id := request:get-parameter('id', 'entry__1931-01-02.xml')
+let $entity-type := request:get-parameter('type', 'Tagebucheintrag')
 let $node_conf := $netivs_conf//net:Entity[@type=$entity-type]
 let $id := util:eval($node_conf/net:getId/text())
 let $node := util:eval($node_conf/net:getEntity/text())

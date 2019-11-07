@@ -73,6 +73,7 @@ declare function netvis:item_as_graph($node as node(), $type as xs:string){
             {$source_node}
             {for $x in $target_nodes return $x}
             {for $x in $edges return $x}
+            {for $x in $edges return $x}
         <types>
             {for $x in $types/* return <nodes>{for $y in $x/* return $y}</nodes>}
         </types>
