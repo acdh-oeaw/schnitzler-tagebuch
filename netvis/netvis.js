@@ -29,7 +29,7 @@ const render = graph => {
 }
 
 visCard.appendChild(spinner.el);
-fetch("http://127.0.0.1:8080/exist/apps/schnitzler-tagebuch/netvis/entity-as-graph.xql")
+fetch("entity-as-graph.xql")
     .then(response => response.json())
     .then(console.log('HALLO'))
     .then(render)
