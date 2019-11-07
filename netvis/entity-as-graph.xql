@@ -11,11 +11,12 @@ declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare option output:method "json";
 declare option output:media-type "application/json";
 
-let $doc-name := request:get-parameter('doc-name', 'entry__1879-11-18.xml')
-let $collection := request:get-parameter('collection', 'editions')
-
 let $netivs_conf := $netvis:config
-let $doc_path := string-join(($app:data, $collection, $doc-name), '/')
-let $node := doc($doc_path)/tei:TEI
-let $graph := netvis:item_as_graph($node, 'Brief')
+let $entity-id := request:get-parameter('id', 'bibl_36006')
+let $entity-type := request:get-parameter('type', 'Werk')
+let $node_conf := $netivs_conf//net:Entity[@type=$entity-type]
+let $id := util:eval($node_conf/net:getId/text())
+let $node := util:eval($node_conf/net:getEntity/text())
+let $graph :=  netvis:item_as_graph($node, $entity-type)
+
 return $graph

@@ -29,15 +29,23 @@ declare function netvis:fetch_props($node as node(), $props) {
     return $mandatory_props
 };
 
-declare function netvis:doc_as_graph($node as node()){
-    let $mandatory_props := netvis:fetch_props($node, $netvis:config//net:TeiDoc/net:mandatoryProps/*)
-    let $edges := $netvis:config//net:TeiDoc//net:target/net:xpath
+
+declare function netvis:graph-url($entity-id as xs:string, $type as xs:string) {
+    let $url := concat('entity-as-graph.xql?id=', $entity-id, '&amp;type=', $type)
+    return $url
+};
+
+
+declare function netvis:item_as_graph($node as node(), $type as xs:string){
+    let $node_conf := $netvis:config//net:Entity[@type=$type]
+    let $mandatory_props := netvis:fetch_props($node, $node_conf/net:mandatoryProps/*)
+    let $edges := $node_conf//net:target/net:xpath
     let $source_node :=
-        <node>
+        <nodes>
             {$mandatory_props}
-        </node>
+        </nodes>
     let $target_nodes := 
-        for $target_group in $netvis:config//net:TeiDoc//net:target
+        for $target_group in $node_conf//net:target
             let $x := $target_group/net:xpath
             let $props := $target_group/net:mandatoryProps/*
             let $relations := util:eval($x/text())
@@ -45,30 +53,28 @@ declare function netvis:doc_as_graph($node as node()){
                 let $node := $item
                 let $target_props := netvis:fetch_props($node, $props)
                 return
-                    <node>{$target_props}</node>
+                    <nodes>{$target_props}</nodes>
     let $edges :=
         for $target_node in $target_nodes
             let $e_id := $source_node/id/text()||"__"||$target_node/id
             let $rel_type := $target_node/relationType/text()
+            let $s := $source_node/id/text()
+            let $t := $target_node/id/text()
             return
-                <edge>
+                <edges>
                     <id>{$e_id}</id>
-                    <label>erwähnt</label>
-                    <source>{$source_node/id/text()}</source>
-                    <target>{$rel_type}</target>
-                </edge>
+                    <label>{$rel_type}</label>
+                    <source>{$s}</source>
+                    <target>{$t}</target>
+                </edges>
     let $types := $netvis:config//net:NodeTypes
     return 
         <graph>
-            <nodes>
-                {$source_node}
-                {for $x in $target_nodes return $x}
-            </nodes>
-            <edges>
-                {for $x in $edges return $x}
-            </edges>
-            <types>
-                {for $x in $types/* return <nodes>{for $y in $x/* return $y}</nodes>}
-            </types>
-        </graph>
+            {$source_node}
+            {for $x in $target_nodes return $x}
+            {for $x in $edges return $x}
+        <types>
+            {for $x in $types/* return <nodes>{for $y in $x/* return $y}</nodes>}
+        </types>
+    </graph>
 };
