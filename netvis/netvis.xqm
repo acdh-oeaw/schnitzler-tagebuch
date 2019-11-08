@@ -4,15 +4,14 @@ module namespace netvis="https://digital-archiv/ns/netvis";
 import module namespace app="http://www.digital-archiv.at/ns/templates" at "../modules/app.xql";
 import module namespace config="http://www.digital-archiv.at/ns/config" at "../modules/config.xqm";
 
-declare namespace net="https://digital-archiv/ns/netvis/config";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 
 declare variable $netvis:config := 
     if (doc-available($app:data||'/meta/netvis-config.xml'))
         then
-            doc($app:data||'/meta/netvis-config.xml')//net:netvisConfig
+            doc($app:data||'/meta/netvis-config.xml')//netvisConfig
         else
-            <net:netvisConfig/>;
+            <netvisConfig/>;
 
 
 declare function netvis:fetch_props($node as node(), $props) {
@@ -37,17 +36,17 @@ declare function netvis:graph-url($entity-id as xs:string, $type as xs:string) {
 
 
 declare function netvis:item_as_graph($node as node(), $type as xs:string){
-    let $node_conf := $netvis:config//net:Entity[@type=$type]
-    let $mandatory_props := netvis:fetch_props($node, $node_conf/net:mandatoryProps/*)
-    let $edges := $node_conf//net:target/net:xpath
+    let $node_conf := $netvis:config//Entity[@type=$type]
+    let $mandatory_props := netvis:fetch_props($node, $node_conf/mandatoryProps/*)
+    let $edges := $node_conf//target/xpath
     let $source_node :=
         <nodes>
             {$mandatory_props}
         </nodes>
     let $target_nodes := 
-        for $target_group in $node_conf//net:target
-            let $x := $target_group/net:xpath
-            let $props := $target_group/net:mandatoryProps/*
+        for $target_group in $node_conf//target
+            let $x := $target_group/xpath
+            let $props := $target_group/mandatoryProps/*
             let $relations := util:eval($x/text())
             for $item in $relations
                 let $node := $item
@@ -67,13 +66,11 @@ declare function netvis:item_as_graph($node as node(), $type as xs:string){
                     <source>{$s}</source>
                     <target>{$t}</target>
                 </edges>
-    let $types := $netvis:config//net:NodeTypes
+    let $types := $netvis:config//NodeTypes
     return 
         <graph>
             {$source_node}
-            {$source_node}
             {for $x in $target_nodes return $x}
-            {for $x in $edges return $x}
             {for $x in $edges return $x}
         <types>
             {for $x in $types/* return <nodes>{for $y in $x/* return $y}</nodes>}
