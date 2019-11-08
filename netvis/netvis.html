@@ -8,14 +8,26 @@
 
         <div class="card">
             <div class="card-header" style="text-align:center;">
-                <h1>Works</h1>
+                <h3>
+                <small>type:</small> <span id="node-type"/> <small>id:</small> <span id="node-id"/>
+            </h3>
             </div>
             <div class="card-body">
-                <h3>some network</h3>
                 <div id="visualization" style="position: relative; height: 700px; background: #fafafa;"/>
             </div>
         </div>
     
     
     <script src="netvis.js"/>
+    <script>
+        var id = findGetParameter('id');
+        var type = findGetParameter('type');
+        console.log(type);
+        var header = document.getElementById('node-type');
+        header.appendChild(document.createTextNode(type));
+        var header1 = document.getElementById('node-id');
+        header1.appendChild(document.createTextNode(id));
+        
+        showGraph('visualization', id, type)
+    </script>
 </div>

@@ -112,6 +112,12 @@
                         </a>
                         <a class="ml-3">
                             <xsl:attribute name="href">
+                                <xsl:value-of select="concat('../netvis/netvis.html?type=Tagebucheintrag&amp;id=', $document)"/>
+                            </xsl:attribute>
+                            <i class="fas fa-project-diagram"/> Netzwerk
+                        </a>
+                        <a class="ml-3">
+                            <xsl:attribute name="href">
                                 <xsl:value-of select="$source_pdf"/>
                             </xsl:attribute>
                             <!--<i class="fa-lg far fa-file-pdf"/> 
