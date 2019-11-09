@@ -1,6 +1,7 @@
 xquery version "3.0";
 import module namespace config="http://www.digital-archiv.at/ns/config" at "modules/config.xqm";
 import module namespace app="http://www.digital-archiv.at/ns/templates" at "modules/app.xql";
+import module namespace netvis="https://digital-archiv/ns/netvis" at "netvis/netvis.xqm";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 
 (: grant general execution rights to all scripts in analyze and modules collection :)
@@ -42,7 +43,7 @@ for $x in collection($app:editions)//tei:TEI
         }
     </listPlace>
     
-        let $validlistperson := if ($listperson/tei:person) then $listperson else ()
+    let $validlistperson := if ($listperson/tei:person) then $listperson else ()
     let $validlistplace := if ($listplace/tei:place) then $listplace else ()
 
     let $back := 
@@ -84,6 +85,6 @@ for $x in $listbibls/*
     return "bibl",
 
 let $data := app:populate_cache()
-
+let $toc := netvis:populate_cache('Tagebucheintrag')
 let $newIndex := xmldb:reindex($app:data)
 return "done"

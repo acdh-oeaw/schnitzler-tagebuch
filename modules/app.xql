@@ -17,6 +17,7 @@ declare variable $app:personIndex := $config:app-root||'/data/indices/listperson
 declare variable $app:orgIndex := $config:app-root||'/data/indices/listorg.xml';
 declare variable $app:workIndex := $config:app-root||'/data/indices/listwork.xml';
 declare variable $app:defaultXsl := doc($config:app-root||'/resources/xslt/xmlToHtml.xsl');
+declare variable $app:cachedGraph := doc($app:data||'/cache/graph_cache.xml');
 
 
 declare variable $app:redmineBaseUrl := "https://shared.acdh.oeaw.ac.at/acdh-common-assets/api/imprint.php?serviceID=";
@@ -345,26 +346,29 @@ declare function app:listPlace($node as node(), $model as map(*)) {
  :)
 declare function app:toc($node as node(), $model as map(*)) {
 
-    let $collection := request:get-parameter("collection", "")
-    let $docs := if ($collection)
-        then
-            collection(concat($config:app-root, '/data/', $collection, '/'))//tei:TEI
-        else
-            collection(concat($config:app-root, '/data/editions/'))//tei:TEI
-    for $title in $docs
-        let $date := substring-after($title//tei:title[@type='main'][1]/text(), ': ')
-        let $link2doc := if ($collection)
-            then
-                <a target="_blank" href="{app:hrefToDoc($title, $collection)}">{app:getDocName($title)}</a>
-            else
-                <a target="_blank" href="{app:hrefToDoc($title)}">{app:getDocName($title)}</a>
-        return
-        <tr>
-           <td>{$date}</td>
-            <td>
-                {$link2doc}
-            </td>
-        </tr>
+    let $graph := $app:cachedGraph
+    let $cols := $graph/CachedGraph/NodeTypes
+    for $x in $graph//Nodes
+        let $row := $x/nodes
+        let $entry_id := $x/nodes[1]/id/text()
+        let $entry_link := $x/nodes[1]/detail_view/text()
+        let $entry_label := $x/nodes[1]/label/text()
+        let $entry_text := normalize-space(string-join($x/nodes[1]/text/text(), ' '))
+        let $persons := for $item in $x/nodes[./type/text()='Person'] return <li>{$item/label/text()}</li>
+        let $places := for $item in $x/nodes[./type/text()='Place'] return <li>{$item/label/text()}</li>
+        let $works := for $item in $x/nodes[./type/text()='Werk'] return <li>{$item/label/text()}</li>
+        return 
+            <tr>
+                <td><a href="{$entry_link}">{$entry_label}</a></td>
+                <td>{$entry_text}</td>
+                <td>{$persons}</td>
+                <td>{$places}</td>
+                <td>{$works}</td>
+                <td>{count($persons)}</td>
+                <td>{count($places)}</td>
+                <td>{count($works)}</td>
+            </tr>
+    
 };
 
 (:~
