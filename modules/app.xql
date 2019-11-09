@@ -345,30 +345,24 @@ declare function app:listPlace($node as node(), $model as map(*)) {
  : creates a basic table of content derived from the documents stored in '/data/editions'
  :)
 declare function app:toc($node as node(), $model as map(*)) {
-
-    let $graph := $app:cachedGraph
-    let $cols := $graph/CachedGraph/NodeTypes
-    for $x in $graph//Nodes
-        let $row := $x/nodes
-        let $entry_id := $x/nodes[1]/id/text()
-        let $entry_link := $x/nodes[1]/detail_view/text()
-        let $entry_label := $x/nodes[1]/label/text()
-        let $entry_text := normalize-space(string-join($x/nodes[1]/text/text(), ' '))
-        let $persons := for $item in $x/nodes[./type/text()='Person'] return <li>{$item/label/text()}</li>
-        let $places := for $item in $x/nodes[./type/text()='Place'] return <li>{$item/label/text()}</li>
-        let $works := for $item in $x/nodes[./type/text()='Werk'] return <li>{$item/label/text()}</li>
-        return 
-            <tr>
-                <td><a href="{$entry_link}">{$entry_label}</a></td>
-                <td>{$entry_text}</td>
-                <td>{$persons}</td>
-                <td>{$places}</td>
-                <td>{$works}</td>
-                <td>{count($persons)}</td>
-                <td>{count($places)}</td>
-                <td>{count($works)}</td>
-            </tr>
-    
+let $docs := collection($app:editions)/tei:TEI
+for $x in $docs
+    let $entry_label := $x//tei:title[@type="main"]/text()
+    let $entry_text := normalize-space(string-join($x//tei:div[@type="diary-day"]//text(), ' '))
+    let $persons := for $item in $x//tei:listPerson/tei:person return <li>{normalize-space(string-join($item/tei:persName[1]//text()))}</li>
+    let $places := for $item in $x//tei:listPlace/tei:place return <li>{normalize-space(string-join($item/tei:placeName[1]//text()))}</li>
+    let $works := for $item in $x//tei:listbibl/tei:bibl return <li>{normalize-space(string-join($item/tei:title[1]//text()))}</li>
+    return 
+        <tr>
+            <td><a href="{app:hrefToDoc($x, 'editions')}">{$entry_label}</a></td>
+            <td>{$entry_text}</td>
+            <td>{$persons}</td>
+            <td>{$places}</td>
+            <td>{$works}</td>
+            <td>{count($persons)}</td>
+            <td>{count($places)}</td>
+            <td>{count($works)}</td>
+        </tr>   
 };
 
 (:~
