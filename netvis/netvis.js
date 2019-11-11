@@ -10,7 +10,9 @@ function showGraph(viscontainer, id, type) {
         dimensions: 2,
         children: props =>
           React.createElement(NetworkVisualization.ExportButton, props),
-        onNodeClick: ({ node }) => {
+        onNodeClick: ({
+          node
+        }) => {
           console.log(node);
           if (!node) {
             console.error("No node found");
@@ -21,10 +23,16 @@ function showGraph(viscontainer, id, type) {
             console.error("No URL found");
             return;
           }
+          visCard.appendChild(spinner.el);
           fetch(url)
             .then(response => response.json())
-            .then(render)
-            .catch(error => console.error(error));
+            .then(graph => {
+              visCard.removeChild(spinner.el);
+              return render(graph)
+            })
+            .catch(error => {
+              console.error(error)
+            });
         }
       }),
       document.getElementById(viscontainer)
@@ -34,12 +42,20 @@ function showGraph(viscontainer, id, type) {
   visCard.appendChild(spinner.el);
   fetch(sourceurl)
     .then(response => response.json())
-    .then(console.log("HALLO"))
+    .then(graph => {
+      const toArray = prop => Array.isArray(prop) ? prop : [prop]
+      return {
+        nodes: toArray(graph.nodes || []),
+        edges: toArray(graph.edges || []),
+        types: {
+          nodes: toArray(graph.types.nodes || []),
+          edges: toArray(graph.types.edges || []),
+        }
+      }
+    })
     .then(render)
     .catch(error => {
       // handle your errors here
       console.error(error);
     });
 }
-
-
