@@ -5,7 +5,7 @@ declare namespace repo="http://exist-db.org/xquery/repo";
 
 import module namespace config="http://www.digital-archiv.at/ns/config" at "../modules/config.xqm";
 
-let $target-base-default := "C:\Users\pandorfer\Documents\Redmine\konde"
+let $target-base-default := "/home/csae8092/repos"
 let $app-name := doc(concat($config:app-root, "/repo.xml"))//repo:target/text()
 let $dirs :=  xmldb:get-child-collections(xs:anyURI($config:app-root))
 let $target-base := request:get-parameter("target-base",$target-base-default)
