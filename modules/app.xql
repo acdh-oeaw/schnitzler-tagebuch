@@ -353,7 +353,7 @@ declare function app:createTocRow($x as item()){
     return
         <tr>
             <td>
-              <a href="{app:hrefToDoc($x, 'editions')}">{$entry_label}</a>
+              <a href="{app:hrefToDoc($x, 'editions')}" target="_blank">{$entry_label}</a>
             </td>
             <td>{$date_split[1]}</td>
             <td>{$date_split[2]}</td>
