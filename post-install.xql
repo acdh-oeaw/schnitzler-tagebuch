@@ -32,7 +32,7 @@ for $x in collection($app:editions)//tei:TEI
         collection($app:indices)//id(substring-after($y, '#'))
         }
     </listPerson>
-    
+
     let $places := distinct-values(data($x//tei:rs[@type="place"]/@ref))
     let $listplace :=
     <listPlace xmlns="http://www.tei-c.org/ns/1.0">
@@ -42,29 +42,29 @@ for $x in collection($app:editions)//tei:TEI
         collection($app:indices)//id(substring-after($y, '#'))
         }
     </listPlace>
-    
+
     let $validlistperson := if ($listperson/tei:person) then $listperson else ()
     let $validlistplace := if ($listplace/tei:place) then $listplace else ()
 
-    let $back := 
+    let $back :=
     <back xmlns="http://www.tei-c.org/ns/1.0">
         {$validlistperson}
         {$validlistplace}
     </back>
-    
+
     let $update := update insert $back into $x/tei:text
-    
+
     return "done",
 
 
-let $listbibls := 
+let $listbibls :=
 <result xmlns="http://www.tei-c.org/ns/1.0">{
 
 for $x in doc($app:workIndex)//tei:body/tei:list//tei:date[@when]
     let $groupkey := data($x/@when)
     let $book := $x/ancestor::tei:item/tei:title
-    group by $groupkey 
-    return 
+    group by $groupkey
+    return
         <listbibl key="{concat('entry__', $groupkey[1], '.xml')}" xmlns="http://www.tei-c.org/ns/1.0">
             {
                 for $y in $book
@@ -84,7 +84,18 @@ for $x in $listbibls/*
     let $update := update insert $bibl into $back
     return "bibl",
 
+(: create calendar cache :)
 let $data := app:populate_cache()
-let $toc := netvis:populate_cache('Tagebucheintrag')
+
+(: create table of contents cache :)
+let $source-col := $app:data||'/cache'
+let $contents := <tbody/>
+let $cache-file := xmldb:store($source-col, 'toc_cache.xml', $contents)
+let $docs := collection($app:editions)//tei:TEI
+let $context := doc($cache-file)/tbody
+for $x in $docs
+  let $row := app:createTocRow($x)
+  return update insert $row into $context,
+
 let $newIndex := xmldb:reindex($app:data)
 return "done"

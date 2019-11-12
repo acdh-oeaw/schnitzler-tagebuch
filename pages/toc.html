@@ -8,19 +8,24 @@
                         <h1>Tagebucheinträge</h1>
                         <a>
                             <i class="fas fa-info" title="Info zu dieser Übersicht" data-toggle="modal" data-target="#exampleModal"/>
-                            
+
                         </a>
                         <a href="../resolver/resolve-doc.xql?doc-name=graph_cache.xml&amp;collection=cache">
                             <i class="fas fa-download" title="show source"/>
                         </a>
                     </div>
-                    
+
                     <div class="card-body containingloader">
                         <div class="loader" id="loader"/>
-                        <table id="myTable" style="width:100%;display:none;" class="table table-striped table-condensed table-hover">   
+                        <table id="myTable" style="width:100%;display:none;" class="table table-striped table-condensed table-hover">
                             <thead>
                                 <tr>
                                     <th>Eintrag</th>
+                                    <th>Jahr</th>
+                                    <th>Monat</th>
+                                    <th>Tag</th>
+                                    <th>Wochentag</th>
+                                    <th>Datum</th>
                                     <th>Textausschnitt</th>
                                     <th>Personen</th>
                                     <th>Orte</th>
@@ -28,16 +33,23 @@
                                     <th>Anzahl Personen</th>
                                     <th>Anzahl Orte</th>
                                     <th>Anzahl Werke</th>
+                                    <th>Anzahl Tokens</th>
                                 </tr>
                                 <tr id="filterrow">
-                                    <th>Eintrag</th>
-                                    <th>Textausschnitt</th>
-                                    <th>Personen</th>
-                                    <th>Orte</th>
-                                    <th>Werke</th>
-                                    <th>Anzahl Personen</th>
-                                    <th>Anzahl Orte</th>
-                                    <th>Anzahl Werke</th>
+                                  <th>Eintrag</th>
+                                  <th>Jahr</th>
+                                  <th>Monat</th>
+                                  <th>Tag</th>
+                                  <th>Wochentag</th>
+                                  <th>Datum</th>
+                                  <th>Textausschnitt</th>
+                                  <th>Personen</th>
+                                  <th>Orte</th>
+                                  <th>Werke</th>
+                                  <th>Anzahl Personen</th>
+                                  <th>Anzahl Orte</th>
+                                  <th>Anzahl Werke</th>
+                                  <th>Anzahl Tokens</th>
                                 </tr>
                             </thead>
                             <tbody id="myTableBody">
@@ -53,7 +65,7 @@
                                 <h5 class="modal-title">Info zur Übersicht der Tagebucheinträge</h5>
                             </div>
                             <div class="modal-body">
-                                <p>Lorem ipsum 
+                                <p>Lorem ipsum
                                 </p>
                             </div>
                             <div class="modal-footer">

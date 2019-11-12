@@ -61,9 +61,9 @@ declare function functx:substring-after-last
    concat(upper-case(substring($arg,1,1)),
              substring($arg,2))
  } ;
- 
+
 (:~
- : returns the names of the previous, current and next document  
+ : returns the names of the previous, current and next document
 :)
 
 declare function app:next-doc($collection as xs:string, $current as xs:string) {
@@ -71,7 +71,7 @@ let $all := sort(xmldb:get-child-resources($collection))
 let $currentIx := index-of($all, $current)
 let $prev := if ($currentIx > 1) then $all[$currentIx - 1] else false()
 let $next := if ($currentIx < count($all)) then $all[$currentIx + 1] else false()
-return 
+return
     ($prev, $current, $next)
 };
 
@@ -81,7 +81,7 @@ let $currentIx := index-of($all, $current)
 let $prev := if ($currentIx > 1) then $all[$currentIx - 1] else false()
 let $next := if ($currentIx < count($all)) then $all[$currentIx + 1] else false()
 let $amount := count($all)
-return 
+return
     ($prev, $current, $next, $amount, $currentIx)
 };
 
@@ -280,7 +280,7 @@ declare function app:listPers($node as node(), $model as map(*)) {
     let $forename := if ($person/tei:persName/tei:forename) then $person/tei:persName/tei:forename else '-'
     let $birthplace := if ($person/tei:birth/tei:placeName/text() != "") then $person/tei:birth/tei:placeName/text() else '-'
     let $deathday := if ($person/tei:death/tei:date/text() != "") then $person/tei:death/tei:date/text() else '-'
-    let $deathplace := if ($person/tei:death/tei:placeName/text() != "") then $person/tei:death/tei:placeName/text() else '-' 
+    let $deathplace := if ($person/tei:death/tei:placeName/text() != "") then $person/tei:death/tei:placeName/text() else '-'
     let $gnd_link := if ($gnd != "no gnd provided") then
         <a href="{$gnd}">gnd:{tokenize($gnd, '/')[last()]}</a>
         else
@@ -340,21 +340,26 @@ declare function app:listPlace($node as node(), $model as map(*)) {
         </tr>
 };
 
-
-(:~
- : creates a basic table of content derived from the documents stored in '/data/editions'
- :)
-declare function app:toc($node as node(), $model as map(*)) {
-let $docs := collection($app:editions)/tei:TEI
-for $x in $docs
+declare function app:createTocRow($x as item()){
     let $entry_label := $x//tei:title[@type="main"]/text()
     let $entry_text := normalize-space(string-join($x//tei:div[@type="diary-day"]//text(), ' '))
+    let $token_nr := count(tokenize($entry_text))
+    let $week_day := substring-before($entry_label, ',')
+    let $date := $x//tei:title[@type="iso-date"]/text()
+    let $date_split := tokenize($date, '-')
     let $persons := for $item in $x//tei:listPerson/tei:person return <li>{normalize-space(string-join($item/tei:persName[1]//text()))}</li>
     let $places := for $item in $x//tei:listPlace/tei:place return <li>{normalize-space(string-join($item/tei:placeName[1]//text()))}</li>
     let $works := for $item in $x//tei:listbibl/tei:bibl return <li>{normalize-space(string-join($item/tei:title[1]//text()))}</li>
-    return 
+    return
         <tr>
-            <td><a href="{app:hrefToDoc($x, 'editions')}">{$entry_label}</a></td>
+            <td>
+              <a href="{app:hrefToDoc($x, 'editions')}">{$entry_label}</a>
+            </td>
+            <td>{$date_split[1]}</td>
+            <td>{$date_split[2]}</td>
+            <td>{$date_split[3]}</td>
+            <td>{$week_day}</td>
+            <td>{$date}</td>
             <td>{$entry_text}</td>
             <td>{$persons}</td>
             <td>{$places}</td>
@@ -362,7 +367,16 @@ for $x in $docs
             <td>{count($persons)}</td>
             <td>{count($places)}</td>
             <td>{count($works)}</td>
-        </tr>   
+            <td>{$token_nr}</td>
+        </tr>
+};
+
+(:~
+ : creates a basic table of content derived from the documents stored in '/data/editions'
+ :)
+declare function app:toc($node as node(), $model as map(*)) {
+  for $x in doc($app:data||'/cache/toc_cache.xml')//tr
+    return $x
 };
 
 (:~
@@ -432,7 +446,7 @@ declare function app:listBibl($node as node(), $model as map(*)) {
     for $item in doc($app:workIndex)//tei:listBibl/tei:bibl
     let $author := normalize-space(string-join($item/tei:author//text(), ' '))
     let $gnd := $item//tei:idno/text()
-    let $gnd_link := if ($gnd) 
+    let $gnd_link := if ($gnd)
         then
             <a href="{$gnd}">{$gnd}</a>
         else
@@ -459,7 +473,7 @@ declare function app:listOrg($node as node(), $model as map(*)) {
     for $item in doc($app:orgIndex)//tei:listOrg/tei:org
     let $altnames := normalize-space(string-join($item//tei:orgName[@type='alt'], ' '))
     let $gnd := $item//tei:idno/text()
-    let $gnd_link := if ($gnd) 
+    let $gnd_link := if ($gnd)
         then
             <a href="{$gnd}">{$gnd}</a>
         else
@@ -483,7 +497,7 @@ declare function app:listOrg($node as node(), $model as map(*)) {
  :)
 declare function app:fetchImprint($node as node(), $model as map(*)) {
     let $url := $app:redmineBaseUrl||$app:redmineID
-    let $request := 
+    let $request :=
     <http:request href="{$url}" method="GET"/>
     let $response := http:send-request($request)
         return $response[2]
@@ -516,7 +530,7 @@ declare function app:randomDoc($node as node(), $model as map(*), $maxlen as xs:
     let $doc := normalize-space(string-join(doc($collection||"/"||$selectedDoc)//tei:div[@type="diary-day"]//text(), ' '))
     let $shortdoc := substring($doc, 1, $maxlen)
     let $url := "show.html?directory=editions&amp;document="||$selectedDoc
-    let $result := 
+    let $result :=
     <div class="entry-text-content">
         <header class="entry-header">
             <h4 class="entry-title">
@@ -535,7 +549,7 @@ declare function app:randomDoc($node as node(), $model as map(*), $maxlen as xs:
 };
 
 declare function app:populate_cache(){
-let $contents := 
+let $contents :=
 <result>{
 for $x in collection($app:editions)//tei:TEI[.//tei:date[@when castable as xs:date]]
     let $startDate : = data($x//*[@when castable as xs:date][1]/@when)
