@@ -4,3 +4,6 @@
 [submodule "archeutils"]
 	path = archeutils
 	url = https://github.com/KONDE-AT/dsebaseapp-archeutils
+[submodule "netvis"]
+	path = netvis
+	url = https://github.com/KONDE-AT/dsebaseapp-netvis.git
