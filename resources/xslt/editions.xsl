@@ -12,7 +12,11 @@
     <xsl:param name="amount"/>
     <xsl:param name="progress"/>
     <xsl:param name="quotationURL"/>
-    
+
+    <xsl:variable name="entryDate">
+      <xsl:value-of select="xs:date(//tei:title[@type='iso-date']/text())"/>
+    </xsl:variable>
+
     <xsl:variable name="doctitle">
         <xsl:value-of select="//tei:title[@type='main']/text()"/>
     </xsl:variable>
@@ -22,11 +26,11 @@
     <xsl:variable name="pid">
         <xsl:value-of select="//tei:publicationStmt//tei:idno[@type='URI']/text()"/>
     </xsl:variable>
-    
+
     <xsl:variable name="quotationString">
         <xsl:value-of select="concat('Arthur Schnitzler: Tagebuch. Digitale Edition, ', $doctitle, ', ', $quotationURL, ' (Stand ', $currentDate, ') PID: ', $pid)"/>
     </xsl:variable>
-    
+
     <xsl:variable name="source_volume">
         <xsl:value-of select="replace(//tei:monogr//tei:biblScope[@unit='volume']/text(), '-', '_')"/>
     </xsl:variable>
@@ -40,9 +44,9 @@
     <xsl:variable name="current-date">
         <xsl:value-of select="substring-after($doctitle, ': ')"/>
     </xsl:variable>
-    
-    
-    
+
+
+
     <!--
 ##################################
 ### Seitenlayout und -struktur ###
@@ -83,7 +87,7 @@
                             </xsl:if>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="card-body">
                     <xsl:apply-templates select="//tei:div[@type='diary-day']"/>
@@ -93,7 +97,6 @@
                         <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
                             <span id="copy-url-button">
                                 <i class="fas fa-quote-right"/> ZITIEREN
-                                <!-- {{ "Copy Resource Link"|trans }}-->
                             </span>
                             <span id="copyLinkTextfield-wrapper">
                                 <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationString}">
@@ -104,27 +107,31 @@
                                 </textarea>
                             </span>
                         </div>
-                        <a class="ml-3">
+                        <a class="ml-3" data-toggle="tooltip" title="Link zur TEI-Datei">
                             <xsl:attribute name="href">
                                 <xsl:value-of select="$path2source"/>
                             </xsl:attribute>
                             <i class="fa-lg far fa-file-code"/> TEI
                         </a>
+                        <xsl:choose>
+                            <xsl:when test="$entryDate &gt; xs:date('1919-12-31')">
+                                <a class="ml-3" data-toggle="tooltip" title="Link zum PDF der Buchvorlage zu diesem Eintrag">
+                                    <xsl:attribute name="href">
+                                        <xsl:value-of select="$source_pdf"/>
+                                    </xsl:attribute>
+                                    <i class="fa-lg far fa-file-pdf"/>
+                                    PDF <xsl:value-of select="$entryDate"/>
+                                </a>
+                            </xsl:when>
+                        </xsl:choose>
                         <xsl:if test="//tei:back/*">
-                            <a class="ml-3">
+                            <a class="ml-3" data-toggle="tooltip" title="Eintrag als Netzwerk-Graph visualisiert">
                                 <xsl:attribute name="href">
                                     <xsl:value-of select="concat('../netvis/netvis.html?type=Tagebucheintrag&amp;id=', $document)"/>
                                 </xsl:attribute>
                                 <i class="fas fa-project-diagram"/> Netzwerk
                             </a>
                         </xsl:if>
-                        <a class="ml-3">
-                            <xsl:attribute name="href">
-                                <xsl:value-of select="$source_pdf"/>
-                            </xsl:attribute>
-                            <!--<i class="fa-lg far fa-file-pdf"/> 
-                            PDF-->
-                        </a>
                     </div>
                     <h6 style="text-align:center;">
                         <input type="range" min="1" max="{$amount}" value="{$currentIx}" data-rangeslider="" style="width:100%;"/>
@@ -139,7 +146,7 @@
             position: absolute;
             }
         </style>
-        
+
     </xsl:template>
     <!--  don't process any tei:pb, tei:fw information  -->
     <xsl:template match="tei:pb"/>
@@ -147,7 +154,7 @@
     <xsl:template match="tei:bibl">
         <xsl:apply-templates/>
     </xsl:template>
-    
+
     <xsl:template match="tei:rs[@ref or @key]">
         <xsl:choose>
             <xsl:when test="ends-with(data(./@ref), '_')">
@@ -172,6 +179,6 @@
                 </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
-        
+
     </xsl:template>
 </xsl:stylesheet>
