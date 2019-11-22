@@ -183,7 +183,7 @@ declare function app:nameOfIndexEntry($node as node(), $model as map (*)){
  :)
 declare function app:hrefToDoc($node as node()){
 let $name := functx:substring-after-last($node, '/')
-let $href := concat('show.html','?document=', app:getDocName($node))
+let $href := concat('../pages/show.html','?document=', app:getDocName($node))
     return $href
 };
 
@@ -192,7 +192,7 @@ let $href := concat('show.html','?document=', app:getDocName($node))
  :)
 declare function app:hrefToDoc($node as node(), $collection as xs:string){
 let $name := functx:substring-after-last($node, '/')
-let $href := concat('show.html','?document=', app:getDocName($node), '&amp;directory=', $collection)
+let $href := concat('../pages/show.html','?document=', app:getDocName($node), '&amp;directory=', $collection)
     return $href
 };
 
