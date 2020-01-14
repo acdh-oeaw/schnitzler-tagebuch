@@ -113,17 +113,13 @@
                             </xsl:attribute>
                             <i class="fa-lg far fa-file-code"/> TEI
                         </a>
-                        <xsl:choose>
-                            <xsl:when test="$entryDate &gt; xs:date('1919-12-31')">
-                                <a class="ml-3" data-toggle="tooltip" title="Link zum PDF der Buchvorlage zu diesem Eintrag">
-                                    <xsl:attribute name="href">
-                                        <xsl:value-of select="$source_pdf"/>
-                                    </xsl:attribute>
-                                    <i class="fa-lg far fa-file-pdf"/>
-                                    PDF <xsl:value-of select="$entryDate"/>
-                                </a>
-                            </xsl:when>
-                        </xsl:choose>
+                        <a class="ml-3" data-toggle="tooltip" title="Link zum PDF der Buchvorlage zu diesem Eintrag">
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$source_pdf"/>
+                            </xsl:attribute>                                    
+                            <i class="fa-lg far fa-file-pdf"/>
+                            PDF <xsl:value-of select="$entryDate"/>
+                        </a>
                         <xsl:if test="//tei:back/*">
                             <a class="ml-3" data-toggle="tooltip" title="Eintrag als Netzwerk-Graph visualisiert">
                                 <xsl:attribute name="href">
