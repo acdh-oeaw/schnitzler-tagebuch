@@ -12,11 +12,11 @@
     <xsl:param name="amount"/>
     <xsl:param name="progress"/>
     <xsl:param name="quotationURL"/>
+    <xsl:param name="facsIds"/>
 
     <xsl:variable name="entryDate">
       <xsl:value-of select="xs:date(//tei:title[@type='iso-date']/text())"/>
     </xsl:variable>
-
     <xsl:variable name="doctitle">
         <xsl:value-of select="//tei:title[@type='main']/text()"/>
     </xsl:variable>
@@ -54,6 +54,7 @@
 -->
     <xsl:template match="/">
         <div class="container">
+            
             <div class="card">
                 <div class="card-header" onload="initSlider()">
                     <div class="row" style="text-align:left">
@@ -120,6 +121,10 @@
                             <i class="fa-lg far fa-file-pdf"/>
                             PDF <xsl:value-of select="$entryDate"/>
                         </a>
+                        <a class="ml-3" title="Faksimile zu diesem Eintrag" data-toggle="modal" data-target="#exampleModal">
+                            <i class="fa-lg far fa-file-pdf"/>
+                            Faksimile
+                        </a>
                         <xsl:if test="//tei:back/*">
                             <a class="ml-3" data-toggle="tooltip" title="Eintrag als Netzwerk-Graph visualisiert">
                                 <xsl:attribute name="href">
@@ -133,6 +138,28 @@
                         <input type="range" min="1" max="{$amount}" value="{$currentIx}" data-rangeslider="" style="width:100%;"/>
                         <a id="output" class="btn btn-main btn-outline-success btn-sm" href="show.html?document=entry__1879-03-03.xml&amp;directory=editions" role="button">gehe zu</a>
                     </h6>
+                </div>
+               
+                <!-- Modal -->
+                <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div id="openseadragon-photo" style="height: 350px;"/>
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/openseadragon.min.js"/>
+                                <script type="text/javascript">
+                                    var viewer = OpenSeadragon({
+                                    id: "openseadragon-photo",
+                                    protocol: "http://iiif.io/api/image",
+                                    prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/images/",
+                                    sequenceMode : true,
+                                    showReferenceStrip: true,
+                                    tileSources: [<xsl:value-of select="$facsIds"/>]
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

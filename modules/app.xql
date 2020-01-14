@@ -397,6 +397,7 @@ let $currentIx := $neighbors[5]
 let $progress := ($currentIx div $amount)*100
 let $xslPath := xs:string(request:get-parameter("stylesheet", ""))
 let $quotationURL := string-join(($app:productionBaseURL, 'v', $collection, $refname), '/')
+let $facsIds := for $url in $xml//tei:graphic return '"'||data($url/@url)||"?PARAM=info.json&amp;format=iiif"||'"'
 let $xsl := if($xslPath eq "")
     then
         if(doc($config:app-root||'/resources/xslt/'||$collection||'.xsl'))
@@ -417,6 +418,7 @@ let $path2source := "../resolver/resolve-doc.xql?doc-name="||$ref||"&amp;collect
 let $params :=
 <parameters>
     <param name="app-name" value="{$config:app-name}"/>
+    <param name="facsIds" value="{string-join($facsIds, ', ')}"/>
     <param name="collection-name" value="{$collection}"/>
     <param name="path2source" value="{$path2source}"/>
     <param name="prev" value="{$prev}"/>
