@@ -142,9 +142,12 @@
                 </div>
                
                 <!-- Modal -->
-                <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Faksimile des Tagesbuches</h3>
+                            </div>
                             <div class="modal-body">
                                 <div id="openseadragon-photo" style="height: 350px;"/>
                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/2.4.1/openseadragon.min.js"/>
@@ -161,7 +164,6 @@
                             </div>
                             <div class="modal-footer">
                                 <p>
-                                    <legend>Faksimiles</legend>
                                     <xsl:for-each select="$facsArcheIds">
                                         <a>
                                             <xsl:attribute name="href">
