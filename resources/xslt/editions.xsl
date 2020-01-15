@@ -13,6 +13,7 @@
     <xsl:param name="progress"/>
     <xsl:param name="quotationURL"/>
     <xsl:param name="facsIds"/>
+    <xsl:param name="facsArcheIds"/>
 
     <xsl:variable name="entryDate">
       <xsl:value-of select="xs:date(//tei:title[@type='iso-date']/text())"/>
@@ -119,7 +120,7 @@
                                 <xsl:value-of select="$source_pdf"/>
                             </xsl:attribute>                                    
                             <i class="fa-lg far fa-file-pdf"/>
-                            PDF <xsl:value-of select="$entryDate"/>
+                            PDF
                         </a>
                         <a class="ml-3" title="Faksimile zu diesem Eintrag" data-toggle="modal" data-target="#exampleModal">
                             <i class="fa-lg far fa-file-pdf"/>
@@ -157,6 +158,19 @@
                                     tileSources: [<xsl:value-of select="$facsIds"/>]
                                     });
                                 </script>
+                            </div>
+                            <div class="modal-footer">
+                                <p>
+                                    <legend>Faksimiles</legend>
+                                    <xsl:for-each select="$facsArcheIds">
+                                        <a>
+                                            <xsl:attribute name="href">
+                                                <xsl:value-of select="."/>
+                                            </xsl:attribute>
+                                            <xsl:value-of select="."/>
+                                        </a>
+                                    </xsl:for-each>
+                                </p>
                             </div>
                         </div>
                     </div>
