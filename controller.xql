@@ -6,13 +6,20 @@ declare variable $exist:controller external;
 declare variable $exist:prefix external;
 declare variable $exist:root external;
 
+declare variable $exist:base_url := "https://schnitzler-tagebuch.acdh.oeaw.ac.at";
+
 if ($exist:path eq '') then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="{request:get-uri()}/"/>
     </dispatch>
+else if (contains($exist:path, "/entity/")) then
+    let $ent_id := tokenize(substring-after($exist:path, "/entity/"), "/")
+    return
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <redirect url="{$exist:base_url}/pages/hits.html?searchkey={$ent_id}"/>
+    </dispatch>
 else if (contains($exist:path, "/v/")) then
     let $ed := tokenize(substring-after($exist:path, "/v/"), "/")
-    let $base := substring-before(substring-after(substring-after(request:get-url(), '://'), '/'), '/v/')
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="https://schnitzler-tagebuch.acdh.oeaw.ac.at/pages/show.html?document={$ed[2]}.xml&amp;directory={$ed[1]}"/>
@@ -22,7 +29,7 @@ else if ($exist:path eq "/") then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="pages/index.html"/>
     </dispatch>
-    
+
 else if (ends-with($exist:resource, ".html")) then
     (: the html page is run through view.xql to expand templates :)
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
