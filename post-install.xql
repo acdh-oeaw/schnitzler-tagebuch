@@ -95,7 +95,4 @@ let $docs := collection($app:editions)//tei:TEI
 let $context := doc($cache-file)/tbody
 for $x in $docs
   let $row := app:createTocRow($x)
-  return update insert $row into $context,
-
-let $newIndex := xmldb:reindex($app:data)
-return "done"
+  return update insert $row into $context
