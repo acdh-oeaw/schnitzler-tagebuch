@@ -3,7 +3,6 @@
         <fulltext default="none" attributes="false"/>
         <create qname="tei:rs" type="xs:string"/>
         <create qname="@ref" type="xs:string"/>
-        <create qname="@xml:id" type="xs:string"/>
         <lucene>
             <text qname="tei:body"/>
             <text qname="tei:p"/>

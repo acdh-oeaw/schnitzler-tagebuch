@@ -65,20 +65,20 @@ for $x in doc($app:workIndex)//tei:body/tei:list//tei:date[@when]
     let $book := $x/ancestor::tei:item/tei:title
     group by $groupkey
     return
-        <listbibl key="{concat('entry__', $groupkey[1], '.xml')}" xmlns="http://www.tei-c.org/ns/1.0">
+        <listBibl xmlns="http://www.tei-c.org/ns/1.0" ana="{concat('entry__', $groupkey[1], '.xml')}">
             {
                 for $y in $book
                 return
-                    <bibl xml:id="{data($y/@key)}" xmlns="http://www.tei-c.org/ns/1.0">
+                    <bibl xmlns="http://www.tei-c.org/ns/1.0" xml:id="{data($y/@key)}">
                         <title xmlns="http://www.tei-c.org/ns/1.0">{$y/text()}</title>
                     </bibl>
             }
-        </listbibl>
+        </listBibl>
 }
 </result>
 
 for $x in $listbibls/*
-    let $doc := doc($app:editions||'/'||$x/@key)
+    let $doc := doc($app:editions||'/'||$x/@ana)
     let $bibl := $x
     let $back := $doc//tei:back
     let $update := update insert $bibl into $back

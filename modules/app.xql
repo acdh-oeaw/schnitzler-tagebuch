@@ -241,7 +241,7 @@ for $title in ($entities)
 
 
 declare function app:workIndexSearchResults($node as node(), $model as map(*),  $searchkey as xs:string?, $path as xs:string?){
-let $entities := collection($app:editions)//tei:TEI[.//*/@xml:id=$searchkey]
+let $entities := collection($app:editions)//id($searchkey)
 for $title in ($entities)
     let $docTitle := root($title)//tei:titleStmt/tei:title[@type='iso-date']/text()
     return
