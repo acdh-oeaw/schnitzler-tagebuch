@@ -55,7 +55,7 @@
 -->
     <xsl:template match="/">
         <div class="container">
-            
+
             <div class="card">
                 <div class="card-header" onload="initSlider()">
                     <div class="row" style="text-align:left">
@@ -118,14 +118,14 @@
                         <a class="ml-3" data-toggle="tooltip" title="Link zum PDF der Buchvorlage zu diesem Eintrag">
                             <xsl:attribute name="href">
                                 <xsl:value-of select="$source_pdf"/>
-                            </xsl:attribute>                                    
+                            </xsl:attribute>
                             <i class="fa-lg far fa-file-pdf"/>
                             PDF
                         </a>
-                        <a class="ml-3" title="Faksimile zu diesem Eintrag" data-toggle="modal" data-target="#exampleModal">
+                        <!-- <a class="ml-3" title="Faksimile zu diesem Eintrag" data-toggle="modal" data-target="#exampleModal">
                             <i class="fa-lg far fa-file-pdf"/>
                             Faksimile
-                        </a>
+                        </a> -->
                         <xsl:if test="//tei:back/*">
                             <a class="ml-3" data-toggle="tooltip" title="Eintrag als Netzwerk-Graph visualisiert">
                                 <xsl:attribute name="href">
@@ -140,7 +140,7 @@
                         <a id="output" class="btn btn-main btn-outline-success btn-sm" href="show.html?document=entry__1879-03-03.xml&amp;directory=editions" role="button">gehe zu</a>
                     </h6>
                 </div>
-               
+
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
