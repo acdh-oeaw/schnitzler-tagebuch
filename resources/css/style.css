@@ -15,6 +15,13 @@ span.data-hr {
     overflow: visible;
 }
 
+.card-wrapper .card .card-inner {
+    border-top-color: #037a33 !important;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-top-width: 5px !important;
+}
+
 .unlinked-entity {
     color: #037a33;
 }
@@ -31,6 +38,7 @@ a:not([href]):not([tabindex]) {
 .navbar {
     padding-left: 0;
     padding-right: 0;
+    border-bottom: 5px solid #037a33;
 }
 
 .navbar .navbar-brand {
