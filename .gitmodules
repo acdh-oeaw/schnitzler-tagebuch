@@ -1,6 +1,3 @@
-[submodule "data"]
-	path = data
-	url = https://github.com/acdh-oeaw/schnitzler-tagebuch-data.git
 [submodule "archeutils"]
 	path = archeutils
 	url = https://github.com/KONDE-AT/dsebaseapp-archeutils
