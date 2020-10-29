@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:functx="http://www.functx.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="tei" version="2.0"><!-- <xsl:strip-space elements="*"/>-->
     <xsl:import href="shared/base.xsl"/>
     <xsl:param name="document"/>
@@ -122,10 +121,12 @@
                             <i class="fa-lg far fa-file-pdf"/>
                             PDF
                         </a>
-                        <!-- <a class="ml-3" title="Faksimile zu diesem Eintrag" data-toggle="modal" data-target="#exampleModal">
-                            <i class="fa-lg far fa-file-pdf"/>
-                            Faksimile
-                        </a> -->
+                        <xsl:if test="$facsArcheIds">
+                            <a class="ml-3" title="Faksimile zu diesem Eintrag" data-toggle="modal" data-target="#exampleModal">
+                                <i class="fa-lg far fa-file-pdf"/>
+                                Faksimile
+                            </a>
+                        </xsl:if>
                         <xsl:if test="//tei:back/*">
                             <a class="ml-3" data-toggle="tooltip" title="Eintrag als Netzwerk-Graph visualisiert">
                                 <xsl:attribute name="href">
@@ -162,17 +163,19 @@
                                     });
                                 </script>
                             </div>
-                            <div class="modal-footer">
-                                <p>
-                                    <xsl:for-each select="$facsArcheIds">
-                                        <a>
-                                            <xsl:attribute name="href">
+                            <div class="modal-footer" style="justify-content: flex-start;">
+                                <ul style="list-style-type: none;">
+                                    <xsl:for-each select="tokenize($facsArcheIds, ' ')">
+                                            <li>
+                                                <a>
+                                                <xsl:attribute name="href">
+                                                    <xsl:value-of select="concat(., '?format=gui')"/>
+                                                </xsl:attribute>
                                                 <xsl:value-of select="."/>
-                                            </xsl:attribute>
-                                            <xsl:value-of select="."/>
-                                        </a>
+                                            </a>
+                                            </li>
                                     </xsl:for-each>
-                                </p>
+                                </ul>
                             </div>
                         </div>
                     </div>
