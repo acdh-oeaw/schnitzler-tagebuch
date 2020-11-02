@@ -95,6 +95,23 @@
                 </div>
                 <div class="card-footer text-muted" style="text-align:center">
                     <div id="srcbuttons">
+                        <xsl:if test="$facsArcheIds">
+                            <a class="ml-3" title="Faksimile zu diesem Eintrag" data-toggle="modal" data-target="#exampleModal">
+                                <i class="fa-lg far fa-file-image"/> Faksimile
+                            </a>
+                        </xsl:if>
+                        <a class="ml-3" data-toggle="tooltip" title="Link zum PDF der Buchvorlage zu diesem Eintrag">
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$source_pdf"/>
+                            </xsl:attribute>
+                            <i class="fa-lg far fa-file-pdf"/> PDF
+                        </a>
+                        <a class="ml-3" data-toggle="tooltip" title="Link zur TEI-Datei">
+                            <xsl:attribute name="href">
+                                <xsl:value-of select="$path2source"/>
+                            </xsl:attribute>
+                            <i class="fa-lg far fa-file-code"/> TEI
+                        </a>
                         <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
                             <span id="copy-url-button">
                                 <i class="fas fa-quote-right"/> ZITIEREN
@@ -108,25 +125,6 @@
                                 </textarea>
                             </span>
                         </div>
-                        <a class="ml-3" data-toggle="tooltip" title="Link zur TEI-Datei">
-                            <xsl:attribute name="href">
-                                <xsl:value-of select="$path2source"/>
-                            </xsl:attribute>
-                            <i class="fa-lg far fa-file-code"/> TEI
-                        </a>
-                        <a class="ml-3" data-toggle="tooltip" title="Link zum PDF der Buchvorlage zu diesem Eintrag">
-                            <xsl:attribute name="href">
-                                <xsl:value-of select="$source_pdf"/>
-                            </xsl:attribute>
-                            <i class="fa-lg far fa-file-pdf"/>
-                            PDF
-                        </a>
-                        <xsl:if test="$facsArcheIds">
-                            <a class="ml-3" title="Faksimile zu diesem Eintrag" data-toggle="modal" data-target="#exampleModal">
-                                <i class="fa-lg far fa-file-pdf"/>
-                                Faksimile
-                            </a>
-                        </xsl:if>
                         <xsl:if test="//tei:back/*">
                             <a class="ml-3" data-toggle="tooltip" title="Eintrag als Netzwerk-Graph visualisiert">
                                 <xsl:attribute name="href">

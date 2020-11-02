@@ -26,7 +26,7 @@ for $x in collection($app:editions)//tei:TEI
           <acdh:isPartOf rdf:resource="https://id.acdh.oeaw.ac.at/schnitzler/schnitzler-tagebuch/editions"/>
           <acdh:hasTitle xml:lang="de">Einträge des Jahres {$year}</acdh:hasTitle>
           <acdh:hasExtent xml:lang="de">{count($x)} Einträge</acdh:hasExtent>
-          <acdh:hasDescription xml:lang="de">Die Sammlung umfasst {count($x)} Einträge des Tagebuches von Arthur Schnitzler aus dem Jahr {$year}</acdh:hasDescription>
+          <acdh:hasDescription xml:lang="de">Die Sammlung umfasst {count($x)} Einträge des Tagebuchs von Arthur Schnitzler aus dem Jahr {$year}</acdh:hasDescription>
           <acdh:hasCoverageStartDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">{concat($year, '-01-01')}</acdh:hasCoverageStartDate>
         <acdh:hasCoverageEndDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">{concat($year, '-12-31')}</acdh:hasCoverageEndDate>
         </acdh:Collection>
