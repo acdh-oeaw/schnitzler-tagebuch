@@ -112,6 +112,7 @@
                             </xsl:attribute>
                             <i class="fa-lg far fa-file-code"/> TEI 
                         </a>
+                        <xsl:text> </xsl:text>
                         <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
                             <span id="copy-url-button">
                                 <i class="fas fa-quote-right"/> ZITIEREN
