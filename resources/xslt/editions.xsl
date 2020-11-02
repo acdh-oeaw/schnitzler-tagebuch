@@ -110,7 +110,7 @@
                             <xsl:attribute name="href">
                                 <xsl:value-of select="$path2source"/>
                             </xsl:attribute>
-                            <i class="fa-lg far fa-file-code"/> TEI
+                            <i class="fa-lg far fa-file-code"/> TEI 
                         </a>
                         <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
                             <span id="copy-url-button">
