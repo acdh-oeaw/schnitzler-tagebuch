@@ -161,7 +161,7 @@
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3>Faksimile des Tagesbuches</h3>
+                                <h3>Faksimile</h3>
                             </div>
                             <div class="modal-body">
                                 <div id="openseadragon-photo" style="height: 350px;"/>
