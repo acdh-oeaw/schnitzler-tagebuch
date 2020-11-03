@@ -147,8 +147,9 @@
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:variable>
-                        <div id="csLink" data-correspondent-1-name="" data-correspondent-1-id="" data-correspondent-2-name="" data-correspondent-2-id="" data-start-date="{$datum}" data-end-date="" data-range="50" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition="">
-                        </div>
+                        <span class="nav-link">
+                                        <div id="csLink" data-correspondent-1-name="" data-correspondent-1-id="all" data-correspondent-2-name="" data-correspondent-2-id="" data-start-date="{$datum}" data-end-date="" data-range="50" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition=""/>
+                                    </span>
                     </div>
                     <h6 style="text-align:center;">
                         <input type="range" min="1" max="{$amount}" value="{$currentIx}" data-rangeslider="" style="width:100%;"/>
