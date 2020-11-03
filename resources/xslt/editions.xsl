@@ -95,6 +95,20 @@
                 </div>
                 <div class="card-footer text-muted" style="text-align:center">
                     <div id="srcbuttons">
+                                            <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
+                            <span id="copy-url-button">
+                                <i class="fas fa-quote-right"/> ZITIEREN
+                            </span>
+                            <span id="copyLinkTextfield-wrapper">
+                                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationString}">
+                                    <i class="far fa-copy"/>
+                                </span>
+                                <textarea rows="3" name="copyLinkTextfield" id="copyLinkTextfield" value="">
+                                    <xsl:value-of select="$quotationString"/>
+                                </textarea>
+                            </span>
+                        </div>
+
                         <xsl:if test="$facsArcheIds">
                             <a class="ml-3" title="Faksimile zu diesem Eintrag" data-toggle="modal" data-target="#exampleModal">
                                 <i class="fa-lg far fa-file-image"/> Faksimile
@@ -112,20 +126,6 @@
                             </xsl:attribute>
                             <i class="fa-lg far fa-file-code"/> TEI 
                         </a>
-                        <xsl:text> </xsl:text>
-                        <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
-                            <span id="copy-url-button">
-                                <i class="fas fa-quote-right"/> ZITIEREN
-                            </span>
-                            <span id="copyLinkTextfield-wrapper">
-                                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationString}">
-                                    <i class="far fa-copy"/>
-                                </span>
-                                <textarea rows="3" name="copyLinkTextfield" id="copyLinkTextfield" value="">
-                                    <xsl:value-of select="$quotationString"/>
-                                </textarea>
-                            </span>
-                        </div>
                         <xsl:if test="//tei:back/*">
                             <a class="ml-3" data-toggle="tooltip" title="Eintrag als Netzwerk-Graph visualisiert">
                                 <xsl:attribute name="href">
