@@ -95,6 +95,20 @@
                 </div>
                 <div class="card-footer text-muted" style="text-align:center">
                     <div id="srcbuttons">
+                                            <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
+                            <span id="copy-url-button">
+                                <i class="fas fa-quote-right"/> ZITIEREN
+                            </span>
+                            <span id="copyLinkTextfield-wrapper">
+                                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationString}">
+                                    <i class="far fa-copy"/>
+                                </span>
+                                <textarea rows="3" name="copyLinkTextfield" id="copyLinkTextfield" value="">
+                                    <xsl:value-of select="$quotationString"/>
+                                </textarea>
+                            </span>
+                        </div>
+
                         <xsl:if test="$facsArcheIds">
                             <a class="ml-3" title="Faksimile zu diesem Eintrag" data-toggle="modal" data-target="#exampleModal">
                                 <i class="fa-lg far fa-file-image"/> Faksimile
@@ -110,21 +124,8 @@
                             <xsl:attribute name="href">
                                 <xsl:value-of select="$path2source"/>
                             </xsl:attribute>
-                            <i class="fa-lg far fa-file-code"/> TEI
+                            <i class="fa-lg far fa-file-code"/> TEI 
                         </a>
-                        <div class="res-act-button res-act-button-copy-url" id="res-act-button-copy-url" data-copyuri="{$quotationURL}">
-                            <span id="copy-url-button">
-                                <i class="fas fa-quote-right"/> ZITIEREN
-                            </span>
-                            <span id="copyLinkTextfield-wrapper">
-                                <span type="text" name="copyLinkInputBtn" id="copyLinkInputBtn" data-copyuri="{$quotationString}">
-                                    <i class="far fa-copy"/>
-                                </span>
-                                <textarea rows="3" name="copyLinkTextfield" id="copyLinkTextfield" value="">
-                                    <xsl:value-of select="$quotationString"/>
-                                </textarea>
-                            </span>
-                        </div>
                         <xsl:if test="//tei:back/*">
                             <a class="ml-3" data-toggle="tooltip" title="Eintrag als Netzwerk-Graph visualisiert">
                                 <xsl:attribute name="href">
@@ -133,21 +134,10 @@
                                 <i class="fas fa-project-diagram"/> Netzwerk
                             </a>
                         </xsl:if>
-						<xsl:variable name="datum">
-                            <xsl:choose>
-                                <xsl:when test="//tei:correspDesc/tei:correspAction[@type='sent']/tei:date/@when">
-                                    <xsl:value-of select="//tei:correspDesc/tei:correspAction[@type='sent']/tei:date/@when"/>
-                                </xsl:when>
-                                <xsl:when test="//tei:correspDesc/tei:correspAction[@type='sent']/tei:date/@notBefore">
-                                    <xsl:value-of select="//tei:correspDesc/tei:correspAction[@type='sent']/tei:date/@notBefore"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="//tei:correspDesc/tei:correspAction[@type='sent']/tei:date/@notAfter"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:variable>
-                        <div id="csLink" data-correspondent-1-name="" data-correspondent-1-id="https://d-nb.info/gnd/118609807" data-correspondent-2-name="" data-correspondent-2-id="" data-start-date="{$datum}" data-end-date="" data-range="50" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition="">
-                        </div>
+						<xsl:variable name="datum" select="descendant::tei:titleStmt/tei:title[@type = 'iso-date']"/>
+                        <span class="nav-link">
+                                        <div id="csLink" data-correspondent-1-name="Arthur Schnitzler" data-correspondent-1-id="http%3A%2F%2Fd-nb.info%2Fgnd%2F118609807" data-correspondent-2-name="" data-correspondent-2-id="" data-start-date="{$datum}" data-end-date="" data-range="50" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition=""/>
+                                    </span>
                     </div>
                     <h6 style="text-align:center;">
                         <input type="range" min="1" max="{$amount}" value="{$currentIx}" data-rangeslider="" style="width:100%;"/>
@@ -160,7 +150,7 @@
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3>Faksimile des Tagesbuches</h3>
+                                <h3>Faksimile</h3>
                             </div>
                             <div class="modal-body">
                                 <div id="openseadragon-photo" style="height: 350px;"/>
