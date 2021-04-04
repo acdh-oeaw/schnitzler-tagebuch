@@ -4,15 +4,6 @@
     <property name="project.version" value="${package(version)}"/>
     <property name="project.app" value="schnitzler-tagebuch"/>
     <property name="build.dir" value="build"/>
-    <copy todir="data/indices">
-      <fileset dir="../schnitzler-tagebuch-data-public/indices"/>
-    </copy>
-    <copy todir="data/editions">
-      <fileset dir="../schnitzler-tagebuch-data-public/editions"/>
-    </copy>
-    <copy todir="data/meta">
-      <fileset dir="../schnitzler-tagebuch-data-public/meta"/>
-    </copy>
     <target name="xar">
         <mkdir dir="${build.dir}"/>
         <zip basedir="." destfile="${build.dir}/${project.app}-${project.version}.xar"
