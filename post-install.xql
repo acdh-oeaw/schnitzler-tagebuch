@@ -21,7 +21,7 @@ for $resource in xmldb:get-child-resources(xs:anyURI($config:app-root||"/ac/"))
 for $resource in xmldb:get-child-resources(xs:anyURI($config:app-root||"/netvis/"))
     return sm:chmod(xs:anyURI($config:app-root||'/netvis/'||$resource), "rwxrwxr-x"),
 
-for $x in collection($app:editions)//tei:TEI
+(: for $x in collection($app:editions)//tei:TEI
     let $removeBack := update delete $x//tei:back
     let $persons := distinct-values(data($x//tei:rs[@type="person" and not(@ref="#person_")]/@ref))
     let $listperson :=
@@ -54,7 +54,7 @@ for $x in collection($app:editions)//tei:TEI
 
     let $update := update insert $back into $x/tei:text
 
-    return "done",
+    return "done", :)
 
 
 let $listbibls :=
