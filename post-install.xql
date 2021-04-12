@@ -28,7 +28,8 @@ for $x in doc($app:workIndex)//tei:body/tei:list//tei:date[@when]
     let $book := $x/ancestor::tei:item/tei:title
     group by $groupkey
     return
-        <listBibl xmlns="http://www.tei-c.org/ns/1.0" ana="{concat('entry__', $groupkey[1], '.xml')}">
+        <back xmlns="http://www.tei-c.org/ns/1.0" ana="{concat('entry__', $groupkey[1], '.xml')}">
+        <listBibl xmlns="http://www.tei-c.org/ns/1.0" >
             {
                 for $y in $book
                 return
@@ -37,15 +38,17 @@ for $x in doc($app:workIndex)//tei:body/tei:list//tei:date[@when]
                     </bibl>
             }
         </listBibl>
+        </back>
 }
 </result>
 
 for $x in $listbibls/*
     let $doc := doc($app:editions||'/'||$x/@ana)
     let $bibl := $x
-    let $back := $doc//tei:back
-    let $update := update insert $bibl into $back
+    let $insert_place := $doc//tei:text
+    let $update := update insert $bibl into $insert_place
     return "bibl",
 
 (: create calendar cache :)
 let $data := app:populate_cache()
+return 'done'
