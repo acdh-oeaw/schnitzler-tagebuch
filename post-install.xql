@@ -20,6 +20,9 @@ for $resource in xmldb:get-child-resources(xs:anyURI($config:app-root||"/ac/"))
 for $resource in xmldb:get-child-resources(xs:anyURI($config:app-root||"/netvis/"))
     return sm:chmod(xs:anyURI($config:app-root||'/netvis/'||$resource), "rwxrwxr-x"),
 
+for $resource in xmldb:get-child-resources(xs:anyURI($config:app-root||"/resolver/"))
+    return sm:chmod(xs:anyURI($config:app-root||'/resolver/'||$resource), "rwxrwxr-x"),
+
 let $listbibls :=
 <result xmlns="http://www.tei-c.org/ns/1.0">{
 
