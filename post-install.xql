@@ -109,4 +109,9 @@ let $docs := collection($app:editions)//tei:TEI
 let $context := doc($cache-file)/tbody
 for $x in $docs
   let $row := app:createTocRow($x)
-  return update insert $row into $context
+  return update insert $row into $context,
+
+let $shadow_col := xs:anyURI($app:data||'/shadowindices/')
+let $indices := xs:anyURI($app:indices)
+let $col_exist := if (xmldb:match-collection($shadow_col)) then (xmldb:remove($indices), xmldb:rename($shadow_col, 'indices')) else 'done'
+return $col_exist
