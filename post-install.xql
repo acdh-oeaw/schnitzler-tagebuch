@@ -111,7 +111,10 @@ for $x in $docs
   let $row := app:createTocRow($x)
   return update insert $row into $context,
 
+util:log("info", "#################################"),
+util:log("info", "replacing index files"),
+util:log("info", "#################################"),
 let $shadow_col := xs:anyURI($app:data||'/shadowindices/')
 let $indices := xs:anyURI($app:indices)
-let $col_exist := if (xmldb:match-collection($shadow_col)) then (xmldb:remove($indices), xmldb:rename($shadow_col, 'indices')) else 'done'
+let $col_exist := if (xmldb:collection-available($shadow_col)) then (xmldb:remove($indices), xmldb:rename($shadow_col, 'indices')) else 'done'
 return $col_exist

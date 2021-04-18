@@ -4,7 +4,7 @@ import module namespace app="http://www.digital-archiv.at/ns/templates" at "../m
 declare option exist:serialize "method=xml media-type=text/xml omit-xml-declaration=yes indent=yes";
 
 
-(: let $xsl := doc('denormalize.xsl') :)
+let $xsl := doc('denormalize.xsl')
 let $doc_name := request:get-parameter('doc-name', 'entry__1879-11-18.xml')
 let $collection := request:get-parameter('collection', 'editions')
 let $doc_uri :=
@@ -14,7 +14,7 @@ let $doc_uri :=
         else
             false()
 let $xml := if($doc_name) then doc($doc_uri) else ()
-(: let $index_endpoint := $app:BASE_URL||'/resolver/index-entries.xql?doc-name='||$doc_name||'&amp;collection='||$collection
+let $index_endpoint := $app:BASE_URL||'/resolver/index-entries.xql?doc-name='||$doc_name||'&amp;collection='||$collection
 let $params :=
 <parameters>
     <param name="doc_name" value="{$doc_name}"/>
@@ -28,5 +28,5 @@ let $params :=
                    <param name="{$p}"  value="{$val}"/>
    }
 </parameters>
-let $result := transform:transform($xml, $xsl, $params) :)
-return $xml
+let $result := transform:transform($xml, $xsl, $params)
+return $result

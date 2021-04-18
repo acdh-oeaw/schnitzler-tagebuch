@@ -35,16 +35,13 @@
                     </xsl:for-each>
                 </listOrg>
             </xsl:if>
-            <xsl:if test="$indices//tei:bibl">
-                <listOrg>
-                    <xsl:for-each select="$indices//tei:bibl">
-                        <xsl:copy-of select="."/>
-                    </xsl:for-each>
-                </listOrg>
-            </xsl:if>
-            <xsl:for-each select="./node()">
-                <xsl:copy-of select="."/>
-            </xsl:for-each>
+            <xsl:apply-templates select="tei:listBibl"/>
         </back>
+     </xsl:template>
+     
+     <xsl:template match="tei:listBibl">
+         <xsl:copy>
+            <xsl:apply-templates select="node()|@*"/>
+        </xsl:copy>
      </xsl:template>
 </xsl:stylesheet>
