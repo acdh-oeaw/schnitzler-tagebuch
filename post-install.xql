@@ -24,78 +24,7 @@ for $resource in xmldb:get-child-resources(xs:anyURI($config:app-root||"/netvis/
 
 for $resource in xmldb:get-child-resources(xs:anyURI($config:app-root||"/resolver/"))
     return sm:chmod(xs:anyURI($config:app-root||'/resolver/'||$resource), "rwxrwxr-x"),
-
-util:log("info", "#################################"),
-util:log("info", "adding listPerson and listPlace"),
-util:log("info", "#################################"),
-for $x in collection($app:editions)//tei:TEI
-    let $removeBack := update delete $x//tei:back
-    let $persons := distinct-values(data($x//tei:rs[@type="person" and not(@ref="#person_")]/@ref))
-    let $listperson :=
-    <listPerson xmlns="http://www.tei-c.org/ns/1.0">
-        {
-        for $y in $persons
-        return
-        collection($app:indices)//id(substring-after($y, '#'))
-        }
-    </listPerson>
-
-    let $places := distinct-values(data($x//tei:rs[@type="place"]/@ref))
-    let $listplace :=
-    <listPlace xmlns="http://www.tei-c.org/ns/1.0">
-        {
-        for $y in $places
-        return
-        collection($app:indices)//id(substring-after($y, '#'))
-        }
-    </listPlace>
-
-    let $validlistperson := if ($listperson/tei:person) then $listperson else ()
-    let $validlistplace := if ($listplace/tei:place) then $listplace else ()
-
-    let $back :=
-    <back xmlns="http://www.tei-c.org/ns/1.0">
-        {$validlistperson}
-        {$validlistplace}
-    </back>
-
-    let $update := update insert $back into $x/tei:text
-
-    return "done",
-
-util:log("info", "#################################"),
-util:log("info", "collecting bibl entries"),
-util:log("info", "#################################"),
-
-let $listbibls :=
-<result xmlns="http://www.tei-c.org/ns/1.0">{
-
-for $x in doc($app:workIndex)//tei:body/tei:list//tei:date[@when]
-    let $groupkey := data($x/@when)
-    let $book := $x/ancestor::tei:item/tei:title
-    group by $groupkey
-    return
-        <listBibl xmlns="http://www.tei-c.org/ns/1.0" ana="{concat('entry__', $groupkey[1], '.xml')}">
-            {
-                for $y in $book
-                return
-                    <bibl xmlns="http://www.tei-c.org/ns/1.0" xml:id="{data($y/@key)}">
-                        <title xmlns="http://www.tei-c.org/ns/1.0">{$y/text()}</title>
-                    </bibl>
-            }
-        </listBibl>
-}
-</result>
-
-
-
-for $x in $listbibls/*
-    let $doc := doc($app:editions||'/'||$x/@ana)
-    let $bibl := $x
-    let $back := $doc//tei:back
-    let $update := update insert $bibl into $back
-    return "bibl",
-    
+   
 util:log("info", "#################################"),
 util:log("info", "create calendar"),
 util:log("info", "#################################"),
@@ -109,12 +38,4 @@ let $docs := collection($app:editions)//tei:TEI
 let $context := doc($cache-file)/tbody
 for $x in $docs
   let $row := app:createTocRow($x)
-  return update insert $row into $context,
-
-util:log("info", "#################################"),
-util:log("info", "replacing index files"),
-util:log("info", "#################################"),
-let $shadow_col := xs:anyURI($app:data||'/shadowindices/')
-let $indices := xs:anyURI($app:indices)
-let $col_exist := if (xmldb:collection-available($shadow_col)) then (xmldb:remove($indices), xmldb:rename($shadow_col, 'indices')) else 'done'
-return $col_exist
+  return update insert $row into $context
