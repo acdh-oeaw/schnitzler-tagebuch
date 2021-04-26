@@ -29,4 +29,4 @@ let $params :=
    }
 </parameters>
 let $result := transform:transform($xml, $xsl, $params)
-return $result
+return $xml
