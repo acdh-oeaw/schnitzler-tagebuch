@@ -385,6 +385,7 @@ declare function app:toc($node as node(), $model as map(*)) {
 :)
 declare function app:XMLtoHTML ($node as node(), $model as map (*), $query as xs:string?) {
 let $ref := xs:string(request:get-parameter("document", ""))
+let $show_register := xs:string(request:get-parameter("show-register", ""))
 let $refname := substring-before($ref, '.xml')
 let $xmlPath := concat(xs:string(request:get-parameter("directory", "editions")), '/')
 let $xml := doc(replace(concat($config:app-root,'/data/', $xmlPath, $ref), '/exist/', '/db/'))
@@ -427,6 +428,7 @@ let $params :=
     <param name="prev" value="{$prev}"/>
     <param name="next" value="{$next}"/>
     <param name="amount" value="{$amount}"/>
+    <param name="show-register" value="{$show_register}"/>
     <param name="currentIx" value="{$currentIx}"/>
     <param name="progress" value="{$progress}"/>
     <param name="productionBaseUrl" value="{$app:productionBaseURL}"/>
