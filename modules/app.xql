@@ -9,7 +9,7 @@ import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://www.digital-archiv.at/ns/config" at "config.xqm";
 import module namespace kwic = "http://exist-db.org/xquery/kwic" at "resource:org/exist/xquery/lib/kwic.xql";
 
-declare variable $app:BASE_URL := "http://127.0.1.1:8080/exist/apps/schnitzler-tagebuch";
+declare variable $app:BASE_URL := "https://schnitzler-tagebuch.acdh.oeaw.ac.at";
 declare variable $app:data := $config:app-root||'/data';
 declare variable $app:editions := $config:app-root||'/data/editions';
 declare variable $app:indices := $config:app-root||'/data/indices';
@@ -150,9 +150,8 @@ declare function app:nameOfIndexEntry($node as node(), $model as map (*)){
 
     let $searchkey := xs:string(request:get-parameter("searchkey", "No search key provided"))
     let $withHash:= '#'||$searchkey
-    let $entities := collection($app:editions)//tei:TEI//*[@ref=$withHash]
-    let $terms := (collection($app:editions)//tei:TEI[.//tei:term[./text() eq substring-after($withHash, '#')]])
-    let $noOfterms := count(($entities, $terms))
+    let $terms := collection($app:editions)//id($searchkey)
+    let $noOfterms := count($terms)
     let $hit := collection($app:indices)//*[@xml:id=$searchkey]
     let $name := if (contains(node-name($hit), 'person'))
         then
@@ -221,7 +220,7 @@ let $href := concat('../pages/show.html','?document=', app:getDocName($node), '&
 declare function app:indexSearch_hits($node as node(), $model as map(*),  $searchkey as xs:string?, $path as xs:string?){
 let $indexSerachKey := $searchkey
 let $searchkey:= '#'||$searchkey
-let $entities := collection($app:editions)//tei:TEI[.//*/@ref=$searchkey]
+let $entities := for $x in collection($app:editions)//id($indexSerachKey) return root($x)
 for $title in ($entities)
     let $docTitle := root($title)//tei:titleStmt/tei:title[@type='iso-date']/text()
     let $hits := if (count(root($title)//*[@ref=$searchkey]) = 0) then 1 else count(root($title)//*[@ref=$searchkey])
@@ -231,12 +230,13 @@ for $title in ($entities)
                 let $after := substring(normalize-space(string-join($entity/following::text(), '')), 1, 50)
                 return
                     <p>... {concat($before, ' ')} <strong><a href="{concat(app:hrefToDoc($title), "&amp;searchkey=", $indexSerachKey)}"> {string-join($entity//text(), '')}</a></strong> {concat(' ', $after)}...<br/></p>
+    let $actual_snippet := if ($snippet) then $snippet else <p>keine Verknüpfung zur eigentlichen Textstelle</p>
     let $zitat := $title//tei:msIdentifier
     return
             <tr>
                <td style="white-space: nowrap;"><a href="{concat(app:hrefToDoc($title), "&amp;searchkey=", $indexSerachKey)}">{$docTitle}</a></td>
                <td>{$hits}</td>
-               <td>{$snippet}</td>
+               <td>{$actual_snippet}</td>
             </tr>
 };
 
