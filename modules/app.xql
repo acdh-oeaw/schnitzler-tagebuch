@@ -576,3 +576,22 @@ let $json := xmldb:store($target-col, 'calender_datasource.xml', $contents)
 
 return $json
 };
+
+
+(:~
+ : looks for a norm-data URL in any <tei:idno> and returns the first on found or the project-specific id
+ : @param $item The node of the entitiy e.g. tei:place, tei:person, tei:org
+ : @return A string used as ARCHE-ID
+
+:)
+
+declare function app:get_entity_id($item as node()){
+    let $pmb_uri := $item/tei:idno[@type="PMB"]/text()
+    let $pmb_id := substring-after($pmb_uri, 'entity/')
+    let $arche_uri := "https://id.acdh.oeaw.ac.at/pmb/"||$pmb_id
+    let $gnd := $item/tei:idno[@type="GND"]/text()
+    let $result := if ($gnd) then $gnd else $arche_uri
+
+    return
+        $result
+};
