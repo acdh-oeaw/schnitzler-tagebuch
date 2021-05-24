@@ -1,3 +1,13 @@
+body{
+ background:#ffffff;   
+}
+.h1, h1 {
+    margin-top: .5rem;
+    font-size:1.4rem;
+}
+.h1 a, h1 a {
+    font-size:2.5rem;
+}    
 i {
     cursor:pointer;
 }
@@ -20,12 +30,19 @@ span.data-hr {
     border-width: 1px;
     border-color: rgba(0, 0, 0, 0.1);
     border-top-width: 5px !important;
+    box-shadow: 0 0.3rem 1.2rem 0 rgb(5 10 15 / 5%);
 }
-
+.card-wrapper .card .card-inner .entry-content p {
+color: #212529;
+font-size: 1rem;
+}
 .unlinked-entity {
     color: #037a33;
 }
-
+.card-body{
+    background-color: rgba(0,0,0,.03);
+    color: #000000;
+}
 a {
     color: #037a33;
 }
@@ -39,6 +56,7 @@ a:not([href]):not([tabindex]) {
     padding-left: 0;
     padding-right: 0;
     border-bottom: 5px solid #037a33;
+    box-shadow: 0 0.3rem 1.2rem 0 rgb(5 10 15 / 10%);
 }
 
 .navbar .navbar-brand {
@@ -63,11 +81,43 @@ a:not([href]):not([tabindex]) {
     font-size: 1.25rem;
 }
 
-.container-fluid {
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
+/* @media */
 
+@media (min-width:1200px) {
+}
+.container {
+    padding-top:15px;
+    max-width: 850px;
+    margin-top: 30px;
+}
+  .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0rem;
+    padding-top: 0rem;
+}
+  .container-fluid-start {
+    padding: 0 15px;
+    max-width:1200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.container-fluid-empty {
+    background:none;
+    max-width:1200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+#wrapper-hero-inner {
+    padding: 0 35% 0 15px;
+}
+.row-footer {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+}
 .sticky-navbar {
     z-index: 1001;
 }
@@ -189,7 +239,7 @@ td p {
 }
 
 .res-act-button:hover {
-    color:black !important;
+    color:#000000 !important;
 }
 
 #copyLinkInputBtn {
@@ -225,4 +275,11 @@ td p {
     color: #fff;
     background-color: #037a33;
     border-color: #037a33;
+}
+.table {
+    font-size:1rem;
+}
+.card-body li { 
+  /* padding-left: -.1em;  */
+    max-width: 660px;
 }
