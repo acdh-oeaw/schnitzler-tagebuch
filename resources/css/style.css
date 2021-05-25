@@ -3,10 +3,11 @@ body{
 }
 .h1, h1 {
     margin-top: .5rem;
-    font-size:1.4rem;
+    font-size:1.7rem;
 }
 .h1 a, h1 a {
-    font-size:2.5rem;
+    font-size:1.7rem;
+    font-weight: 600;
 }    
 i {
     cursor:pointer;
@@ -40,8 +41,32 @@ font-size: 1rem;
     color: #037a33;
 }
 .card-body{
-    background-color: rgba(0,0,0,.03);
+
+}
+.card-body-tagebuch {
     color: #000000;
+    max-width: 750px;
+    min-height: 270px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(0,0,0,.02);
+    line-height: 1.7rem;
+    font-size: 1.1rem;
+    padding: 1.25rem;
+}
+.card-body-meta{
+    max-width: 750px;
+    min-height: 270px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7rem;
+    font-size: 1.1rem;
+}
+.card-header {
+    background-color: inherit;
+}
+.card-footer {
+    background-color: inherit;
 }
 a {
     color: #037a33;
@@ -279,7 +304,34 @@ td p {
 .table {
     font-size:1rem;
 }
-.card-body li { 
-  /* padding-left: -.1em;  */
-    max-width: 660px;
+.container {
+    padding-top: 15px;
+    margin-top: 30px;
+}
+@media (min-width: 1200px){
+.container {
+    max-width: 100%;
+}
+}
+@media (min-width: 992px){
+.container {
+    max-width: 100%;
+}
+}
+@media (min-width: 768px){
+.container {
+    max-width: 100%;
+}
+}
+@media (min-width: 576px){
+.container {
+    max-width: 100%;
+}
+}
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }

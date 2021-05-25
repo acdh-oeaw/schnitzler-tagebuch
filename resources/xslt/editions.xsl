@@ -91,7 +91,7 @@
                 </div>
 
             </div>
-            <div class="card-body">
+            <div class="card-body-tagebuch">
                 <xsl:apply-templates select="//tei:div[@type='diary-day']"/>
                 
             </div>
@@ -142,7 +142,7 @@
                                 <xsl:attribute name="href">
                                     <xsl:value-of select="concat('show.html?directory=editions&amp;document=', $document)"/>
                                 </xsl:attribute>
-                                <i class="fas fa-map-marked-alt"></i> Verstecke Register
+                                <i class="fas fa-map-marked-alt"/> Verstecke Register
                             </a>
                         </xsl:when>
                         <xsl:otherwise>
@@ -150,7 +150,7 @@
                                 <xsl:attribute name="href">
                                     <xsl:value-of select="concat('show.html?directory=editions&amp;document=', $document, '&amp;show-register=true')"/>
                                 </xsl:attribute>
-                                <i class="fas fa-map-marked-alt"></i> Zeige Register
+                                <i class="fas fa-map-marked-alt"/> Zeige Register
                             </a>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -178,7 +178,9 @@
                                 <div class="col-md-4">
                                     <ul>
                                         <xsl:for-each select=".//tei:listPlace/tei:place">
-                                            <li><xsl:value-of select="./tei:placeName/text()"/></li>
+                                            <li>
+                                                    <xsl:value-of select="./tei:placeName/text()"/>
+                                                </li>
                                         </xsl:for-each>
                                     </ul>
                                 </div>
@@ -197,7 +199,9 @@
                                 }).addTo(mymap);
                                 <xsl:for-each select=".//tei:listPlace/tei:place">
                                     L.marker([<xsl:value-of select="substring-before(.//tei:geo/text()[1], ' ')"/>, <xsl:value-of select="substring-after(.//tei:geo/text(), ' ')"/>]).addTo(mymap)
-                                    .bindPopup("<b><xsl:value-of select="./tei:placeName/text()"/></b>").openPopup();
+                                    .bindPopup("<b>
+                                            <xsl:value-of select="./tei:placeName/text()"/>
+                                        </b>").openPopup();
                                 </xsl:for-each>
                             </script>
                             
@@ -206,7 +210,9 @@
                             <legend>Personen</legend>
                             <ul>
                                 <xsl:for-each select=".//tei:listPerson//tei:person">
-                                    <li><xsl:value-of select="./tei:persName"/></li>
+                                    <li>
+                                            <xsl:value-of select="./tei:persName"/>
+                                        </li>
                                 </xsl:for-each>
                             </ul>
                         </div>
@@ -214,7 +220,9 @@
                             <legend>Werke</legend>
                             <ul>
                                 <xsl:for-each select=".//tei:listBibl//tei:bibl">
-                                    <li><xsl:value-of select="./tei:title"/></li>
+                                    <li>
+                                            <xsl:value-of select="./tei:title"/>
+                                        </li>
                                 </xsl:for-each>
                             </ul>
                         </div>
