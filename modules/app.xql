@@ -128,7 +128,7 @@ let $name := functx:substring-after-last(document-uri(root($node)), '/')
 :)
 declare function app:nameOfIndexWork($node as node(), $model as map (*)){
     let $searchkey := xs:string(request:get-parameter("searchkey", "No search key provided"))
-    let $item := doc($app:workIndex)//tei:item[./tei:title[@key=$searchkey]]
+    let $item := doc($app:workIndex)//tei:bibl[@xml:id=$searchkey]
     let $name := $item/tei:title/text()
     let $noOfterms := count($item//tei:date)
     return
@@ -162,10 +162,10 @@ declare function app:nameOfIndexEntry($node as node(), $model as map (*)){
         else if (contains(node-name($hit), 'org'))
         then
             <a class="reference" data-type="listorg.xml" data-key="{$searchkey}">{normalize-space(string-join($hit/tei:orgName[1], ', '))}</a>
-        else if (contains(node-name($hit), 'bibl'))
-        then
-            <a class="reference" data-type="listwork.xml" data-key="{$searchkey}">{normalize-space(string-join($hit/tei:title[1], ', '))}</a>
-        else
+        else if (contains(node-name($hit), 'work'))
+        then 
+            <a class="reference" data-type="listwork.xml" data-key="{$searchkey}">{normalize-space(string-join($hit/tei:bibl[1], ', '))}</a>
+        else 
             functx:capitalize-first($searchkey)
     return
     <h1 style="text-align:center;">
@@ -257,15 +257,16 @@ for $title in ($entities)
  :)
 declare function app:listWork($node as node(), $model as map(*)) {
     let $hitHtml := "work-search.html?searchkey="
-    for $item in doc($app:workIndex)//tei:body//tei:item
+    for $item in doc($app:workIndex)//tei:body/tei:p/tei:listBibl/tei:bibl
+    for $autor-item in $item/tei:author
         return
         <tr>
-            <td><a href="{concat($hitHtml, data($item/tei:title/@key))}">{$item/tei:title/text()}</a></td>
-            <td><a href="{concat($hitHtml, data($item/tei:title/@key))}">{count($item//tei:date)}</a></td>
-            <td>{$item/tei:note[1]}</td>
+            <td><a href="{concat($hitHtml, data($item/@xml:id))}">{$autor-item/tei:persName}</a></td>
+            <td><a href="{concat($hitHtml, data($item/@xml:id))}">{$item/tei:title/text()}</a></td>
+            <td><a href="{concat($hitHtml, data($item/@xml:id))}">{count($item/tei:date)}</a></td>
+            <td><a href="{concat($hitHtml, data($item/@xml:id))}">{$item/tei:gloss/text()}</a></td>
         </tr>
 };
-
 (:~
  : creates a basic person-index derived from the  '/data/indices/listperson.xml'
  :)
